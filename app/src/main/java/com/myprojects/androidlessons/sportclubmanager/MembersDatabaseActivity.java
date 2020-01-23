@@ -3,8 +3,10 @@ package com.myprojects.androidlessons.sportclubmanager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MembersDatabaseActivity extends AppCompatActivity {
 
@@ -27,5 +29,31 @@ public class MembersDatabaseActivity extends AppCompatActivity {
         editUserSurname = findViewById(R.id.edTxtSurname);
         editUserDateBirth = findViewById(R.id.edTxtDataBirth);
         editUserPhoneNumber = findViewById(R.id.edTxtPhoneNumber);
+
+    }
+
+
+    public void addNewMember(View view) {
+        Toast.makeText(this,"Button pressed", Toast.LENGTH_LONG).show();
+
+    }
+
+
+    public void viewAllMembersList(View view) {
+        Toast.makeText(this,"Button pressed", Toast.LENGTH_LONG).show();
+    }
+
+    public void findMember(View view) {
+        Toast.makeText(this,"Button pressed", Toast.LENGTH_LONG).show();
+    }
+
+
+    public void editMember(View view) {
+        Toast.makeText(this,"Button pressed", Toast.LENGTH_LONG).show();
+    }
+
+
+    public void deleteMember(View view) {
+        Toast.makeText(this,"Button pressed", Toast.LENGTH_LONG).show();
     }
 }

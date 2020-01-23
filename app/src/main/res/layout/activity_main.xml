@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ring"
     android:orientation="vertical"
-    tools:context=".MainActivity"
-    android:background="@drawable/ring">
+    tools:context=".MainActivity">
 
     <ImageView
         android:layout_width="300dp"
@@ -22,27 +22,27 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/buttonMembers"
+            android:id="@+id/btnMembers"
             style="@style/DefaultButton"
             android:layout_width="100dp"
             android:layout_height="48dp"
             android:text="members" />
 
         <Button
+            android:id="@+id/btnPayments"
             style="@style/DefaultButton"
             android:layout_width="100dp"
             android:layout_height="48dp"
             android:text="payments" />
 
         <Button
+            android:id="@+id/btnBudget"
             style="@style/DefaultButton"
             android:layout_width="100dp"
             android:layout_height="48dp"
             android:text="budget" />
 
     </LinearLayout>
-
-
 
 
 </LinearLayout>

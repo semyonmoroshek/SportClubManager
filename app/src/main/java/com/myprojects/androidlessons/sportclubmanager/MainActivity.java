@@ -9,14 +9,14 @@ import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btnMembers;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnMembers = findViewById(R.id.buttonMembers);
+        Button btnMembers = findViewById(R.id.btnMembers);
+        Button btnPayments = findViewById(R.id.btnPayments);
+        Button btnBudget = findViewById(R.id.btnBudget);
 
         btnMembers.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -25,5 +25,22 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnPayments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, PaymentsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnBudget.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, BudgetActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

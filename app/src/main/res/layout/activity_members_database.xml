@@ -75,7 +75,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="#00FF7F"
-            android:text="Add" />
+            android:text="Add"
+            android:onClick="addNewMember"/>
 
         <Button
             android:id="@+id/btnViewAllMembers"
@@ -83,7 +84,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="#00FF7F"
-            android:text="View all" />
+            android:text="View all"
+            android:onClick="viewAllMembersList"/>
 
         <Button
             android:id="@+id/btnFindMember"
@@ -91,14 +93,16 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="#00FF7F"
-            android:text="Find" />
+            android:text="Find"
+            android:onClick="findMember"/>
 
         <Button
             android:id="@+id/btnEditMember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#00FF7F"
-            android:text="Edit" />
+            android:text="Edit"
+            android:onClick="editMember"/>
 
     </LinearLayout>
 
@@ -109,6 +113,7 @@
         android:layout_marginStart="300dp"
         android:layout_marginTop="16dp"
         android:background="#FF0000"
-        android:text="delete" />
+        android:text="delete"
+        android:onClick="deleteMember"/>
 
 </LinearLayout>
