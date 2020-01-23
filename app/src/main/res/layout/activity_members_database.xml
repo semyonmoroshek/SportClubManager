@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MembersDatabaseActivity">
+
+    <TextView
+        android:id="@+id/txtName"
+        style="@style/DefaultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="Name" />
+
+    <EditText
+        android:id="@+id/edTxtName"
+        style="@style/EditTextEddMember"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="name" />
+
+    <TextView
+        android:id="@+id/txtSurname"
+        style="@style/DefaultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Surname" />
+
+    <EditText
+        android:id="@+id/edTxtSurname"
+        style="@style/EditTextEddMember"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="surname" />
+
+    <TextView
+        android:id="@+id/txtDataBirth"
+        style="@style/DefaultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Data of birth" />
+
+    <EditText
+        android:id="@+id/edTxtDataBirth"
+        style="@style/EditTextEddMember"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="data of birth" />
+
+    <TextView
+        android:id="@+id/txtPhoneNumber"
+        style="@style/DefaultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone number" />
+
+    <EditText
+        android:id="@+id/edTxtPhoneNumber"
+        style="@style/EditTextEddMember"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="phone nomber" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btnAddMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="#00FF7F"
+            android:text="Add" />
+
+        <Button
+            android:id="@+id/btnViewAllMembers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="#00FF7F"
+            android:text="View all" />
+
+        <Button
+            android:id="@+id/btnFindMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="#00FF7F"
+            android:text="Find" />
+
+        <Button
+            android:id="@+id/btnEditMember"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00FF7F"
+            android:text="Edit" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnDeleteMember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="16dp"
+        android:background="#FF0000"
+        android:text="delete" />
+
+</LinearLayout>
