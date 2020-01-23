@@ -6,7 +6,7 @@ import java.util.UUID;
 
 public class ClubMember {
 
-    private String MemberId = UUID.randomUUID().toString();
+    private long memberId;
     private String memberName;
     private String memberSurname;
     private String memberPersonalCode;
@@ -14,23 +14,27 @@ public class ClubMember {
     private LocaleData memberDataBirth;
     private LocaleData memberPayment;
 
-    public ClubMember(String uniqueID, String memberName, String memberSurname, String memberPhoneNumber, LocaleData memberDataBirth) {
-        this.MemberId = uniqueID;
+    public ClubMember(String memberName, String memberSurname, String memberPhoneNumber, LocaleData memberDataBirth) {
         this.memberName = memberName;
         this.memberSurname = memberSurname;
         this.memberPhoneNumber = memberPhoneNumber;
         this.memberDataBirth = memberDataBirth;
     }
 
+    public ClubMember(String memberName, String memberSurname) {
+        this.memberName = memberName;
+        this.memberSurname = memberSurname;
+    }
+
     public ClubMember() {
     }
 
-    public String getMemberId() {
-        return MemberId;
+    public long getMemberId() {
+        return memberId;
     }
 
-    public void setMemberId(String memberId) {
-        this.MemberId = memberId;
+    public void setMemberId(long memberId) {
+        this.memberId = memberId;
     }
 
     public String getMemberName() {
@@ -85,6 +89,6 @@ public class ClubMember {
     public String toString() {
         return memberName + " " + memberSurname + " " + "\n" +
                 memberPayment + "\n" + memberPhoneNumber + "\n" +
-                memberDataBirth + "\n" + MemberId;
+                memberDataBirth + "\n" + memberId;
     }
 }

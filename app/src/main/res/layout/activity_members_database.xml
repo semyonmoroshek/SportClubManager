@@ -20,7 +20,8 @@
         style="@style/EditTextEddMember"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="name" />
+        android:hint="name"
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/txtSurname"
@@ -34,6 +35,7 @@
         style="@style/EditTextEddMember"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textPersonName"
         android:hint="surname" />
 
     <TextView
@@ -48,6 +50,7 @@
         style="@style/EditTextEddMember"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="date"
         android:hint="data of birth" />
 
     <TextView
@@ -75,8 +78,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="#00FF7F"
-            android:text="Add"
-            android:onClick="addNewMember"/>
+            android:onClick="addNewMember"
+            android:text="Add" />
 
         <Button
             android:id="@+id/btnViewAllMembers"
@@ -84,8 +87,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="#00FF7F"
-            android:text="View all"
-            android:onClick="viewAllMembersList"/>
+            android:onClick="viewAllMembersList"
+            android:text="View all" />
 
         <Button
             android:id="@+id/btnFindMember"
@@ -93,16 +96,16 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="#00FF7F"
-            android:text="Find"
-            android:onClick="findMember"/>
+            android:onClick="findMember"
+            android:text="Find" />
 
         <Button
             android:id="@+id/btnEditMember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#00FF7F"
-            android:text="Edit"
-            android:onClick="editMember"/>
+            android:onClick="editMember"
+            android:text="Edit" />
 
     </LinearLayout>
 
@@ -113,7 +116,7 @@
         android:layout_marginStart="300dp"
         android:layout_marginTop="16dp"
         android:background="#FF0000"
-        android:text="delete"
-        android:onClick="deleteMember"/>
+        android:onClick="deleteMember"
+        android:text="delete" />
 
 </LinearLayout>
