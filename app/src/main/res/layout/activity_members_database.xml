@@ -8,15 +8,16 @@
     tools:context=".MembersDatabaseActivity">
 
     <TextView
-        android:id="@+id/txtName"
+        android:id="@+id/txt_name"
         style="@style/DefaultTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:layout_marginTop="36dp"
         android:text="Name" />
 
     <EditText
-        android:id="@+id/edTxtName"
+        android:id="@+id/et_name"
         style="@style/EditTextEddMember"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,44 +25,55 @@
         android:inputType="textPersonName" />
 
     <TextView
-        android:id="@+id/txtSurname"
+        android:id="@+id/txt_surname"
         style="@style/DefaultTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
         android:text="Surname" />
 
     <EditText
-        android:id="@+id/edTxtSurname"
+        android:id="@+id/et_surname"
         style="@style/EditTextEddMember"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:hint="surname" />
+        android:hint="surname"
+        android:inputType="textPersonName" />
 
     <TextView
-        android:id="@+id/txtDataBirth"
+        android:id="@+id/txt_data_birth"
         style="@style/DefaultTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Data of birth" />
 
-    <EditText
-        android:id="@+id/edTxtDataBirth"
-        style="@style/EditTextEddMember"
+    <DatePicker
+        android:id="@+id/picker_bithday"
         android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
+
+    <Button
+        android:id="@+id/btn_save_date_birthday"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="date"
-        android:hint="data of birth" />
+        android:text="save date"
+        android:layout_gravity="center"
+        android:onClick="saveDate"/>
 
     <TextView
-        android:id="@+id/txtPhoneNumber"
+        android:id="@+id/txt_phone_number"
         style="@style/DefaultTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="Phone number" />
 
     <EditText
-        android:id="@+id/edTxtPhoneNumber"
+        android:id="@+id/et_phone_number"
         style="@style/EditTextEddMember"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -73,7 +85,7 @@
         android:gravity="center">
 
         <Button
-            android:id="@+id/btnAddMember"
+            android:id="@+id/btn_add_member"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -91,7 +103,7 @@
             android:text="View all" />
 
         <Button
-            android:id="@+id/btnFindMember"
+            android:id="@+id/btn_find_member"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
@@ -100,7 +112,7 @@
             android:text="Find" />
 
         <Button
-            android:id="@+id/btnEditMember"
+            android:id="@+id/btn_edit_member"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#00FF7F"
@@ -110,7 +122,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnDeleteMember"
+        android:id="@+id/btn_delete_member"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="300dp"

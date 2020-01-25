@@ -22,21 +22,21 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnMembers"
+            android:id="@+id/btn_members"
             style="@style/DefaultButton"
             android:layout_width="100dp"
             android:layout_height="48dp"
             android:text="members" />
 
         <Button
-            android:id="@+id/btnPayments"
+            android:id="@+id/btn_payments"
             style="@style/DefaultButton"
             android:layout_width="100dp"
             android:layout_height="48dp"
             android:text="payments" />
 
         <Button
-            android:id="@+id/btnBudget"
+            android:id="@+id/btn_budget"
             style="@style/DefaultButton"
             android:layout_width="100dp"
             android:layout_height="48dp"

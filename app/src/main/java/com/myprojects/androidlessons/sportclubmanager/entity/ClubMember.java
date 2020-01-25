@@ -2,8 +2,6 @@ package com.myprojects.androidlessons.sportclubmanager.entity;
 
 import android.icu.util.LocaleData;
 
-import java.util.UUID;
-
 public class ClubMember {
 
     private long memberId;
@@ -11,10 +9,10 @@ public class ClubMember {
     private String memberSurname;
     private String memberPersonalCode;
     private String memberPhoneNumber;
-    private LocaleData memberDataBirth;
-    private LocaleData memberPayment;
+    private String memberDataBirth;
+    private String memberPayment;
 
-    public ClubMember(String memberName, String memberSurname, String memberPhoneNumber, LocaleData memberDataBirth) {
+    public ClubMember(String memberName, String memberSurname, String memberPhoneNumber, String memberDataBirth) {
         this.memberName = memberName;
         this.memberSurname = memberSurname;
         this.memberPhoneNumber = memberPhoneNumber;
@@ -69,19 +67,19 @@ public class ClubMember {
         this.memberPhoneNumber = memberPhoneNumber;
     }
 
-    public LocaleData getMemberDataBirth() {
+    public String getMemberDataBirth() {
         return memberDataBirth;
     }
 
-    public void setMemberDataBirth(LocaleData memberDataBirth) {
+    public void setMemberDataBirth(String memberDataBirth) {
         this.memberDataBirth = memberDataBirth;
     }
 
-    public LocaleData getMemberPayment() {
+    public String getMemberPayment() {
         return memberPayment;
     }
 
-    public void setMemberPayment(LocaleData memberPayment) {
+    public void setMemberPayment(String memberPayment) {
         this.memberPayment = memberPayment;
     }
 
