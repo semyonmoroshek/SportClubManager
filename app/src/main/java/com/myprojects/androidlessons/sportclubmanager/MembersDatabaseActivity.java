@@ -19,7 +19,6 @@ public class MembersDatabaseActivity extends AppCompatActivity {
     EditText editUserName, editUserSurname, editUserPhoneNumber;
     DatePicker picker;
     String birthdayDate;
-
     FirebaseDatabase database;
     DatabaseReference myRef;
 
@@ -38,7 +37,7 @@ public class MembersDatabaseActivity extends AppCompatActivity {
         editUserSurname = findViewById(R.id.et_surname);
         editUserPhoneNumber = findViewById(R.id.et_phone_number);
 
-        picker=(DatePicker)findViewById(R.id.picker_bithday);
+        picker = (DatePicker) findViewById(R.id.picker_bithday);
 
         database = FirebaseDatabase.getInstance();
         myRef = FirebaseDatabase.getInstance().getReference();
@@ -46,20 +45,13 @@ public class MembersDatabaseActivity extends AppCompatActivity {
     }
 
     public void addNewMember(View view) {
-
         String name = editUserName.getText().toString();
         String surname = editUserSurname.getText().toString();
         String phoneNumber = editUserPhoneNumber.getText().toString();
         String dateOfBirth = birthdayDate;
         ClubMember member = new ClubMember(name, surname, phoneNumber, dateOfBirth);
-
-
         myRef.push().setValue(member);
-
-
-
     }
-
 
 
     public void viewAllMembersList(View view) {
