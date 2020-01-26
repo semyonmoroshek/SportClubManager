@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Button btnMembers = findViewById(R.id.btn_members);
         Button btnPayments = findViewById(R.id.btn_payments);
         Button btnBudget = findViewById(R.id.btn_budget);
