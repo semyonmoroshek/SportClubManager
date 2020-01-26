@@ -56,14 +56,6 @@
         android:calendarViewShown="false"
         android:datePickerMode="spinner" />
 
-    <Button
-        android:id="@+id/btn_save_date_birthday"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="save date"
-        android:layout_gravity="center"
-        android:onClick="saveDate"/>
-
     <TextView
         android:id="@+id/txt_phone_number"
         style="@style/DefaultTextView"
@@ -90,7 +82,6 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="#00FF7F"
-            android:onClick="addNewMember"
             android:text="Add" />
 
         <Button
@@ -99,7 +90,6 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="#00FF7F"
-            android:onClick="viewAllMembersList"
             android:text="View all" />
 
         <Button
@@ -108,16 +98,13 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
             android:background="#00FF7F"
-            android:onClick="findMember"
             android:text="Find" />
 
         <Button
             android:id="@+id/btn_edit_member"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#00FF7F"
-            android:onClick="editMember"
-            android:text="Edit" />
+            android:background="#00FF7F" android:text="Edit" />
 
     </LinearLayout>
 
@@ -128,7 +115,6 @@
         android:layout_marginStart="300dp"
         android:layout_marginTop="16dp"
         android:background="#FF0000"
-        android:onClick="deleteMember"
         android:text="delete" />
 
 </LinearLayout>
