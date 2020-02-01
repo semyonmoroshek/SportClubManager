@@ -6,14 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".MemberListActivity">
 
-    <android.support.v7.widget.RecyclerView>
-
-    </android.support.v7.widget.RecyclerView>
-
-    <view class="androidx.appcompat.app.AlertController$RecycleListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </view>
+   <ListView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:id="@+id/list_simple"/>
 
 </LinearLayout>
