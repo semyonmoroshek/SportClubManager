@@ -4,10 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -45,6 +43,7 @@ public class MemberListActivity extends AppCompatActivity {
 
             List<ClubMember> list = new ArrayList<>();
             List<String> listName = new ArrayList<>();
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
@@ -53,26 +52,16 @@ public class MemberListActivity extends AppCompatActivity {
                 }
 
                 for (ClubMember member : list) {
-                    listName.add(member.getMemberName());
+                    listName.add(member.getMemberName() + member.getMemberSurname());
                 }
-                for (int i = 0; i < listName.size(); i++) {
-                    Log.i("Member object: ", listName.get(i));
-                }
-
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MemberListActivity.this,
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(MemberListActivity.this,
                         R.layout.item_simple_list, R.id.txt_item_simple_list, listName);
                 memberListView.setAdapter(adapter);
-
-
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
             }
-
-
         });
-
-
     }
 }

@@ -34,9 +34,7 @@ public class MembersDatabaseActivity extends AppCompatActivity {
     DatePicker picker;
     FirebaseDatabase database;
     DatabaseReference myRef;
-    ClubMember clubMember;
     ArrayList<ClubMember> memberList;
-    ListView memberListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,41 +120,8 @@ public class MembersDatabaseActivity extends AppCompatActivity {
     }
 
     public void viewAllMembersList() {
-            Intent intent = new Intent(MembersDatabaseActivity.this, MemberListActivity.class );
-            startActivity(intent);
-//        final List<String> memberSimpleList = new ArrayList<>();
-//
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                    clubMember = ds.getValue(ClubMember.class);
-//                    memberList.add(clubMember);
-//                }
-//                for (ClubMember member : memberList) {
-//                    memberSimpleList.add(member.getMemberName());
-//
-//
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//            }
-//
-//
-//        });
-//
-//
-//
-//        memberListView = findViewById(R.id.listview_members_simple);
-//        TextView txt = findViewById(R.id.txt_item_simple_list);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-//                R.layout.item_simple_list, R.id.txt_item_simple_list, memberSimpleList );
-//
-//
-//        memberListView.setAdapter(adapter);
-
+        Intent intent = new Intent(MembersDatabaseActivity.this, MemberListActivity.class);
+        startActivity(intent);
     }
 
     public void findMember() {
