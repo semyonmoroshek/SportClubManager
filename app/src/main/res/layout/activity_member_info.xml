@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txt_found_member_name"
+        android:id="@+id/txt_member_info_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -34,8 +34,8 @@
         android:layout_marginTop="16dp"
         android:text="Member surname"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/txt_found_member_name"
-        app:layout_constraintTop_toBottomOf="@+id/txt_found_member_name"
+        app:layout_constraintStart_toStartOf="@+id/txt_member_info_name"
+        app:layout_constraintTop_toBottomOf="@+id/txt_member_info_name"
 
          />
 
