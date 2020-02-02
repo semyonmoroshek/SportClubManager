@@ -1,35 +1,26 @@
 package com.myprojects.androidlessons.sportclubmanager;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.myprojects.androidlessons.sportclubmanager.entity.ClubMember;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
-public class MembersDatabaseActivity extends AppCompatActivity {
+public class MembersOperationsActivity extends AppCompatActivity {
 
-    Button btnAddMember, btnViewAllMembers, btnFindMember, btnEditMember, btnDeleteMember;
+    Button btnSaveMember, btnViewAllMembers, btnFindMember, btnEditMember, btnDeleteMember;
     EditText editUserName, editUserSurname, editUserPhoneNumber;
     DatePicker picker;
     FirebaseDatabase database;
@@ -39,13 +30,13 @@ public class MembersDatabaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_members_database);
+        setContentView(R.layout.activity_members_operations);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        btnAddMember = findViewById(R.id.btn_add_member);
+        btnSaveMember = findViewById(R.id.btn_add_member);
         btnViewAllMembers = findViewById(R.id.btnViewAllMembers);
         btnFindMember = findViewById(R.id.btn_find_member);
         btnEditMember = findViewById(R.id.btn_edit_member);
@@ -58,7 +49,7 @@ public class MembersDatabaseActivity extends AppCompatActivity {
         myRef = FirebaseDatabase.getInstance().getReference();
         memberList = new ArrayList<>();
 
-        btnAddMember.setOnClickListener(new View.OnClickListener() {
+        btnSaveMember.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 addNewMember();
@@ -68,7 +59,6 @@ public class MembersDatabaseActivity extends AppCompatActivity {
         btnViewAllMembers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MembersDatabaseActivity.this, MemberListActivity.class);
                 viewAllMembersList();
             }
         });
@@ -120,12 +110,12 @@ public class MembersDatabaseActivity extends AppCompatActivity {
     }
 
     public void viewAllMembersList() {
-        Intent intent = new Intent(MembersDatabaseActivity.this, MemberListActivity.class);
+        Intent intent = new Intent(MembersOperationsActivity.this, MembersListActivity.class);
         startActivity(intent);
     }
 
     public void findMember() {
-        Intent intent = new Intent(MembersDatabaseActivity.this, MemberActivity.class);
+        Intent intent = new Intent(MembersOperationsActivity.this, MemberInfoActivity.class);
         startActivity(intent);
     }
 

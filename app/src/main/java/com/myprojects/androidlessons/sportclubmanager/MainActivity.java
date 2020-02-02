@@ -19,24 +19,28 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Button btnMembers = findViewById(R.id.btn_members);
-        Button btnPayments = findViewById(R.id.btn_payments);
+//        Button btnPayments = findViewById(R.id.btn_payments);
         Button btnBudget = findViewById(R.id.btn_budget);
+        Button btnAddNewMember = findViewById(R.id.btn_add_new_member);
+        Button btnViewAllMembers = findViewById(R.id.btn_view_all_members);
+
 
         btnMembers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MembersDatabaseActivity.class);
+                Intent intent = new Intent(MainActivity.this, MembersOperationsActivity.class);
                 startActivity(intent);
             }
         });
 
-        btnPayments.setOnClickListener(new View.OnClickListener() {
+        btnViewAllMembers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, PaymentsActivity.class);
+                Intent intent = new Intent(MainActivity.this, MembersListActivity.class);
                 startActivity(intent);
             }
         });
+
 
         btnBudget.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,5 +49,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        btnAddNewMember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        btnAddNewMember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MembersOperationsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

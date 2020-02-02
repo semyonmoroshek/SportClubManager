@@ -17,7 +17,7 @@ import com.myprojects.androidlessons.sportclubmanager.entity.ClubMember;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MemberListActivity extends AppCompatActivity {
+public class MemberInfoActivity extends AppCompatActivity {
 
     DatabaseReference myRef;
     ClubMember clubMember;
@@ -28,17 +28,17 @@ public class MemberListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_member_list);
+        setContentView(R.layout.activity_member_info);
 
-        memberListView = findViewById(R.id.list_simple);
+        memberListView = findViewById(R.id.member_list);
         memberNameList = new ArrayList<>();
         memberList = new ArrayList<>();
         myRef = FirebaseDatabase.getInstance().getReference();
 
-        viewMemberList();
+        findMember();
     }
 
-    public void viewMemberList() {
+    private void findMember() {
         myRef.addValueEventListener(new ValueEventListener() {
 
             List<ClubMember> list = new ArrayList<>();
@@ -54,8 +54,8 @@ public class MemberListActivity extends AppCompatActivity {
                 for (ClubMember member : list) {
                     listName.add(member.getMemberName() + member.getMemberSurname());
                 }
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(MemberListActivity.this,
-                        R.layout.item_simple_list, R.id.txt_item_simple_list, listName);
+                ArrayAdapter<String> adapter = new ArrayAdapter<>(MemberInfoActivity.this,
+                        R.layout.item_list, R.id.txt_item_simple_list, listName);
                 memberListView.setAdapter(adapter);
             }
 
@@ -64,4 +64,6 @@ public class MemberListActivity extends AppCompatActivity {
             }
         });
     }
+
 }
+

@@ -1,6 +1,6 @@
 package com.myprojects.androidlessons.sportclubmanager.entity;
 
-import android.icu.util.LocaleData;
+import java.time.LocalDate;
 
 public class ClubMember {
 
@@ -9,14 +9,15 @@ public class ClubMember {
     private String memberSurname;
     private String memberPersonalCode;
     private String memberPhoneNumber;
-    private String memberDataBirth;
+    private String memberDateBirth;
     private String memberPayment;
+    private LocalDate memberDatePayment;
 
     public ClubMember(String memberName, String memberSurname, String memberPhoneNumber, String memberDataBirth) {
         this.memberName = memberName;
         this.memberSurname = memberSurname;
         this.memberPhoneNumber = memberPhoneNumber;
-        this.memberDataBirth = memberDataBirth;
+        this.memberDateBirth = memberDataBirth;
     }
 
     public ClubMember(String memberName, String memberSurname) {
@@ -67,12 +68,12 @@ public class ClubMember {
         this.memberPhoneNumber = memberPhoneNumber;
     }
 
-    public String getMemberDataBirth() {
-        return memberDataBirth;
+    public String getMemberDateBirth() {
+        return memberDateBirth;
     }
 
-    public void setMemberDataBirth(String memberDataBirth) {
-        this.memberDataBirth = memberDataBirth;
+    public void setMemberDateBirth(String memberDateBirth) {
+        this.memberDateBirth = memberDateBirth;
     }
 
     public String getMemberPayment() {
@@ -83,10 +84,18 @@ public class ClubMember {
         this.memberPayment = memberPayment;
     }
 
+    public LocalDate getMemberDatePayment() {
+        return memberDatePayment;
+    }
+
+    public void setMemberDatePayment(LocalDate memberDatePayment) {
+        this.memberDatePayment = memberDatePayment;
+    }
+
     @Override
     public String toString() {
         return memberName + " " + memberSurname + " " + "\n" +
                 memberPayment + "\n" + memberPhoneNumber + "\n" +
-                memberDataBirth + "\n" + memberId;
+                memberDateBirth + "\n" + memberId;
     }
 }
