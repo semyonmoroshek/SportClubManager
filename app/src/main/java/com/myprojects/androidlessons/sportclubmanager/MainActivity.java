@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.myprojects.androidlessons.sportclubmanager.service.AddMemberActivity;
+import com.myprojects.androidlessons.sportclubmanager.service.ViewAllMembersActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         btnViewAllMembers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MembersListActivity.class);
+                Intent intent = new Intent(MainActivity.this, ViewAllMembersActivity.class);
                 startActivity(intent);
             }
         });
@@ -53,14 +56,7 @@ public class MainActivity extends AppCompatActivity {
         btnAddNewMember.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-            }
-        });
-
-        btnAddNewMember.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, MembersOperationsActivity.class);
+                Intent intent = new Intent(MainActivity.this, AddMemberActivity.class);
                 startActivity(intent);
             }
         });

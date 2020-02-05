@@ -5,17 +5,16 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-
-        android:largeHeap="true"
-
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MemberInfoActivity"></activity>
+        <activity android:name=".service.ViewAllMembersActivity"></activity>
+        <activity android:name=".service.AddMemberActivity" />
+        <activity android:name=".MemberInfoActivity" />
         <activity android:name=".MembersListActivity" />
         <activity android:name=".BudgetActivity" />
         <activity android:name=".PaymentsActivity" />

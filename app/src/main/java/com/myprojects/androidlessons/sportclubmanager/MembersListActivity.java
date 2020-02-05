@@ -18,7 +18,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.myprojects.androidlessons.sportclubmanager.entity.ClubMember;
+import com.myprojects.androidlessons.sportclubmanager.entity.Member;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +26,8 @@ import java.util.List;
 public class MembersListActivity extends AppCompatActivity {
 
     DatabaseReference myRef;
-    ClubMember clubMember;
-    List<ClubMember> list;
+    Member clubMember;
+    List<Member> list;
     List<String> listName;
     ListView memberListView;
     Button btnFindMember;
@@ -58,6 +58,8 @@ public class MembersListActivity extends AppCompatActivity {
 
         AdapterView.OnItemClickListener memberInfo = new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView parent, View v, int position, long id) {
+
+
                 Intent intent = new Intent(MembersListActivity.this, MemberInfoActivity.class);
                 startActivity(intent);
             }
@@ -85,10 +87,10 @@ public class MembersListActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    clubMember = ds.getValue(ClubMember.class);
+                    clubMember = ds.getValue(Member.class);
                     list.add(clubMember);
                 }
-                for (ClubMember member : list) {
+                for (Member member : list) {
                     listName.add(member.getMemberName() + " " + member.getMemberSurname());
                 }
                 ArrayAdapter<String> adapter = new ArrayAdapter<>(MembersListActivity.this,

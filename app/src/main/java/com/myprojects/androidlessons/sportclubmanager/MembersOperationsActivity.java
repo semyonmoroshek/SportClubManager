@@ -3,6 +3,7 @@ package com.myprojects.androidlessons.sportclubmanager;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -13,7 +14,9 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.myprojects.androidlessons.sportclubmanager.entity.ClubMember;
+import com.myprojects.androidlessons.sportclubmanager.entity.Member;
+import com.myprojects.androidlessons.sportclubmanager.repository.DatabaseClient;
+import com.myprojects.androidlessons.sportclubmanager.service.ViewAllMembersActivity;
 
 import java.util.ArrayList;
 
@@ -25,7 +28,7 @@ public class MembersOperationsActivity extends AppCompatActivity {
     DatePicker picker;
     FirebaseDatabase database;
     DatabaseReference myRef;
-    ArrayList<ClubMember> memberList;
+    ArrayList<Member> memberList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +55,7 @@ public class MembersOperationsActivity extends AppCompatActivity {
         btnSaveMember.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addNewMember();
+                addNewMemberToRoom();
             }
         });
 
@@ -86,6 +89,52 @@ public class MembersOperationsActivity extends AppCompatActivity {
 
     }
 
+    public void addNewMemberToRoom(){
+
+        String name = editUserName.getText().toString();
+        String surname = editUserSurname.getText().toString();
+        String phoneNumber = editUserPhoneNumber.getText().toString();
+        String dateOfBirth = picker.getDayOfMonth() + "/" + picker.getMonth() + "/" + picker.getYear();
+        if (TextUtils.isEmpty(name)) {
+            editUserName.setError("This field must not be empty");
+            return;
+        }
+        if (TextUtils.isEmpty(surname)) {
+            editUserSurname.setError("This field must not be empty");
+            return;
+        }
+        if (TextUtils.isEmpty(phoneNumber)) {
+            editUserPhoneNumber.setError("This field must not be empty");
+            return;
+        }
+        final Member member = new Member(name, surname, phoneNumber, dateOfBirth);
+
+        class SaveTask extends AsyncTask<Void, Void, Void> {
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+                //adding to database
+                DatabaseClient.getInstance(getApplicationContext()).getAppDatabase()
+                        .memberDao()
+                        .insert(member);
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                finish();
+                startActivity(new Intent(getApplicationContext(), MembersListActivity.class));
+                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+            }
+        }
+
+        SaveTask st = new SaveTask();
+        st.execute();
+    }
+
+
+
     public void addNewMember() {
 
         String name = editUserName.getText().toString();
@@ -104,13 +153,14 @@ public class MembersOperationsActivity extends AppCompatActivity {
             editUserPhoneNumber.setError("This field must not be empty");
             return;
         }
-        ClubMember member = new ClubMember(name, surname, phoneNumber, dateOfBirth);
+        Member member = new Member(name, surname, phoneNumber, dateOfBirth);
+
         myRef.push().setValue(member);
         Toast.makeText(this, "Member added successfully", Toast.LENGTH_LONG).show();
     }
 
     public void viewAllMembersList() {
-        Intent intent = new Intent(MembersOperationsActivity.this, MembersListActivity.class);
+        Intent intent = new Intent(MembersOperationsActivity.this, ViewAllMembersActivity.class);
         startActivity(intent);
     }
 
