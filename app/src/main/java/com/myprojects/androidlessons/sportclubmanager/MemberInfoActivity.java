@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -15,7 +16,7 @@ import java.util.List;
 
 public class MemberInfoActivity extends AppCompatActivity {
 
-    TextView txtName, txtSurname, txtPhoneNumber, txtPaymentDate;
+    TextView txtName, txtSurname, txtDateBirth, txtPhoneNumber, txtPaymentDate;
     ListView memberListView;
 
     @Override
@@ -26,37 +27,18 @@ public class MemberInfoActivity extends AppCompatActivity {
         txtName = findViewById(R.id.txt_member_info_name);
         txtSurname = findViewById(R.id.txt_member_info_surname);
         txtPhoneNumber = findViewById(R.id.txt_member_info_phone_number);
+        txtDateBirth = findViewById(R.id.txt_member_info_date_birth);
         txtPaymentDate = findViewById(R.id.txt_member_info_payment_date);
         memberListView = findViewById(R.id.lv_info);
 
         String name = getIntent().getStringExtra("name");
-
+        String surname = getIntent().getStringExtra("surname");
+        String dataBirth = getIntent().getStringExtra("dataBirth");
+        String phone = getIntent().getStringExtra("phoneNum");
         txtName.setText(name);
-
-    }
-
-    private void setMemberInfo() {
-        class GetMember extends AsyncTask<Void, Void, List<Member>> {
-            @Override
-            protected List<Member> doInBackground(Void... voids) {
-                List<Member> memberList = DatabaseClient
-                        .getInstance(getApplicationContext())
-                        .getAppDatabase()
-                        .getMemberDao()
-                        .getAll();
-                return memberList;
-            }
-
-            @Override
-            protected void onPostExecute(List<Member> members) {
-                super.onPostExecute(members);
-                ArrayAdapter<Member> adapter = new ArrayAdapter<>(MemberInfoActivity.this,
-                        R.layout.item_list, R.id.txt_item_simple_list, members);
-                memberListView.setAdapter(adapter);
-            }
-        }
-        GetMember gt = new GetMember();
-        gt.execute();
+        txtSurname.setText(surname);
+        txtDateBirth.setText(dataBirth);
+        txtPhoneNumber.setText(phone);
     }
 }
 

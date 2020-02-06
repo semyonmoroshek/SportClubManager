@@ -35,9 +35,7 @@
         android:text="Member surname"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/txt_member_info_name"
-        app:layout_constraintTop_toBottomOf="@+id/txt_member_info_name"
-
-         />
+        app:layout_constraintTop_toBottomOf="@+id/txt_member_info_name" />
 
     <TextView
         android:id="@+id/txt_member_info_phone_number"
@@ -58,6 +56,16 @@
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/txt_member_info_phone_number"
         app:layout_constraintTop_toBottomOf="@+id/txt_member_info_phone_number" />
+
+    <TextView
+        android:id="@+id/txt_member_info_date_birth"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Payment date"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="@+id/txt_member_info_payment_date"
+        app:layout_constraintTop_toBottomOf="@+id/txt_member_info_payment_date" />
 
     <ListView
         android:id="@+id/lv_info"
