@@ -74,7 +74,7 @@ public class AddMemberActivity extends AppCompatActivity {
 
                 //adding to database
                 DatabaseClient.getInstance(getApplicationContext()).getAppDatabase()
-                        .memberDao()
+                        .getMemberDao()
                         .insert(member);
                 return null;
             }

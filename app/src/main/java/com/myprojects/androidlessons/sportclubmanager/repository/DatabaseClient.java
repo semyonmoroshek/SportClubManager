@@ -1,18 +1,30 @@
 package com.myprojects.androidlessons.sportclubmanager.repository;
 
 import android.content.Context;
+import android.os.AsyncTask;
+import android.widget.ArrayAdapter;
 
 import androidx.room.Room;
 
+import com.myprojects.androidlessons.sportclubmanager.R;
+import com.myprojects.androidlessons.sportclubmanager.entity.Member;
+import com.myprojects.androidlessons.sportclubmanager.service.ViewAllMembersActivity;
+
+import java.util.List;
+
 public class DatabaseClient {
 
-    private Context mCtx;
+    public Context mCtx;
     private static DatabaseClient mInstance;
+
+    public Context getmCtx() {
+        return mCtx;
+    }
 
     //our app database object
     private AppDatabase appDatabase;
 
-    private DatabaseClient(Context mCtx) {
+    public DatabaseClient(Context mCtx) {
         this.mCtx = mCtx;
 
         //creating the app database with Room database builder
@@ -31,3 +43,5 @@ public class DatabaseClient {
         return appDatabase;
     }
 }
+
+

@@ -7,5 +7,5 @@ import com.myprojects.androidlessons.sportclubmanager.entity.Member;
 
 @Database(entities = {Member.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
-    public abstract MemberDao memberDao();
+    public abstract MemberDao getMemberDao();
 }

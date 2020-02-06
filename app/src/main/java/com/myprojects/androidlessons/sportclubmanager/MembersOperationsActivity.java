@@ -115,7 +115,7 @@ public class MembersOperationsActivity extends AppCompatActivity {
             protected Void doInBackground(Void... voids) {
                 //adding to database
                 DatabaseClient.getInstance(getApplicationContext()).getAppDatabase()
-                        .memberDao()
+                        .getMemberDao()
                         .insert(member);
                 return null;
             }

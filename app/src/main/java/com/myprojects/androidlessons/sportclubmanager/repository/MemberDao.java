@@ -27,5 +27,4 @@ public interface MemberDao {
     @Update
     void update(Member member);
 
-
 }
