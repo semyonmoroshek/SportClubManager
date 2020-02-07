@@ -2,14 +2,10 @@ package com.myprojects.androidlessons.sportclubmanager.repository;
 
 import androidx.room.Dao;
 import androidx.room.Delete;
-import androidx.room.Index;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
-
-import com.google.android.gms.tasks.Task;
 import com.myprojects.androidlessons.sportclubmanager.entity.Member;
-
 import java.util.List;
 
 @Dao
@@ -26,5 +22,8 @@ public interface MemberDao {
 
     @Update
     void update(Member member);
+
+    @Query("SELECT * FROM members WHERE memberId= :id ")
+    Member findUserById(int id);
 
 }

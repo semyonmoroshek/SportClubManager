@@ -22,7 +22,6 @@ public class AddMemberActivity extends AppCompatActivity {
     DatePicker picker;
     Button btnSaveMember;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,9 +30,7 @@ public class AddMemberActivity extends AppCompatActivity {
         editName = findViewById(R.id.et_add_member_name);
         editSurname = findViewById(R.id.et_add_member_surname);
         editPhoneNumber = findViewById(R.id.et_add_member_phone_number);
-
         picker = findViewById(R.id.picker_add_member_bithday);
-
         btnSaveMember = findViewById(R.id.btn_save_add_member);
         btnSaveMember.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,8 +45,6 @@ public class AddMemberActivity extends AppCompatActivity {
         final String surname = editSurname.getText().toString().trim();
         final String phoneNumber = editPhoneNumber.getText().toString().trim();
         final String dateOfBirth = picker.getDayOfMonth() + "/" + picker.getMonth() + "/" + picker.getYear();
-
-
         if (TextUtils.isEmpty(name)) {
             editName.setError("This field must not be empty");
             return;
@@ -63,7 +58,6 @@ public class AddMemberActivity extends AppCompatActivity {
             return;
         }
         class SaveMember extends AsyncTask<Void, Void, Void> {
-
             @Override
             protected Void doInBackground(Void... voids) {
                 Member member = new Member();
@@ -71,8 +65,6 @@ public class AddMemberActivity extends AppCompatActivity {
                 member.setMemberSurname(surname);
                 member.setMemberPhoneNumber(phoneNumber);
                 member.setMemberDateBirth(dateOfBirth);
-
-                //adding to database
                 DatabaseClient.getInstance(getApplicationContext()).getAppDatabase()
                         .getMemberDao()
                         .insert(member);
@@ -86,12 +78,8 @@ public class AddMemberActivity extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), ViewAllMembersActivity.class));
                 Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
             }
-
         }
         SaveMember st = new SaveMember();
         st.execute();
-
-
     }
-
 }

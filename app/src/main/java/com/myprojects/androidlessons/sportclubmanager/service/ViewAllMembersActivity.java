@@ -1,9 +1,7 @@
 package com.myprojects.androidlessons.sportclubmanager.service;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Database;
 import androidx.room.Room;
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -14,13 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-
 import com.myprojects.androidlessons.sportclubmanager.MemberInfoActivity;
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.entity.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
-import com.myprojects.androidlessons.sportclubmanager.repository.DatabaseClient;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -60,12 +55,18 @@ public class ViewAllMembersActivity extends AppCompatActivity {
                 intent.putExtra("surname", memberList.get(position).getMemberSurname());
                 intent.putExtra("dataBirth", memberList.get(position).getMemberDateBirth());
                 intent.putExtra("phoneNum", memberList.get(position).getMemberPhoneNumber());
+                intent.putExtra("id", memberList.get(position).getMemberId());
+
+                String memberId =  Integer.toString(memberList.get(position).getMemberId());
+                intent.putExtra("id", memberId);
+
                 startActivity(intent);
             }
         };
 
         memberListView.setOnItemClickListener(memberInfo);
     }
+
     private void findMember() {
         name = editFindMember.getText().toString();
         class GetMember extends AsyncTask<Void, Void, List<Member>> {
@@ -80,6 +81,7 @@ public class ViewAllMembersActivity extends AppCompatActivity {
                 }
                 return foundMembers;
             }
+
             @Override
             protected void onPostExecute(List<Member> members) {
                 super.onPostExecute(members);
@@ -100,6 +102,7 @@ public class ViewAllMembersActivity extends AppCompatActivity {
                 sortListByPaymentDate(memberList);
                 return memberList;
             }
+
             @Override
             protected void onPostExecute(List<Member> members) {
                 super.onPostExecute(members);
@@ -111,6 +114,7 @@ public class ViewAllMembersActivity extends AppCompatActivity {
         GetMember gt = new GetMember();
         gt.execute();
     }
+
     public List<Member> sortListByPaymentDate(List<Member> memberList) {
         for (int out = memberList.size() - 1; out >= 1; out--) {
             for (int in = 0; in < out; in++) {
@@ -121,6 +125,7 @@ public class ViewAllMembersActivity extends AppCompatActivity {
         }
         return memberList;
     }
+
     List<Member> loadAllMembersFromDatabase() {
         db = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "members").build();
