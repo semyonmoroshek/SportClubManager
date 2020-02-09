@@ -48,8 +48,7 @@ public class EditMemberActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                loadAllMembersFromDatabase();
-                //editMember();
+                editMember();
                 Log.i("ListUra", memberList.toString());
                 Log.i("memberUra", member.toString());
             }
@@ -57,6 +56,10 @@ public class EditMemberActivity extends AppCompatActivity {
     }
 
     private void editMember() {
+
+        loadAllMembersFromDatabase();
+
+        Log.i("MyMember", member.toString());
 
         Log.i("button", "worked");
         String newName = editNewName.getText().toString().trim();
@@ -73,37 +76,20 @@ public class EditMemberActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(newPhoneNumber)) {
             editPhoneNumber.setError("This field must not be empty");
         }
+
+        member.setMemberName(newName);
+        member.setMemberSurname(newSurname);
+        member.setMemberPhoneNumber(newPhoneNumber);
+        member.setMemberDateBirth(newDateOfBirth);
+//        saveNewMember();
+
+
     }
 
-//    private void findMember() {
-//        class GetMember extends AsyncTask<Void, Void, List<Member>> {
-//            @Override
-//            protected List<Member> doInBackground(Void... voids) {
-//                loadAllMembersFromDatabase();
-//                List<Member> foundMembers = new ArrayList<>();
-//                for (int i = 0; i < memberList.size(); i++) {
-//                    if (memberList.get(i).getMemberId() == memberId) {
-//                            member = memberList.get(i);
-//                        foundMembers.add(member);
-//                        Log.i("member", member.toString());
-//                        Log.i("memberList", memberList.toString());
-//                    }
-//                }
-//                return foundMembers;
-//            }
-//
-//            @Override
-//            protected void onPostExecute(List<Member> members) {
-//                super.onPostExecute(members);
-//                ArrayAdapter<Member> adapter = new ArrayAdapter<>(EditMemberActivity.this,
-//
-//
-//                        R.layout.activity_member_info, R.id.txt_item_simple_list, members);
-//                memberListView.setAdapter(adapter);
-//            }
-//        }
-//        GetMember gt = new GetMember();
-//        gt.execute();
+//    void saveNewMember(){
+//        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "members")
+//                .allowMainThreadQueries().build();
+//        db.getMemberDao().insert(member);
 //    }
 
     void loadAllMembersFromDatabase() {
@@ -122,18 +108,6 @@ public class EditMemberActivity extends AppCompatActivity {
     }
 }
 
-//    List<Member> getMemberSimple() {
-//            db = Room.databaseBuilder(getApplicationContext(),
-//                    AppDatabase.class, "members").build();
-//            memberList = db.getMemberDao().getAll();
-//            return memberList;
-
-//        for (int i = 0; i < memberList.size(); i++) {
-//                    if (memberList.get(i).getMemberId() == memberId) {
-//                            member = memberList.get(i);
-//                    }
-//                }
-//    }
 
 
 

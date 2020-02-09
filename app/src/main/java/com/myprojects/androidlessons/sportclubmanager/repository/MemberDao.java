@@ -25,5 +25,5 @@ public interface MemberDao {
 
     @Query("SELECT * FROM members WHERE memberId= :id ")
     Member findUserById(int id);
-
+    
 }
