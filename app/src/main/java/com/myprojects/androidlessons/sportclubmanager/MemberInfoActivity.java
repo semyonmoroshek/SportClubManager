@@ -15,44 +15,43 @@ import com.myprojects.androidlessons.sportclubmanager.service.EditMemberActivity
 
 import java.util.Objects;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class MemberInfoActivity extends AppCompatActivity {
 
-    TextView txtName, txtSurname, txtDateBirth, txtPhoneNumber, txtPaymentDate;
-    Button btnEditMemberInfo;
+    @BindView(R.id.txt_member_info_name) TextView txtName;
+    @BindView(R.id.txt_member_info_surname) TextView txtSurname;
+    @BindView(R.id.txt_member_info_phone_number) TextView txtPhoneNumber;
+    @BindView(R.id.txt_member_info_date_birth) TextView txtDateBirth;
+    @BindView(R.id.txt_member_info_payment_date) TextView txtPaymentDate;
+    @BindView(R.id.btn_edit_member_info) Button btnEditMemberInfo;
 
+    String id;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_info);
-
-        txtName = findViewById(R.id.txt_member_info_name);
-        txtSurname = findViewById(R.id.txt_member_info_surname);
-        txtPhoneNumber = findViewById(R.id.txt_member_info_phone_number);
-        txtDateBirth = findViewById(R.id.txt_member_info_date_birth);
-        txtPaymentDate = findViewById(R.id.txt_member_info_payment_date);
+        ButterKnife.bind(this);
 
         String name = getIntent().getStringExtra("name");
         String surname = getIntent().getStringExtra("surname");
         String dataBirth = getIntent().getStringExtra("dataBirth");
         String phone = getIntent().getStringExtra("phoneNum");
-        final String id = getIntent().getStringExtra("id");
+        id = getIntent().getStringExtra("id");
+
         txtName.setText(name);
         txtSurname.setText(surname);
         txtDateBirth.setText(dataBirth);
         txtPhoneNumber.setText(phone);
 
-        int memberId = Integer.parseInt(id);
+        btnEditMemberInfo.setOnClickListener(v -> openMemberInfo());
+    }
 
-        btnEditMemberInfo = findViewById(R.id.btn_edit_member_info);
-        btnEditMemberInfo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MemberInfoActivity.this, EditMemberActivity.class);
-                intent.putExtra("id", id);
-                startActivity(intent);
-            }
-        });
+    void openMemberInfo(){
+        Intent intent = new Intent(MemberInfoActivity.this, EditMemberActivity.class);
+        intent.putExtra("id", id);
+        startActivity(intent);
     }
 
 }

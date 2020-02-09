@@ -5,7 +5,6 @@ import androidx.room.Room;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -20,50 +19,45 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class ViewAllMembersActivity extends AppCompatActivity {
 
-    ListView memberListView;
-    Button btnFindMember;
-    EditText editFindMember;
     String name;
     List<Member> memberList;
     AppDatabase db;
+
+    @BindView(R.id.lv_all_members) ListView memberListView;
+    @BindView(R.id.btn_find_member_for_local_base) Button btnFindMember;
+    @BindView(R.id.et_find_member_for_local_base) EditText editFindMember;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all_members);
+        ButterKnife.bind(this);
 
-        memberListView = findViewById(R.id.lv_all_members);
-        btnFindMember = findViewById(R.id.btn_find_member_for_local_base);
-        editFindMember = findViewById(R.id.et_find_member_for_local_base);
         name = editFindMember.getText().toString();
         memberList = new ArrayList<>();
 
         viewAllMembers();
 
-        btnFindMember.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                findMember();
-            }
-        });
-        final AdapterView.OnItemClickListener memberInfo = new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView parent, View v, int position, long id) {
-                Intent intent = new Intent(ViewAllMembersActivity.this, MemberInfoActivity.class);
-                intent.putExtra("name", memberList.get(position).getMemberName());
-                intent.putExtra("surname", memberList.get(position).getMemberSurname());
-                intent.putExtra("dataBirth", memberList.get(position).getMemberDateBirth());
-                intent.putExtra("phoneNum", memberList.get(position).getMemberPhoneNumber());
-                intent.putExtra("id", memberList.get(position).getMemberId());
+        btnFindMember.setOnClickListener(v -> findMember());
 
-                String memberId =  Integer.toString(memberList.get(position).getMemberId());
-                intent.putExtra("id", memberId);
+        final AdapterView.OnItemClickListener memberInfo = (parent, v, position, id) -> {
+            Intent intent = new Intent(ViewAllMembersActivity.this, MemberInfoActivity.class);
+            intent.putExtra("name", memberList.get(position).getMemberName());
+            intent.putExtra("surname", memberList.get(position).getMemberSurname());
+            intent.putExtra("dataBirth", memberList.get(position).getMemberDateBirth());
+            intent.putExtra("phoneNum", memberList.get(position).getMemberPhoneNumber());
+            intent.putExtra("id", memberList.get(position).getMemberId());
 
-                startActivity(intent);
-            }
+            String memberId =  Integer.toString(memberList.get(position).getMemberId());
+            intent.putExtra("id", memberId);
+
+            startActivity(intent);
         };
-
         memberListView.setOnItemClickListener(memberInfo);
     }
 

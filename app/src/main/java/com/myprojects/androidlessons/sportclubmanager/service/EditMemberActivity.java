@@ -12,56 +12,42 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.entity.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
-import com.myprojects.androidlessons.sportclubmanager.repository.MemberDao;
-
-import java.util.ArrayList;
 import java.util.List;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class EditMemberActivity extends AppCompatActivity {
 
-    EditText editNewName, editNewSurname, editPhoneNumber;
-    DatePicker picker;
-    Button btnSaveEditedMember;
     int memberId;
     List<Member> memberList;
     Member member;
     AppDatabase db;
 
+    @BindView(R.id.et_edit_name) EditText editNewName;
+    @BindView(R.id.et_edit_surname) EditText editNewSurname;
+    @BindView(R.id.et_edit_phone_number) EditText editPhoneNumber;
+    @BindView(R.id.picker_edit_birthday) DatePicker picker;
+    @BindView(R.id.btn_save_edit_member) Button btnSaveEditedMember;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_member);
-
-        editNewName = findViewById(R.id.et_edit_name);
-        editNewSurname = findViewById(R.id.et_edit_surname);
-        editPhoneNumber = findViewById(R.id.et_edit_phone_number);
-        picker = findViewById(R.id.picker_edit_birthday);
+        ButterKnife.bind(this);
 
         String id = getIntent().getStringExtra("id");
         memberId = Integer.parseInt(id);
-        btnSaveEditedMember = findViewById(R.id.btn_save_edit_member);
-        btnSaveEditedMember.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                editMember();
-                Log.i("ListUra", memberList.toString());
-                Log.i("memberUra", member.toString());
-            }
-        });
+        btnSaveEditedMember.setOnClickListener(v -> editMember());
     }
 
     private void editMember() {
 
         loadAllMembersFromDatabase();
 
-        Log.i("MyMember", member.toString());
-
-        Log.i("button", "worked");
         String newName = editNewName.getText().toString().trim();
         String newSurname = editNewSurname.getText().toString().trim();
         String newPhoneNumber = editPhoneNumber.getText().toString().trim();
@@ -81,16 +67,7 @@ public class EditMemberActivity extends AppCompatActivity {
         member.setMemberSurname(newSurname);
         member.setMemberPhoneNumber(newPhoneNumber);
         member.setMemberDateBirth(newDateOfBirth);
-//        saveNewMember();
-
-
     }
-
-//    void saveNewMember(){
-//        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "members")
-//                .allowMainThreadQueries().build();
-//        db.getMemberDao().insert(member);
-//    }
 
     void loadAllMembersFromDatabase() {
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "members")
@@ -100,9 +77,6 @@ public class EditMemberActivity extends AppCompatActivity {
         for (int i = 0; i < memberList.size(); i++) {
             if (memberList.get(i).getMemberId() == memberId) {
                 member = memberList.get(i);
-
-                Log.i("List", memberList.toString());
-                Log.i("member", member.toString());
             }
         }
     }

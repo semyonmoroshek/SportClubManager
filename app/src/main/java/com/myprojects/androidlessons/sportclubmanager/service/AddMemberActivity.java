@@ -1,43 +1,36 @@
 package com.myprojects.androidlessons.sportclubmanager.service;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.entity.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.DatabaseClient;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class AddMemberActivity extends AppCompatActivity {
 
-    EditText editName, editSurname, editPhoneNumber;
-    DatePicker picker;
-    Button btnSaveMember;
+    @BindView(R.id.et_add_member_name) EditText editName;
+    @BindView(R.id.et_add_member_surname) EditText editSurname;
+    @BindView(R.id.et_add_member_phone_number) EditText editPhoneNumber;
+    @BindView(R.id.btn_save_add_member) Button btnSaveMember;
+    @BindView(R.id.picker_add_member_bithday) DatePicker picker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_member);
+        ButterKnife.bind(this);
 
-        editName = findViewById(R.id.et_add_member_name);
         editSurname = findViewById(R.id.et_add_member_surname);
         editPhoneNumber = findViewById(R.id.et_add_member_phone_number);
-        picker = findViewById(R.id.picker_add_member_bithday);
-        btnSaveMember = findViewById(R.id.btn_save_add_member);
-        btnSaveMember.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveMember();
-            }
-        });
+        btnSaveMember.setOnClickListener(v -> saveMember());
     }
 
     public void saveMember() {
