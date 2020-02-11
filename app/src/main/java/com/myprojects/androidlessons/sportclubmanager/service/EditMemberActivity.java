@@ -3,6 +3,7 @@ package com.myprojects.androidlessons.sportclubmanager.service;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -12,6 +13,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+
+import com.myprojects.androidlessons.sportclubmanager.MemberInfoActivity;
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.entity.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
@@ -48,25 +51,32 @@ public class EditMemberActivity extends AppCompatActivity {
 
         loadAllMembersFromDatabase();
 
+        Member member = db.getMemberDao().findMemberById(memberId);
+
+
         String newName = editNewName.getText().toString().trim();
         String newSurname = editNewSurname.getText().toString().trim();
         String newPhoneNumber = editPhoneNumber.getText().toString().trim();
         String newDateOfBirth = picker.getDayOfMonth() + "/" + picker.getMonth() + "/" + picker.getYear();
 
-        if (TextUtils.isEmpty(newName)) {
-            editNewName.setError("This field must not be empty");
-        }
-        if (TextUtils.isEmpty(newSurname)) {
-            editNewSurname.setError("This field must not be empty");
-        }
-        if (TextUtils.isEmpty(newPhoneNumber)) {
-            editPhoneNumber.setError("This field must not be empty");
-        }
+//        member.setMemberName(newName);
+//        member.setMemberSurname(newSurname);
+//        member.setMemberPhoneNumber(newPhoneNumber);
+//        member.setMemberDateBirth(newDateOfBirth);
 
-        member.setMemberName(newName);
-        member.setMemberSurname(newSurname);
-        member.setMemberPhoneNumber(newPhoneNumber);
-        member.setMemberDateBirth(newDateOfBirth);
+        if (!TextUtils.isEmpty(newName)) {
+            member.setMemberName(newName);
+        }
+        if (!TextUtils.isEmpty(newSurname)) {
+            member.setMemberSurname(newSurname);
+        }
+        if (!TextUtils.isEmpty(newPhoneNumber)) {
+            member.setMemberDateBirth(newDateOfBirth);
+        }
+        db.getMemberDao().update(member);
+
+        Intent intent = new Intent(this, MemberInfoActivity.class);
+        startActivity(intent);
     }
 
     void loadAllMembersFromDatabase() {

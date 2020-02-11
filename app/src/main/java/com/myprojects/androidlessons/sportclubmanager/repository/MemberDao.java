@@ -23,7 +23,7 @@ public interface MemberDao {
     @Update
     void update(Member member);
 
-    @Query("SELECT * FROM members WHERE memberId= :id ")
-    Member findUserById(int id);
-    
+    @Query("SELECT * FROM members WHERE memberId= :id")
+    Member findMemberById(int id);
+
 }
