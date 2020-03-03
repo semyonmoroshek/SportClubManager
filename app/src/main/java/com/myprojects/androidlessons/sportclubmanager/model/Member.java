@@ -1,4 +1,4 @@
-package com.myprojects.androidlessons.sportclubmanager.entity;
+package com.myprojects.androidlessons.sportclubmanager.model;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -9,7 +9,6 @@ import java.io.Serializable;
 public class Member implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
-    @NonNull
     @ColumnInfo(name = "memberId")
     private int memberId;
 

@@ -5,25 +5,28 @@ import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
-import com.myprojects.androidlessons.sportclubmanager.entity.Member;
+import com.myprojects.androidlessons.sportclubmanager.model.Member;
 import java.util.List;
+
+import io.reactivex.Completable;
+import io.reactivex.Observable;
 
 @Dao
 public interface MemberDao {
 
-    @Query("SELECT * FROM members ")
-    List<Member> getAll();
-
     @Insert
-    void insert(Member member);
+    Completable addMember(Member member);
 
-    @Delete
-    void delete(Member member);
+    @Insert Completable addMembers(Member[] members);
 
-    @Update
-    void update(Member member);
+    @Query("SELECT * FROM members")
+    Observable<List<Member>> getAllMembers();
 
-    @Query("SELECT * FROM members WHERE memberId= :id")
-    Member findMemberById(int id);
+    @Query("SELECT * FROM members WHERE memberId = :id")
+    Observable<Member> getMemberById(int id);
+
+    @Update Completable updateMember(Member member);
+
+    @Delete Completable deleteMember(Member nenber);
 
 }

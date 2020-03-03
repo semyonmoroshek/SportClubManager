@@ -1,4 +1,4 @@
-package com.myprojects.androidlessons.sportclubmanager;
+package com.myprojects.androidlessons.sportclubmanager.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -9,11 +9,11 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.myprojects.androidlessons.sportclubmanager.entity.Member;
+
+import com.myprojects.androidlessons.sportclubmanager.R;
+import com.myprojects.androidlessons.sportclubmanager.model.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.DatabaseClient;
-import com.myprojects.androidlessons.sportclubmanager.service.ViewAllMembersActivity;
+
 import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,8 +21,6 @@ import butterknife.ButterKnife;
 
 public class MembersOperationsActivity extends AppCompatActivity {
 
-    FirebaseDatabase database;
-    DatabaseReference myRef;
     ArrayList<Member> memberList;
 
     @BindView(R.id.btn_add_member) Button btnSaveMember;
@@ -44,8 +42,6 @@ public class MembersOperationsActivity extends AppCompatActivity {
     @Override protected void onStart() {
         super.onStart();
 
-        database = FirebaseDatabase.getInstance();
-        myRef = FirebaseDatabase.getInstance().getReference();
         memberList = new ArrayList<>();
 
         btnSaveMember.setOnClickListener((View v) -> addNewMemberToRoom());
@@ -73,28 +69,6 @@ public class MembersOperationsActivity extends AppCompatActivity {
             return;
         }
         final Member member = new Member(name, surname, phoneNumber, dateOfBirth);
-
-        class SaveTask extends AsyncTask<Void, Void, Void> {
-
-            @Override
-            protected Void doInBackground(Void... voids) {
-                DatabaseClient.getInstance(getApplicationContext()).getAppDatabase()
-                        .getMemberDao()
-                        .insert(member);
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                finish();
-                startActivity(new Intent(getApplicationContext(), MembersListActivity.class));
-                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
-            }
-        }
-
-        SaveTask st = new SaveTask();
-        st.execute();
     }
 
 
@@ -119,12 +93,12 @@ public class MembersOperationsActivity extends AppCompatActivity {
         }
         Member member = new Member(name, surname, phoneNumber, dateOfBirth);
 
-        myRef.push().setValue(member);
+
         Toast.makeText(this, "Member added successfully", Toast.LENGTH_LONG).show();
     }
 
     public void viewAllMembersList() {
-        Intent intent = new Intent(MembersOperationsActivity.this, ViewAllMembersActivity.class);
+        Intent intent = new Intent(MembersOperationsActivity.this, MemberListActivity.class);
         startActivity(intent);
     }
 

@@ -1,8 +1,10 @@
-package com.myprojects.androidlessons.sportclubmanager;
+package com.myprojects.androidlessons.sportclubmanager.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.myprojects.androidlessons.sportclubmanager.R;
 
 public class PaymentsActivity extends AppCompatActivity {
 

@@ -1,22 +1,17 @@
-package com.myprojects.androidlessons.sportclubmanager.service;
+package com.myprojects.androidlessons.sportclubmanager.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
-import com.myprojects.androidlessons.sportclubmanager.MemberInfoActivity;
 import com.myprojects.androidlessons.sportclubmanager.R;
-import com.myprojects.androidlessons.sportclubmanager.entity.Member;
+import com.myprojects.androidlessons.sportclubmanager.model.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
 import java.util.List;
 import butterknife.BindView;
@@ -51,8 +46,6 @@ public class EditMemberActivity extends AppCompatActivity {
 
         loadAllMembersFromDatabase();
 
-        Member member = db.getMemberDao().findMemberById(memberId);
-
 
         String newName = editNewName.getText().toString().trim();
         String newSurname = editNewSurname.getText().toString().trim();
@@ -73,7 +66,6 @@ public class EditMemberActivity extends AppCompatActivity {
         if (!TextUtils.isEmpty(newPhoneNumber)) {
             member.setMemberDateBirth(newDateOfBirth);
         }
-        db.getMemberDao().update(member);
 
         Intent intent = new Intent(this, MemberInfoActivity.class);
         startActivity(intent);
@@ -82,7 +74,6 @@ public class EditMemberActivity extends AppCompatActivity {
     void loadAllMembersFromDatabase() {
         db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "members")
                 .allowMainThreadQueries().build();
-        memberList = db.getMemberDao().getAll();
 
         for (int i = 0; i < memberList.size(); i++) {
             if (memberList.get(i).getMemberId() == memberId) {

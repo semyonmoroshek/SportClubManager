@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".service.ViewAllMembersActivity"
+    tools:context=".activity.MemberListActivity"
     android:orientation="vertical">
 
     <LinearLayout
@@ -27,8 +27,8 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/lv_all_members"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_all_members"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

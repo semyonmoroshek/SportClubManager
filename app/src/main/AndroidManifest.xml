@@ -12,15 +12,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".service.EditMemberActivity"></activity>
-        <activity android:name=".service.ViewAllMembersActivity" />
-        <activity android:name=".service.AddMemberActivity" />
-        <activity android:name=".MemberInfoActivity" />
-        <activity android:name=".MembersListActivity" />
-        <activity android:name=".BudgetActivity" />
-        <activity android:name=".PaymentsActivity" />
-        <activity android:name=".MembersOperationsActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activity.EditMemberActivity"></activity>
+        <activity android:name=".activity.MemberListActivity" />
+        <activity android:name=".activity.AddMemberActivity" />
+        <activity android:name=".activity.MemberInfoActivity" />
+        <activity android:name=".activity.MembersListActivity" />
+        <activity android:name=".activity.BudgetActivity" />
+        <activity android:name=".activity.PaymentsActivity" />
+        <activity android:name=".activity.MembersOperationsActivity" />
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

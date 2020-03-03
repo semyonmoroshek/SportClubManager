@@ -1,57 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ring"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
-    <ImageView
-        android:id="@+id/iv_logo"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/ff_logo_fin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="24dp"/>
-
-    <Button
-        android:id="@+id/btn_members"
-        style="@style/DefaultButton"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:text="members"
-        app:layout_constraintStart_toEndOf="@+id/iv_logo"
-        app:layout_constraintTop_toTopOf="@+id/iv_logo" />
-
-    <Button
-        android:id="@+id/btn_view_all_members"
-        style="@style/DefaultButton"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:text="View"
-        app:layout_constraintStart_toEndOf="@+id/btn_budget"
-        app:layout_constraintTop_toTopOf="@+id/btn_budget" />
-
-    <Button
-        android:id="@+id/btn_budget"
-        style="@style/DefaultButton"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:text="budget"
-        app:layout_constraintStart_toEndOf="@+id/btn_members"
-        app:layout_constraintTop_toTopOf="@+id/btn_members" />
-
-    <Button
-        android:id="@+id/btn_add_new_member"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="140dp"
-        android:text="Add new"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="24dp"
+            android:src="@drawable/ff_logo_fin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_members"
+            style="@style/DefaultButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="members"
+            app:layout_constraintStart_toEndOf="@+id/iv_logo"
+            app:layout_constraintTop_toTopOf="@+id/iv_logo" />
+
+        <Button
+            android:id="@+id/btn_view_all_members"
+            style="@style/DefaultButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="View"
+            app:layout_constraintStart_toEndOf="@+id/btn_budget"
+            app:layout_constraintTop_toTopOf="@+id/btn_budget" />
+
+        <Button
+            android:id="@+id/btn_budget"
+            style="@style/DefaultButton"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="budget"
+            app:layout_constraintStart_toEndOf="@+id/btn_members"
+            app:layout_constraintTop_toTopOf="@+id/btn_members" />
+
+        <Button
+            android:id="@+id/btn_add_new_member"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="Add new"
+           />
+    </LinearLayout>
+
+</RelativeLayout>

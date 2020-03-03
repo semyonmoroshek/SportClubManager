@@ -1,4 +1,4 @@
-package com.myprojects.androidlessons.sportclubmanager;
+package com.myprojects.androidlessons.sportclubmanager.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
@@ -9,12 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.myprojects.androidlessons.sportclubmanager.entity.Member;
+
+import com.myprojects.androidlessons.sportclubmanager.R;
+import com.myprojects.androidlessons.sportclubmanager.model.Member;
 import java.util.ArrayList;
 import java.util.List;
 import butterknife.BindView;
@@ -22,7 +19,7 @@ import butterknife.ButterKnife;
 
 public class MembersListActivity extends AppCompatActivity {
 
-    DatabaseReference myRef;
+//    DatabaseReference myRef;
     Member clubMember;
     List<Member> list;
     List<String> listName;
@@ -39,7 +36,7 @@ public class MembersListActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         listName = new ArrayList<>();
         list = new ArrayList<>();
-        myRef = FirebaseDatabase.getInstance().getReference();
+//        myRef = FirebaseDatabase.getInstance().getReference();
         viewMemberList();
         btnFindMember.setOnClickListener(v -> findMember());
         AdapterView.OnItemClickListener memberInfo = (parent, v, position, id) -> {
@@ -63,24 +60,24 @@ public class MembersListActivity extends AppCompatActivity {
     }
 
     public void viewMemberList() {
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    clubMember = ds.getValue(Member.class);
-                    list.add(clubMember);
-                }
-                for (Member member : list) {
-                    listName.add(member.getMemberName() + " " + member.getMemberSurname());
-                }
-                ArrayAdapter<String> adapter = new ArrayAdapter<>(MembersListActivity.this,
-                        R.layout.item_list, R.id.txt_item_simple_list, listName);
-                memberListView.setAdapter(adapter);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            }
-        });
+//        myRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+//                    clubMember = ds.getValue(Member.class);
+//                    list.add(clubMember);
+//                }
+//                for (Member member : list) {
+//                    listName.add(member.getMemberName() + " " + member.getMemberSurname());
+//                }
+//                ArrayAdapter<String> adapter = new ArrayAdapter<>(MembersListActivity.this,
+//                        R.layout.item_list, R.id.txt_item_simple_list, listName);
+//                memberListView.setAdapter(adapter);
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//            }
+//        });
     }
 }

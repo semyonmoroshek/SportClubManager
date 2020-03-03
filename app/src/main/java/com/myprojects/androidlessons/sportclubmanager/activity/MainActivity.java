@@ -1,11 +1,12 @@
-package com.myprojects.androidlessons.sportclubmanager;
+package com.myprojects.androidlessons.sportclubmanager.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import com.myprojects.androidlessons.sportclubmanager.service.AddMemberActivity;
-import com.myprojects.androidlessons.sportclubmanager.service.ViewAllMembersActivity;
+
+import com.myprojects.androidlessons.sportclubmanager.R;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -26,27 +27,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        btnMembers.setOnClickListener(v -> openMemberCrudOperation());
         btnViewAllMembers.setOnClickListener(v -> openMemberList());
-        btnBudget.setOnClickListener(v -> openBudgetActivity());
         btnAddNewMember.setOnClickListener(v -> openAddMemberActivity());
 
     }
 
-    void openMemberCrudOperation(){
-        Intent intent = new Intent(MainActivity.this, MembersOperationsActivity.class);
-        startActivity(intent);
-    }
-
     void openMemberList(){
-        Intent intent = new Intent(MainActivity.this, ViewAllMembersActivity.class);
+        Intent intent = new Intent(MainActivity.this, MemberListActivity.class);
         startActivity(intent);
     }
 
-    void openBudgetActivity(){
-        Intent intent = new Intent(MainActivity.this, BudgetActivity.class);
-        startActivity(intent);
-    }
 
     void openAddMemberActivity(){
         Intent intent = new Intent(MainActivity.this, AddMemberActivity.class);
