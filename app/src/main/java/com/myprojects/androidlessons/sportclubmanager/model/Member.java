@@ -3,9 +3,13 @@ import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import org.parceler.Parcel;
+
 import java.io.Serializable;
 
 @Entity(tableName = "members")
+@Parcel
 public class Member implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
@@ -27,11 +31,11 @@ public class Member implements Serializable {
     @ColumnInfo(name = "memberPaymentDate")
     private String memberPaymentDate;
 
-    public Member(String memberName, String memberSurname, String memberPhoneNumber, String memberDataBirth) {
+    public Member(String memberName, String memberSurname, String memberPhoneNumber, String memberDateBirth) {
         this.memberName = memberName;
         this.memberSurname = memberSurname;
         this.memberPhoneNumber = memberPhoneNumber;
-        this.memberDateBirth = memberDataBirth;
+        this.memberDateBirth = memberDateBirth;
     }
 
     public Member() {

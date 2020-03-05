@@ -8,11 +8,17 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.myprojects.androidlessons.sportclubmanager.R;
+import com.myprojects.androidlessons.sportclubmanager.model.Member;
+
+import org.parceler.Parcels;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MemberInfoActivity extends AppCompatActivity {
+
+    public static final String EXTRA_MEMBER = "EXTRA_EMPLOYEE";
+
 
     @BindView(R.id.txt_member_info_name) TextView txtName;
     @BindView(R.id.txt_member_info_surname) TextView txtSurname;
@@ -28,25 +34,38 @@ public class MemberInfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_member_info);
         ButterKnife.bind(this);
 
-        String name = getIntent().getStringExtra("name");
-        String surname = getIntent().getStringExtra("surname");
-        String dataBirth = getIntent().getStringExtra("dataBirth");
-        String phone = getIntent().getStringExtra("phoneNum");
-        id = getIntent().getStringExtra("id");
-
-        txtName.setText(name);
-        txtSurname.setText(surname);
-        txtDateBirth.setText(dataBirth);
-        txtPhoneNumber.setText(phone);
-
-        btnEditMemberInfo.setOnClickListener(v -> openMemberInfo());
+//        String name = getIntent().getStringExtra("name");
+//        String surname = getIntent().getStringExtra("surname");
+//        String dataBirth = getIntent().getStringExtra("dataBirth");
+//        String phone = getIntent().getStringExtra("phoneNum");
+//        id = getIntent().getStringExtra("id");
+//
+//        txtName.setText(name);
+//        txtSurname.setText(surname);
+//        txtDateBirth.setText(dataBirth);
+//        txtPhoneNumber.setText(phone);
     }
 
-    void openMemberInfo(){
-        Intent intent = new Intent(MemberInfoActivity.this, EditMemberActivity.class);
-        intent.putExtra("id", id);
-        startActivity(intent);
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        Member member = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER));
+
+        txtName.setText(member.getMemberName());
+        txtSurname.setText(member.getMemberSurname());
+        txtPhoneNumber.setText(member.getMemberPhoneNumber());
+        txtDateBirth.setText("birthday: " + member.getMemberDateBirth());
+
+
+
     }
+
+    //    void openMemberInfo(){
+//        Intent intent = new Intent(MemberInfoActivity.this, EditMemberActivity.class);
+//        intent.putExtra("id", id);
+//        startActivity(intent);
+//    }
 
 }
 

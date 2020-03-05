@@ -19,6 +19,8 @@ import com.myprojects.androidlessons.sportclubmanager.adapter.MemberAdapter;
 import com.myprojects.androidlessons.sportclubmanager.model.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -62,7 +64,7 @@ public class ViewAllMemberActivity extends AppCompatActivity {
 
     void openMemberInfoActivity(Member member) {
         Intent intent = new Intent(this, MemberInfoActivity.class);
+        intent.putExtra(MemberInfoActivity.EXTRA_MEMBER, Parcels.wrap(member));
         startActivity(intent);
-
     }
 }

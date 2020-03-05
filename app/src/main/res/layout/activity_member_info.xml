@@ -62,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Payment date"
+        android:text="ate birth"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="@+id/txt_member_info_payment_date"
         app:layout_constraintTop_toBottomOf="@+id/txt_member_info_payment_date" />
