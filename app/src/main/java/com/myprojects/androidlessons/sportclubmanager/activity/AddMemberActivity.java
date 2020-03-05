@@ -61,7 +61,7 @@ public class AddMemberActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Member saved", Toast.LENGTH_LONG).show();
 
-        Intent intent = new Intent(this, MemberListActivity.class);
+        Intent intent = new Intent(this, ViewAllMemberActivity.class);
         startActivity(intent);
     }
 }

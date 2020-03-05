@@ -57,7 +57,6 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ItemViewHo
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        //        @BindView(R.id.iv_photo) ImageView mPhoto;
         @BindView(R.id.tv_name)
         TextView mName;
 

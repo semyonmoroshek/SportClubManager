@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void openMemberList(){
-        Intent intent = new Intent(MainActivity.this, MemberListActivity.class);
+        Intent intent = new Intent(MainActivity.this, ViewAllMemberActivity.class);
         startActivity(intent);
     }
 
@@ -42,6 +42,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, AddMemberActivity.class);
         startActivity(intent);
     }
-
-
 }

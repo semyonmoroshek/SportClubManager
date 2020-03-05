@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.EditMemberActivity"></activity>
-        <activity android:name=".activity.MemberListActivity" />
+        <activity android:name=".activity.ViewAllMemberActivity" />
         <activity android:name=".activity.AddMemberActivity" />
         <activity android:name=".activity.MemberInfoActivity" />
-        <activity android:name=".activity.MembersListActivity" />
+        <activity android:name=".activity.ViewAllMembersActivity" />
         <activity android:name=".activity.BudgetActivity" />
         <activity android:name=".activity.PaymentsActivity" />
         <activity android:name=".activity.MembersOperationsActivity" />

@@ -1,7 +1,6 @@
 package com.myprojects.androidlessons.sportclubmanager.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.Toast;
 
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.model.Member;
-import com.myprojects.androidlessons.sportclubmanager.repository.DatabaseClient;
 
 import java.util.ArrayList;
 import butterknife.BindView;
@@ -98,7 +96,7 @@ public class MembersOperationsActivity extends AppCompatActivity {
     }
 
     public void viewAllMembersList() {
-        Intent intent = new Intent(MembersOperationsActivity.this, MemberListActivity.class);
+        Intent intent = new Intent(MembersOperationsActivity.this, ViewAllMemberActivity.class);
         startActivity(intent);
     }
 
