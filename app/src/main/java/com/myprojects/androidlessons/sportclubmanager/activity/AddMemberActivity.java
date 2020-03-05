@@ -1,7 +1,6 @@
 package com.myprojects.androidlessons.sportclubmanager.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -11,7 +10,6 @@ import android.widget.Toast;
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.model.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
-import com.myprojects.androidlessons.sportclubmanager.repository.DatabaseClient;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -31,10 +29,10 @@ public class AddMemberActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_member);
         ButterKnife.bind(this);
 
-        btnSaveMember.setOnClickListener(v -> saveMember());
+        btnSaveMember.setOnClickListener(v -> addMember());
     }
 
-    public void saveMember() {
+    public void addMember() {
         final String name = editName.getText().toString().trim();
         final String surname = editSurname.getText().toString().trim();
         final String phoneNumber = editPhoneNumber.getText().toString().trim();
@@ -66,5 +64,4 @@ public class AddMemberActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MemberListActivity.class);
         startActivity(intent);
     }
-
 }
