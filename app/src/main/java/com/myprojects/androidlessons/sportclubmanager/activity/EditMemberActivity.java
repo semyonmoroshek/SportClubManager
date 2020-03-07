@@ -1,7 +1,6 @@
 package com.myprojects.androidlessons.sportclubmanager.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,20 +12,24 @@ import android.widget.EditText;
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.model.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
-import java.util.List;
+
+import org.parceler.Parcels;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.CompletableObserver;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+
+import static com.myprojects.androidlessons.sportclubmanager.activity.MemberInfoActivity.EXTRA_MEMBER;
 
 public class EditMemberActivity extends AppCompatActivity {
 
-    int memberId;
-    List<Member> memberList;
     Member member;
-    AppDatabase db;
 
-    @BindView(R.id.et_edit_name) EditText editNewName;
-    @BindView(R.id.et_edit_surname) EditText editNewSurname;
-    @BindView(R.id.et_edit_phone_number) EditText editPhoneNumber;
+    @BindView(R.id.et_edit_name) EditText editName;
+    @BindView(R.id.et_edit_surname) EditText editSurname;
+    @BindView(R.id.et_edit_phone_number) EditText editNumber;
     @BindView(R.id.picker_edit_birthday) DatePicker picker;
     @BindView(R.id.btn_save_edit_member) Button btnSaveEditedMember;
 
@@ -36,51 +39,46 @@ public class EditMemberActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_member);
         ButterKnife.bind(this);
 
-        String id = getIntent().getStringExtra("id");
-        memberId = Integer.parseInt(id);
+        member = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER));
 
-        btnSaveEditedMember.setOnClickListener(v -> editMember());
+        btnSaveEditedMember.setOnClickListener(View -> saveMember());
+
     }
 
-    private void editMember() {
+    private void saveMember() {
 
-        loadAllMembersFromDatabase();
-
-
-        String newName = editNewName.getText().toString().trim();
-        String newSurname = editNewSurname.getText().toString().trim();
-        String newPhoneNumber = editPhoneNumber.getText().toString().trim();
-        String newDateOfBirth = picker.getDayOfMonth() + "/" + picker.getMonth() + "/" + picker.getYear();
-
-//        member.setMemberName(newName);
-//        member.setMemberSurname(newSurname);
-//        member.setMemberPhoneNumber(newPhoneNumber);
-//        member.setMemberDateBirth(newDateOfBirth);
-
-        if (!TextUtils.isEmpty(newName)) {
-            member.setMemberName(newName);
+        final String name = editName.getText().toString().trim();
+        final String surname = editSurname.getText().toString().trim();
+        final String phoneNumber = editNumber.getText().toString().trim();
+        final String dateOfBirth = picker.getDayOfMonth() + "/" + picker.getMonth() + "/" + picker.getYear();
+        if (TextUtils.isEmpty(name)) {
+            return;
         }
-        if (!TextUtils.isEmpty(newSurname)) {
-            member.setMemberSurname(newSurname);
+        if (TextUtils.isEmpty(surname)) {
+            return;
         }
-        if (!TextUtils.isEmpty(newPhoneNumber)) {
-            member.setMemberDateBirth(newDateOfBirth);
+        if (TextUtils.isEmpty(phoneNumber)) {
+            return;
         }
 
-        Intent intent = new Intent(this, MemberInfoActivity.class);
-        startActivity(intent);
+        member.setMemberName(name);
+        member.setMemberSurname(surname);
+        member.setMemberPhoneNumber(phoneNumber);
+        member.setMemberDateBirth(dateOfBirth);
+
+        AppDatabase
+                .getInstance(this)
+                .getMemberDao()
+                .updateMember(member)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+
+        Intent mIntent = new Intent(this, ViewAllMemberActivity.class);
+        startActivity(mIntent);
+
     }
 
-    void loadAllMembersFromDatabase() {
-        db = Room.databaseBuilder(getApplicationContext(), AppDatabase.class, "members")
-                .allowMainThreadQueries().build();
-
-        for (int i = 0; i < memberList.size(); i++) {
-            if (memberList.get(i).getMemberId() == memberId) {
-                member = memberList.get(i);
-            }
-        }
-    }
 }
 
 

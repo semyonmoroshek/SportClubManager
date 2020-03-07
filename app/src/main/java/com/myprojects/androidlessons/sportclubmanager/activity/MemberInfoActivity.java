@@ -9,11 +9,14 @@ import android.widget.TextView;
 
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.model.Member;
+import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
 
 import org.parceler.Parcels;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 public class MemberInfoActivity extends AppCompatActivity {
 
@@ -25,47 +28,56 @@ public class MemberInfoActivity extends AppCompatActivity {
     @BindView(R.id.txt_member_info_phone_number) TextView txtPhoneNumber;
     @BindView(R.id.txt_member_info_date_birth) TextView txtDateBirth;
     @BindView(R.id.txt_member_info_payment_date) TextView txtPaymentDate;
-    @BindView(R.id.btn_edit_member_info) Button btnEditMemberInfo;
+    @BindView(R.id.btn_edit_member) Button btnEditMember;
+    @BindView(R.id.btn_delete_member) Button btnDeleteMember;
 
     String id;
+    Member member;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_info);
         ButterKnife.bind(this);
-
-//        String name = getIntent().getStringExtra("name");
-//        String surname = getIntent().getStringExtra("surname");
-//        String dataBirth = getIntent().getStringExtra("dataBirth");
-//        String phone = getIntent().getStringExtra("phoneNum");
-//        id = getIntent().getStringExtra("id");
-//
-//        txtName.setText(name);
-//        txtSurname.setText(surname);
-//        txtDateBirth.setText(dataBirth);
-//        txtPhoneNumber.setText(phone);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-        Member member = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER));
+        btnEditMember.setOnClickListener(View -> openEditMemberActivity());
+        btnDeleteMember.setOnClickListener(View -> deleteMember());
+
+        member = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER));
 
         txtName.setText(member.getMemberName());
         txtSurname.setText(member.getMemberSurname());
         txtPhoneNumber.setText(member.getMemberPhoneNumber());
         txtDateBirth.setText("birthday: " + member.getMemberDateBirth());
 
-
-
     }
 
-    //    void openMemberInfo(){
-//        Intent intent = new Intent(MemberInfoActivity.this, EditMemberActivity.class);
-//        intent.putExtra("id", id);
-//        startActivity(intent);
-//    }
+    private void deleteMember() {
+        AppDatabase
+                .getInstance(this)
+                .getMemberDao()
+                .deleteMember(member)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+
+        openMembersList();
+    }
+
+    private void openMembersList() {
+        Intent intent = new Intent(this, ViewAllMemberActivity.class);
+        startActivity(intent);
+    }
+
+    void openEditMemberActivity(){
+        Intent intent = new Intent(MemberInfoActivity.this, EditMemberActivity.class);
+        intent.putExtra(MemberInfoActivity.EXTRA_MEMBER, Parcels.wrap(member));
+        startActivity(intent);
+    }
 
 }
 

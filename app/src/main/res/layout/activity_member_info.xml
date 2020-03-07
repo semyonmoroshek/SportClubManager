@@ -68,7 +68,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_member_info_payment_date" />
 
     <Button
-        android:id="@+id/btn_edit_member_info"
+        android:id="@+id/btn_edit_member"
         android:text="Edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,6 +76,15 @@
         android:layout_marginEnd="272dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_member_info_date_birth" />
+
+    <Button
+        android:id="@+id/btn_delete_member"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="272dp"
+        android:text="delete"
+        app:layout_constraintTop_toTopOf="@+id/btn_edit_member"
+        app:layout_constraintStart_toEndOf="@+id/btn_edit_member"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
