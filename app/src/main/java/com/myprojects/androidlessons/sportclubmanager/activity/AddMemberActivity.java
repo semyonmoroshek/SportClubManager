@@ -49,7 +49,7 @@ public class AddMemberActivity extends AppCompatActivity {
             editPhoneNumber.setError("This field must not be empty");
             return;
         }
-        Member member = new Member(name, surname, phoneNumber, dateOfBirth);
+        Member member = new Member(name, surname, phoneNumber, dateOfBirth, "");
 
         AppDatabase
                 .getInstance(this)

@@ -8,11 +8,13 @@ import androidx.room.Room;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.adapter.MemberAdapter;
@@ -36,18 +38,39 @@ public class ViewAllMemberActivity extends AppCompatActivity {
     @BindView(R.id.btn_find_member_for_local_base) Button btnFindMember;
     @BindView(R.id.et_find_member_for_local_base) EditText editFindMember;
 
+    MemberAdapter mAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all_members);
         ButterKnife.bind(this);
 
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+
         viewAll();
+
+        btnFindMember.setOnClickListener(View -> findMember());
+    }
+
+    private void findMember() {
+        List<Member> memberList = mAdapter.getMemberList();
+        List<Member> findMembers = new ArrayList<>();
+        String name = editFindMember.getText().toString().trim();
+
+        for (Member member : memberList) {
+            if (member.getMemberName().equals(name)) {
+                findMembers.add(member);
+                mAdapter = new MemberAdapter(this, findMembers);
+                mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
+                mRecyclerView.setAdapter(mAdapter);
+            } else {
+                Toast.makeText(this, "The member not exist", Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
     private void viewAll() {
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
-
         AppDatabase
                 .getInstance(this)
                 .getMemberDao()
@@ -55,9 +78,9 @@ public class ViewAllMemberActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(dbMembers -> {
-                    MemberAdapter adapter = new MemberAdapter(this, dbMembers);
-                    adapter.setOnItemClickListener(this::openMemberInfoActivity);
-                    mRecyclerView.setAdapter(adapter);
+                    mAdapter = new MemberAdapter(this, dbMembers);
+                    mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
+                    mRecyclerView.setAdapter(mAdapter);
 
                 });
     }

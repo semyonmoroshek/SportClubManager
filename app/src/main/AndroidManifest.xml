@@ -18,7 +18,7 @@
         <activity android:name=".activity.MemberInfoActivity" />
         <activity android:name=".activity.ViewAllMembersActivity" />
         <activity android:name=".activity.BudgetActivity" />
-        <activity android:name=".activity.PaymentsActivity" />
+        <activity android:name=".activity.PaymentActivity" />
         <activity android:name=".activity.MembersOperationsActivity" />
         <activity android:name=".activity.MainActivity">
             <intent-filter>

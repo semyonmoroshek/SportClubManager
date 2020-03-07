@@ -31,11 +31,12 @@ public class Member implements Serializable {
     @ColumnInfo(name = "memberPaymentDate")
     private String memberPaymentDate;
 
-    public Member(String memberName, String memberSurname, String memberPhoneNumber, String memberDateBirth) {
+    public Member(String memberName, String memberSurname, String memberPhoneNumber, String memberDateBirth, String memberPaymentDate) {
         this.memberName = memberName;
         this.memberSurname = memberSurname;
         this.memberPhoneNumber = memberPhoneNumber;
         this.memberDateBirth = memberDateBirth;
+        this.memberPaymentDate = memberPaymentDate;
     }
 
     public Member() {

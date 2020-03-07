@@ -66,7 +66,7 @@ public class MembersOperationsActivity extends AppCompatActivity {
             editUserPhoneNumber.setError("This field must not be empty");
             return;
         }
-        final Member member = new Member(name, surname, phoneNumber, dateOfBirth);
+        final Member member = new Member(name, surname, phoneNumber, dateOfBirth, "");
     }
 
 
@@ -89,7 +89,7 @@ public class MembersOperationsActivity extends AppCompatActivity {
             editUserPhoneNumber.setError("This field must not be empty");
             return;
         }
-        Member member = new Member(name, surname, phoneNumber, dateOfBirth);
+        Member member = new Member(name, surname, phoneNumber, dateOfBirth, "");
 
 
         Toast.makeText(this, "Member added successfully", Toast.LENGTH_LONG).show();

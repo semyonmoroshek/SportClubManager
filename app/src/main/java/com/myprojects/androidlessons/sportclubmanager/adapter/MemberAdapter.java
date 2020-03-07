@@ -31,6 +31,10 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ItemViewHo
         mInflater = LayoutInflater.from(context);
     }
 
+    public List<Member> getMemberList() {
+        return mMembers;
+    }
+
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
