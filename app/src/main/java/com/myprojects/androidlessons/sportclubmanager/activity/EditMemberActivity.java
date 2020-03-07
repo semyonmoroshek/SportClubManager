@@ -51,19 +51,16 @@ public class EditMemberActivity extends AppCompatActivity {
         final String surname = editSurname.getText().toString().trim();
         final String phoneNumber = editNumber.getText().toString().trim();
         final String dateOfBirth = picker.getDayOfMonth() + "/" + picker.getMonth() + "/" + picker.getYear();
-        if (TextUtils.isEmpty(name)) {
-            return;
+        if (!TextUtils.isEmpty(name)) {
+            member.setMemberName(name);
         }
-        if (TextUtils.isEmpty(surname)) {
-            return;
+        if (!TextUtils.isEmpty(surname)) {
+            member.setMemberName(name);
         }
-        if (TextUtils.isEmpty(phoneNumber)) {
-            return;
+        if (!TextUtils.isEmpty(phoneNumber)) {
+            member.setMemberPhoneNumber(phoneNumber);
         }
 
-        member.setMemberName(name);
-        member.setMemberSurname(surname);
-        member.setMemberPhoneNumber(phoneNumber);
         member.setMemberDateBirth(dateOfBirth);
 
         AppDatabase
