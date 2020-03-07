@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.MembersOperationsActivity">
+
+    <TextView
+        android:id="@+id/txt_name"
+        style="@style/DefaultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="36dp"
+        android:text="Name" />
+
+    <EditText
+        android:id="@+id/et_name"
+        style="@style/EditTextEddMember"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="name"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/txt_surname"
+        style="@style/DefaultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+
+        android:text="Surname" />
+
+    <EditText
+        android:id="@+id/et_surname"
+        style="@style/EditTextEddMember"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="surname"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/txt_data_birth"
+        style="@style/DefaultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Data of birth" />
+
+    <DatePicker
+        android:id="@+id/picker_bithday"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner" />
+
+    <TextView
+        android:id="@+id/txt_phone_number"
+        style="@style/DefaultTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Phone number" />
+
+    <EditText
+        android:id="@+id/et_phone_number"
+        style="@style/EditTextEddMember"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="phone nomber" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cb_payment"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="payment"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_add_member"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="#00FF7F"
+            android:text="Save" />
+
+        <Button
+            android:id="@+id/btn_view_all_members"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="#00FF7F"
+            android:text="View all" />
+
+        <Button
+            android:id="@+id/btn_find_member"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="#00FF7F"
+            android:text="Find" />
+
+        <Button
+            android:id="@+id/btn_edit_member"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00FF7F" android:text="Edit" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_delete_member"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="300dp"
+        android:layout_marginTop="16dp"
+        android:background="#FF0000"
+        android:text="delete" />
+
+</LinearLayout>

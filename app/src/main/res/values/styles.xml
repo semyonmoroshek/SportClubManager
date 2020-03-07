@@ -10,9 +10,6 @@
 
     <style name="DefaultButton" parent="Widget.AppCompat.Button">
         <item name="android:textSize">16sp</item>
-        <item name="android:layout_marginLeft">8dp</item>
-        <item name="android:layout_marginRight">8dp</item>
-        <item name="android:layout_marginTop">8dp</item>
         <item name="android:background">#DC143C</item>
         <item name="android:textColor">#FFFFFF</item>
     </style>
