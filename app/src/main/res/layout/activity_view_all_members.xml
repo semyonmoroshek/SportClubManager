@@ -11,7 +11,7 @@
         android:id="@+id/tb_viewAllAct"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="#DC143C"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <LinearLayout

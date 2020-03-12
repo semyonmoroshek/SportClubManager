@@ -71,14 +71,14 @@ public class ViewAllMemberActivity extends AppCompatActivity {
 
         btnSort.setOnClickListener(View -> {
             try {
-                sort();
+                viewDebtors();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
         });
     }
 
-    private void sort() throws ParseException {
+    private void viewDebtors() throws ParseException {
         memberList = mAdapter.getMemberList();
         List<Member> sortedMembers = new ArrayList<>();
         Date todayDate = Calendar.getInstance().getTime();
@@ -136,6 +136,7 @@ public class ViewAllMemberActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(dbMembers -> {
+
                     mAdapter = new MemberAdapter(this, dbMembers);
                     mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
                     mRecyclerView.setAdapter(mAdapter);

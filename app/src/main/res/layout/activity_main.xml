@@ -14,12 +14,12 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        android:background="#EEE"
+        app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="70dp"
         android:orientation="vertical">
 
@@ -27,11 +27,9 @@
             android:id="@+id/iv_logo"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/ff_logo_fin"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:src="@drawable/logo_clean"/>
 
         <Button
             android:id="@+id/btn_members"
@@ -60,12 +58,16 @@
             app:layout_constraintStart_toEndOf="@+id/btn_members"
             app:layout_constraintTop_toTopOf="@+id/btn_members" />
 
-        <Button
-            android:id="@+id/btn_add_new_member"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_add_new_member"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:text="Add new" />
+            android:src="@drawable/ic_add_24px"
+            android:layout_marginTop="150dp"
+            android:layout_marginStart="80dp"/>
     </LinearLayout>
+
+
 
 </RelativeLayout>

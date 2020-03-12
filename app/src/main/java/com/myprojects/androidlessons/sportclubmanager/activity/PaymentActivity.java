@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -53,15 +54,19 @@ public class PaymentActivity extends AppCompatActivity {
         int day = mPicker.getDayOfMonth();
         int month = mPicker.getMonth() + 1;
         int year = mPicker.getYear();
-        String datePayment = day + "/" + month + "/" + year;
+
+        String dayStr = String.valueOf(day);
+        String monthStr = String.valueOf(month);
+        String yearStr = String.valueOf(year);
 
         if (day < 10) {
-            datePayment = "0" + day + "/" + month + "/" + year;
+            dayStr  = "0" + day;
         }
         if (month < 10) {
-            datePayment = day + "/" + "0" + month + "/" + year;
+            monthStr =  "0" + month;
         }
 
+        String datePayment = dayStr + "/" + monthStr + "/" + yearStr;
 
         member.setMemberPaymentDate(datePayment);
 
