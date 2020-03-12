@@ -25,9 +25,12 @@ public class PaymentActivity extends AppCompatActivity {
 
     Member member;
 
-    @BindView(R.id.et_price) EditText editPrice;
-    @BindView(R.id.btn_save_payment) Button btnSavePayment;
-    @BindView(R.id.picker_payment) DatePicker mPicker;
+    @BindView(R.id.et_price)
+    EditText editPrice;
+    @BindView(R.id.btn_save_payment)
+    Button btnSavePayment;
+    @BindView(R.id.picker_payment)
+    DatePicker mPicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,9 +50,20 @@ public class PaymentActivity extends AppCompatActivity {
     }
 
     private void saveNewPayment() {
-        String dateOfBirth = mPicker.getDayOfMonth() + "/" + mPicker.getMonth() + "/" + mPicker.getYear();
+        int day = mPicker.getDayOfMonth();
+        int month = mPicker.getMonth() + 1;
+        int year = mPicker.getYear();
+        String datePayment = day + "/" + month + "/" + year;
 
-        member.setMemberPaymentDate(dateOfBirth);
+        if (day < 10) {
+            datePayment = "0" + day + "/" + month + "/" + year;
+        }
+        if (month < 10) {
+            datePayment = day + "/" + "0" + month + "/" + year;
+        }
+
+
+        member.setMemberPaymentDate(datePayment);
 
         AppDatabase
                 .getInstance(this)

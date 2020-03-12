@@ -1,6 +1,8 @@
 package com.myprojects.androidlessons.sportclubmanager.activity;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +33,7 @@ public class MemberInfoActivity extends AppCompatActivity {
     @BindView(R.id.btn_edit_member) Button btnEditMember;
     @BindView(R.id.btn_delete_member) Button btnDeleteMember;
     @BindView(R.id.btn_add_payment) Button btnAddPayment;
+    @BindView(R.id.tb_memberInfoAct) Toolbar mToolbar;
 
     String id;
     Member member;
@@ -39,6 +42,11 @@ public class MemberInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_info);
         ButterKnife.bind(this);
+
+        setSupportActionBar(mToolbar);
+        ActionBar ab = getSupportActionBar();
+        ab.setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_home_24px);
     }
 
     @Override
