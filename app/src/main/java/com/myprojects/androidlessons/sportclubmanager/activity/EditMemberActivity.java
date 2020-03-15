@@ -17,7 +17,6 @@ import org.parceler.Parcels;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.CompletableObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -42,11 +41,9 @@ public class EditMemberActivity extends AppCompatActivity {
         member = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER));
 
         btnSaveEditedMember.setOnClickListener(View -> saveMember());
-
     }
 
     private void saveMember() {
-
         final String name = editName.getText().toString().trim();
         final String surname = editSurname.getText().toString().trim();
         final String phoneNumber = editNumber.getText().toString().trim();
@@ -73,9 +70,7 @@ public class EditMemberActivity extends AppCompatActivity {
 
         Intent mIntent = new Intent(this, ViewAllMemberActivity.class);
         startActivity(mIntent);
-
     }
-
 }
 
 

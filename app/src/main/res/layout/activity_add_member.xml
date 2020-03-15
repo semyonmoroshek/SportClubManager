@@ -86,17 +86,11 @@
             android:text="payment" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_save_new_member"
+        android:layout_width="142dp"
         android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <Button
-            android:id="@+id/btn_save_add_member"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:background="#00FF7F"
-            android:text="Save" />
-    </LinearLayout>
+        android:layout_gravity="center_horizontal"
+        android:backgroundTint="#00C853"
+        android:src="@drawable/ic_save_24px" />
 </LinearLayout>

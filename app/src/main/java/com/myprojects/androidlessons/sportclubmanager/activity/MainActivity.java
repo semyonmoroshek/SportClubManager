@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.btn_budget) View btnBudget;
     @BindView(R.id.btn_view_all_members) View btnViewAllMembers;
     @BindView(R.id.toolbar) Toolbar mToolbar;
-    @BindView(R.id.fab_add_new_member) FloatingActionButton fabAddNewMember;
+    @BindView(R.id.fab_save_new_member) FloatingActionButton fabAddNewMember;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

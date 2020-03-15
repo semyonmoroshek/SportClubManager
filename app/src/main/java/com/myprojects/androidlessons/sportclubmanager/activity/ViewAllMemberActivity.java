@@ -8,10 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.adapter.MemberAdapter;
 import com.myprojects.androidlessons.sportclubmanager.model.Member;
@@ -35,16 +37,13 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ViewAllMemberActivity extends AppCompatActivity {
 
-    @BindView(R.id.rv_all_members)
-    RecyclerView mRecyclerView;
-    @BindView(R.id.btn_find_member_for_local_base)
-    Button btnFindMember;
-    @BindView(R.id.et_find_member_for_local_base)
-    EditText editFindMember;
-    @BindView(R.id.btn_sort)
-    Button btnSort;
-    @BindView(R.id.tb_viewAllAct)
-    Toolbar mToolbar;
+    @BindView(R.id.rv_all_members) RecyclerView mRecyclerView;
+    @BindView(R.id.btn_find_member_for_local_base) Button btnFindMember;
+    @BindView(R.id.et_find_member_for_local_base) EditText editFindMember;
+    @BindView(R.id.btn_sort) Button btnSort;
+    @BindView(R.id.tb_viewAllAct) Toolbar mToolbar;
+    @BindView(R.id.fab_save_new_member)
+    FloatingActionButton fabSaveNewMember;
 
     MemberAdapter mAdapter;
     List<Member> memberList = new ArrayList<>();
@@ -58,13 +57,16 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_home_24px);
+
+
 
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
         viewAll();
+
+        fabSaveNewMember.setOnClickListener(View -> addNewMember());
 
 
         btnFindMember.setOnClickListener(View -> findMember());
@@ -76,6 +78,11 @@ public class ViewAllMemberActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+    }
+
+    private void addNewMember() {
+        Intent intent = new Intent(this, AddMemberActivity.class);
+        startActivity(intent);
     }
 
     private void viewDebtors() throws ParseException {
@@ -149,4 +156,13 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         intent.putExtra(MemberInfoActivity.EXTRA_MEMBER, Parcels.wrap(member));
         startActivity(intent);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_item, menu);
+
+        return true;
+    }
+
+
 }
