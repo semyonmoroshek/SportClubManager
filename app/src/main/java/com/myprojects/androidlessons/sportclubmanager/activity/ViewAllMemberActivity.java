@@ -23,10 +23,12 @@ import org.parceler.Parcels;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -68,12 +70,19 @@ public class ViewAllMemberActivity extends AppCompatActivity {
 
         fabSaveNewMember.setOnClickListener(View -> addNewMember());
 
-
         btnFindMember.setOnClickListener(View -> findMember());
+
+//        btnSort.setOnClickListener(View -> {
+//            try {
+//                viewDebtors();
+//            } catch (ParseException e) {
+//                e.printStackTrace();
+//            }
+//        });
 
         btnSort.setOnClickListener(View -> {
             try {
-                viewDebtors();
+                viewDebtorsNew();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -84,6 +93,46 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddMemberActivity.class);
         startActivity(intent);
     }
+
+    void viewDebtorsNew() throws ParseException {
+        memberList = mAdapter.getMemberList();
+        List<Member> sortedMembers = new ArrayList<>();
+
+        Locale currentLocale = getResources().getConfiguration().locale;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", currentLocale);
+        Date today = new Date();
+
+        Calendar calendar = Calendar.getInstance();
+
+        for(int i = 0; i < memberList.size(); i++){
+            if(!memberList.get(i).getMemberPaymentDate().equals("")) {
+
+                String memberPaymentDateString = memberList.get(i).getMemberPaymentDate();
+                Date memberPaymentDate = dateFormat.parse(memberPaymentDateString);
+                calendar.setTime(memberPaymentDate);
+                calendar.add(Calendar.MONTH, 1);
+
+                Date memberValidPayment = calendar.getTime();
+
+                Log.i("valid", memberValidPayment.toString());
+
+                if(memberValidPayment.before(today)){
+                    sortedMembers.add(memberList.get(i));
+                }
+
+            }
+        }
+        Log.i("sorted", sortedMembers.toString());
+
+
+    }
+
+//    private String getCurrentDate(){
+//        Locale currentLocale = getResources().getConfiguration().locale;
+//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", currentLocale);
+//        Date date = new Date();
+//        return dateFormat.format(date);
+//    }
 
     private void viewDebtors() throws ParseException {
         memberList = mAdapter.getMemberList();

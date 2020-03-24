@@ -13,13 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activity.EditMemberActivity" />
-        <activity
-            android:name=".activity.ViewAllMemberActivity"
-            android:parentActivityName=".activity.MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".activity.MainActivity"/>
-        </activity>
+
 
         <activity android:name=".activity.AddMemberActivity" />
 
@@ -33,7 +27,7 @@
 
         <activity android:name=".activity.PaymentActivity" />
         <activity android:name=".activity.MembersOperationsActivity" />
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.ViewAllMemberActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

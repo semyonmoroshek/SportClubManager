@@ -27,8 +27,8 @@
             android:id="@+id/iv_logo"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
             android:src="@drawable/logo_clean"/>
 
         <Button
@@ -36,6 +36,8 @@
             style="@style/DefaultButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
             android:text="members"
             app:layout_constraintStart_toEndOf="@+id/iv_logo"
             app:layout_constraintTop_toTopOf="@+id/iv_logo" />
