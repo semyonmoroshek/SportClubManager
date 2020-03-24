@@ -39,11 +39,16 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ViewAllMemberActivity extends AppCompatActivity {
 
-    @BindView(R.id.rv_all_members) RecyclerView mRecyclerView;
-    @BindView(R.id.btn_find_member_for_local_base) Button btnFindMember;
-    @BindView(R.id.et_find_member_for_local_base) EditText editFindMember;
-    @BindView(R.id.btn_sort) Button btnSort;
-    @BindView(R.id.tb_viewAllAct) Toolbar mToolbar;
+    @BindView(R.id.rv_all_members)
+    RecyclerView mRecyclerView;
+    @BindView(R.id.btn_find_member_for_local_base)
+    Button btnFindMember;
+    @BindView(R.id.et_find_member_for_local_base)
+    EditText editFindMember;
+    @BindView(R.id.btn_sort)
+    Button btnSort;
+    @BindView(R.id.tb_viewAllAct)
+    Toolbar mToolbar;
     @BindView(R.id.fab_save_new_member)
     FloatingActionButton fabSaveNewMember;
 
@@ -62,8 +67,6 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_home_24px);
 
 
-
-
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
         viewAll();
@@ -72,17 +75,9 @@ public class ViewAllMemberActivity extends AppCompatActivity {
 
         btnFindMember.setOnClickListener(View -> findMember());
 
-//        btnSort.setOnClickListener(View -> {
-//            try {
-//                viewDebtors();
-//            } catch (ParseException e) {
-//                e.printStackTrace();
-//            }
-//        });
-
         btnSort.setOnClickListener(View -> {
             try {
-                viewDebtorsNew();
+                sortByValdPayment();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -94,18 +89,18 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    void viewDebtorsNew() throws ParseException {
+    void sortByValdPayment() throws ParseException {
+        Locale currentLocale = getResources().getConfiguration().locale;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", currentLocale);
+        Calendar calendar = Calendar.getInstance();
+        Date today = new Date();
+
         memberList = mAdapter.getMemberList();
         List<Member> sortedMembers = new ArrayList<>();
 
-        Locale currentLocale = getResources().getConfiguration().locale;
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", currentLocale);
-        Date today = new Date();
+        for (int i = 0; i < memberList.size(); i++) {
 
-        Calendar calendar = Calendar.getInstance();
-
-        for(int i = 0; i < memberList.size(); i++){
-            if(!memberList.get(i).getMemberPaymentDate().equals("")) {
+            if (!memberList.get(i).getMemberPaymentDate().equals("")) {
 
                 String memberPaymentDateString = memberList.get(i).getMemberPaymentDate();
                 Date memberPaymentDate = dateFormat.parse(memberPaymentDateString);
@@ -116,30 +111,23 @@ public class ViewAllMemberActivity extends AppCompatActivity {
 
                 Log.i("valid", memberValidPayment.toString());
 
-                if(memberValidPayment.before(today)){
+                if (memberValidPayment.before(today)) {
                     sortedMembers.add(memberList.get(i));
                 }
-
             }
         }
-        Log.i("sorted", sortedMembers.toString());
-
-
+        mAdapter = new MemberAdapter(this, sortedMembers);
+        mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
+        mRecyclerView.setAdapter(mAdapter);
     }
 
-//    private String getCurrentDate(){
-//        Locale currentLocale = getResources().getConfiguration().locale;
-//        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", currentLocale);
-//        Date date = new Date();
-//        return dateFormat.format(date);
-//    }
 
     private void viewDebtors() throws ParseException {
         memberList = mAdapter.getMemberList();
         List<Member> sortedMembers = new ArrayList<>();
         Date todayDate = Calendar.getInstance().getTime();
 
-        for(int i = 0; i < memberList.size(); i++){
+        for (int i = 0; i < memberList.size(); i++) {
 
             Member member = memberList.get(i);
 
@@ -150,11 +138,11 @@ public class ViewAllMemberActivity extends AppCompatActivity {
             Date paymentDate = mFormat.parse(dateStr);
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(paymentDate);
-            calendar.add(Calendar.MONTH,1);
+            calendar.add(Calendar.MONTH, 1);
             Date validPayment = calendar.getTime();
 
 
-            if(validPayment.before(todayDate)){
+            if (validPayment.before(todayDate)) {
                 sortedMembers.add(member);
             }
 
