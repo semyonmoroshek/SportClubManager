@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -63,9 +64,6 @@ public class ViewAllMemberActivity extends AppCompatActivity {
 
         setSupportActionBar(mToolbar);
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_home_24px);
-
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
 
@@ -77,7 +75,7 @@ public class ViewAllMemberActivity extends AppCompatActivity {
 
         btnSort.setOnClickListener(View -> {
             try {
-                sortByValdPayment();
+                sortByValidPayment();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -89,7 +87,7 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    void sortByValdPayment() throws ParseException {
+    void sortByValidPayment() throws ParseException {
         Locale currentLocale = getResources().getConfiguration().locale;
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", currentLocale);
         Calendar calendar = Calendar.getInstance();
@@ -109,47 +107,11 @@ public class ViewAllMemberActivity extends AppCompatActivity {
 
                 Date memberValidPayment = calendar.getTime();
 
-                Log.i("valid", memberValidPayment.toString());
-
                 if (memberValidPayment.before(today)) {
                     sortedMembers.add(memberList.get(i));
                 }
             }
         }
-        mAdapter = new MemberAdapter(this, sortedMembers);
-        mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
-        mRecyclerView.setAdapter(mAdapter);
-    }
-
-
-    private void viewDebtors() throws ParseException {
-        memberList = mAdapter.getMemberList();
-        List<Member> sortedMembers = new ArrayList<>();
-        Date todayDate = Calendar.getInstance().getTime();
-
-        for (int i = 0; i < memberList.size(); i++) {
-
-            Member member = memberList.get(i);
-
-            String dateStr = member.getMemberPaymentDate();
-
-            SimpleDateFormat mFormat = new SimpleDateFormat("dd/MM/yyyy");
-
-            Date paymentDate = mFormat.parse(dateStr);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(paymentDate);
-            calendar.add(Calendar.MONTH, 1);
-            Date validPayment = calendar.getTime();
-
-
-            if (validPayment.before(todayDate)) {
-                sortedMembers.add(member);
-            }
-
-        }
-        Log.i("memberList after", memberList.toString());
-        Log.i("sortedMembers after", sortedMembers.toString());
-
         mAdapter = new MemberAdapter(this, sortedMembers);
         mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
         mRecyclerView.setAdapter(mAdapter);
@@ -173,6 +135,7 @@ public class ViewAllMemberActivity extends AppCompatActivity {
     }
 
     private void viewAll() {
+//        List<Member> memberList = new ArrayList<>();
         AppDatabase
                 .getInstance(this)
                 .getMemberDao()
@@ -184,8 +147,8 @@ public class ViewAllMemberActivity extends AppCompatActivity {
                     mAdapter = new MemberAdapter(this, dbMembers);
                     mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
                     mRecyclerView.setAdapter(mAdapter);
-
                 });
+
     }
 
     void openMemberInfoActivity(Member member) {
@@ -197,9 +160,26 @@ public class ViewAllMemberActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_item, menu);
-
         return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menu_view_all:
+                Toast.makeText(this, "View all pressed", Toast.LENGTH_LONG).show();
+                Log.i("menu", ",menu");
+                return true;
+            case R.id.menu_budget:
+                Toast.makeText(this, "Menu budget pressed", Toast.LENGTH_LONG).show();
+                return true;
+            case R.id.menu_demo:
+                Toast.makeText(this, "Menu demo pressed", Toast.LENGTH_LONG).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
 }

@@ -3,9 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/action_home"
-        android:icon="@drawable/ic_menu_24px"
-        android:title="menu option"
-        app:showAsAction="ifRoom"/>
+        android:id="@+id/menu_view_all"
+        android:icon="@drawable/ic_more_vert_24px"
+        android:title="menu view all"/>
+
+    <item
+        android:id="@+id/menu_budget"
+        android:icon="@drawable/ic_more_vert_24px"
+        android:title="menu budget"
+        app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/menu_demo"
+        android:icon="@drawable/ic_more_vert_24px"
+        android:title="menu demo"
+        app:showAsAction="never"/>
 
 </menu>

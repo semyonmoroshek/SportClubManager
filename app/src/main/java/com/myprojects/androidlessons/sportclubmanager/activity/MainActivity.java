@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_home:
+            case R.id.action_menu:
                 Toast.makeText(this, "Some action", Toast.LENGTH_LONG).show();
             default:
                 return super.onOptionsItemSelected(item);
