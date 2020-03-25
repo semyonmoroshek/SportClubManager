@@ -40,21 +40,21 @@ public class MainActivity extends AppCompatActivity {
         fabAddNewMember.setOnClickListener(View -> openAddMemberActivity());
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_menu:
-                Toast.makeText(this, "Some action", Toast.LENGTH_LONG).show();
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_item, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.action_menu:
+//                Toast.makeText(this, "Some action", Toast.LENGTH_LONG).show();
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
+//
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu_item, menu);
+//        return true;
+//    }
 
     void openMemberList() {
         Intent intent = new Intent(MainActivity.this, ViewAllMemberActivity.class);
