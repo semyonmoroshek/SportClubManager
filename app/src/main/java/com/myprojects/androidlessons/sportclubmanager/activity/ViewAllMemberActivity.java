@@ -80,8 +80,6 @@ public class ViewAllMemberActivity extends AppCompatActivity {
 
         btnFindMember.setOnClickListener(View -> findMember());
 
-        btnSortAbc.setOnClickListener(View -> sortAbc());
-
         btnSort.setOnClickListener(View -> {
             try {
                 sortByValidPayment();
@@ -91,16 +89,6 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         });
     }
 
-    private void sortAbc() {
-        memberList = mAdapter.getMemberList();
-
-        if (memberList.size() > 0) {
-            Collections.sort(memberList, (object1, object2) -> object1.getMemberName().compareTo(object2.getMemberName()));
-        }
-        mAdapter = new MemberAdapter(this, memberList);
-        mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
-        mRecyclerView.setAdapter(mAdapter);
-    }
 
     private void addNewMember() {
         Intent intent = new Intent(this, AddMemberActivity.class);
@@ -179,11 +167,11 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_item, menu);
-//        return true;
-//    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_item, menu);
+        return true;
+    }
 //
 //    @Override
 //    public boolean onOptionsItemSelected(MenuItem item) {

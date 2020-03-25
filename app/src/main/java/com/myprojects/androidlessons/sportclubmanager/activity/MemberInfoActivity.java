@@ -1,11 +1,13 @@
 package com.myprojects.androidlessons.sportclubmanager.activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -33,7 +35,7 @@ public class MemberInfoActivity extends AppCompatActivity {
     @BindView(R.id.btn_edit_member) Button btnEditMember;
     @BindView(R.id.btn_delete_member) Button btnDeleteMember;
     @BindView(R.id.btn_add_payment) Button btnAddPayment;
-    @BindView(R.id.tb_memberInfoAct) Toolbar mToolbar;
+    @BindView(R.id.tb_member_info) Toolbar mToolbar;
 
     String id;
     Member member;
@@ -45,8 +47,10 @@ public class MemberInfoActivity extends AppCompatActivity {
 
         setSupportActionBar(mToolbar);
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_home_24px);
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
+
     }
 
     @Override
@@ -96,6 +100,12 @@ public class MemberInfoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent myIntent = new Intent(getApplicationContext(), ViewAllMemberActivity.class);
+        startActivityForResult(myIntent, 0);
+        return true;
+    }
 }
 
 

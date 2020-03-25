@@ -1,10 +1,14 @@
 package com.myprojects.androidlessons.sportclubmanager.activity;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -31,12 +35,19 @@ public class EditMemberActivity extends AppCompatActivity {
     @BindView(R.id.et_edit_phone_number) EditText editNumber;
     @BindView(R.id.picker_edit_birthday) DatePicker picker;
     @BindView(R.id.btn_save_edit_member) Button btnSaveEditedMember;
+    @BindView(R.id.tb_edit) Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_member);
         ButterKnife.bind(this);
+
+        setSupportActionBar(mToolbar);
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
 
         member = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER));
 
@@ -70,6 +81,13 @@ public class EditMemberActivity extends AppCompatActivity {
 
         Intent mIntent = new Intent(this, ViewAllMemberActivity.class);
         startActivity(mIntent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent myIntent = new Intent(getApplicationContext(), MemberInfoActivity.class);
+        startActivityForResult(myIntent, 0);
+        return true;
     }
 }
 

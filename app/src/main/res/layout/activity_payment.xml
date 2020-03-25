@@ -7,6 +7,15 @@
     android:orientation="vertical"
     tools:context=".activity.PaymentActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_payment"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#DC143C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
+
     <EditText
         android:id="@+id/et_price"
         android:layout_width="wrap_content"

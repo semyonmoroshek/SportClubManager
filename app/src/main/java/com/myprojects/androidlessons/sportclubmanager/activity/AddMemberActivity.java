@@ -1,11 +1,14 @@
 package com.myprojects.androidlessons.sportclubmanager.activity;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.widget.Button;
+import android.view.MenuItem;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -26,14 +29,20 @@ public class AddMemberActivity extends AppCompatActivity {
     @BindView(R.id.et_add_member_surname) EditText editSurname;
     @BindView(R.id.et_add_member_phone_number) EditText editPhoneNumber;
     @BindView(R.id.picker_add_member_bithday) DatePicker picker;
-    @BindView(R.id.fab_save_new_member)
-    FloatingActionButton fabSaveNewMember;
+    @BindView(R.id.fab_save_new_member) FloatingActionButton fabSaveNewMember;
+    @BindView(R.id.tb_member_add) Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_member);
         ButterKnife.bind(this);
+
+        setSupportActionBar(mToolbar);
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
 
         fabSaveNewMember.setOnClickListener(View -> addMember());
     }
@@ -69,5 +78,12 @@ public class AddMemberActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, ViewAllMemberActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent myIntent = new Intent(getApplicationContext(), ViewAllMemberActivity.class);
+        startActivityForResult(myIntent, 0);
+        return true;
     }
 }

@@ -1,10 +1,14 @@
 package com.myprojects.androidlessons.sportclubmanager.activity;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -26,18 +30,22 @@ public class PaymentActivity extends AppCompatActivity {
 
     Member member;
 
-    @BindView(R.id.et_price)
-    EditText editPrice;
-    @BindView(R.id.btn_save_payment)
-    Button btnSavePayment;
-    @BindView(R.id.picker_payment)
-    DatePicker mPicker;
+    @BindView(R.id.et_price) EditText editPrice;
+    @BindView(R.id.btn_save_payment) Button btnSavePayment;
+    @BindView(R.id.picker_payment) DatePicker mPicker;
+    @BindView(R.id.tb_payment) Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         ButterKnife.bind(this);
+
+        setSupportActionBar(mToolbar);
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override
@@ -80,5 +88,12 @@ public class PaymentActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, ViewAllMemberActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent myIntent = new Intent(getApplicationContext(), MemberInfoActivity.class);
+        startActivityForResult(myIntent, 0);
+        return true;
     }
 }
