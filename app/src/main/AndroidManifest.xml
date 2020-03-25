@@ -26,7 +26,6 @@
         </activity>
 
         <activity android:name=".activity.AddPaymentActivity" />
-        <activity android:name=".activity.MembersOperationsActivity" />
         <activity android:name=".activity.ViewAllMemberActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
