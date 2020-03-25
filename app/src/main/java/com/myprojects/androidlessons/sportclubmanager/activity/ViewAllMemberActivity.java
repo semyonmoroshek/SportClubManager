@@ -2,6 +2,7 @@ package com.myprojects.androidlessons.sportclubmanager.activity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,20 +46,13 @@ import io.reactivex.schedulers.Schedulers;
 
 public class ViewAllMemberActivity extends AppCompatActivity {
 
-    @BindView(R.id.rv_all_members)
-    RecyclerView mRecyclerView;
-    @BindView(R.id.btn_find_member_for_local_base)
-    Button btnFindMember;
-    @BindView(R.id.et_find_member_for_local_base)
-    EditText editFindMember;
-    @BindView(R.id.btn_sort)
-    Button btnSort;
-    @BindView(R.id.tb_viewAllAct)
-    Toolbar mToolbar;
-    @BindView(R.id.fab_save_new_member)
-    FloatingActionButton fabSaveNewMember;
-    @BindView(R.id.btn_sort_abc)
-    Button btnSortAbc;
+    @BindView(R.id.rv_all_members) RecyclerView mRecyclerView;
+    @BindView(R.id.btn_find_member_for_local_base) Button btnFindMember;
+    @BindView(R.id.et_find_member_for_local_base) EditText editFindMember;
+    @BindView(R.id.btn_sort) Button btnSort;
+    @BindView(R.id.tb_viewAllAct) Toolbar mToolbar;
+    @BindView(R.id.fab_save_new_member) FloatingActionButton fabSaveNewMember;
+    @BindView(R.id.btn_sort_abc) Button btnSortAbc;
 
     MemberAdapter mAdapter;
     List<Member> memberList = new ArrayList<>();

@@ -72,7 +72,7 @@ public class MemberInfoActivity extends AppCompatActivity {
     }
 
     private void addPayment() {
-        Intent intent = new Intent(MemberInfoActivity.this, PaymentActivity.class);
+        Intent intent = new Intent(MemberInfoActivity.this, AddPaymentActivity.class);
         intent.putExtra(MemberInfoActivity.EXTRA_MEMBER, Parcels.wrap(member));
         startActivity(intent);
     }

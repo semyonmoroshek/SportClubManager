@@ -7,7 +7,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -26,7 +25,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.myprojects.androidlessons.sportclubmanager.activity.MemberInfoActivity.EXTRA_MEMBER;
 
-public class PaymentActivity extends AppCompatActivity {
+public class AddPaymentActivity extends AppCompatActivity {
 
     Member member;
 
@@ -38,7 +37,7 @@ public class PaymentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payment);
+        setContentView(R.layout.activity_do_payment);
         ButterKnife.bind(this);
 
         setSupportActionBar(mToolbar);
