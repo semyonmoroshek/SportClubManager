@@ -2,15 +2,12 @@ package com.myprojects.androidlessons.sportclubmanager.activity;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,17 +22,12 @@ import org.parceler.Parcels;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -111,6 +103,7 @@ public class ViewAllMemberActivity extends AppCompatActivity {
 
                 if (memberValidPayment.before(today)) {
                     sortedMembers.add(memberList.get(i));
+
                 }
             }
         }
@@ -156,8 +149,8 @@ public class ViewAllMemberActivity extends AppCompatActivity {
     }
 
     void openMemberInfoActivity(Member member) {
-        Intent intent = new Intent(this, MemberInfoActivity.class);
-        intent.putExtra(MemberInfoActivity.EXTRA_MEMBER, Parcels.wrap(member));
+        Intent intent = new Intent(this, DetailMemberActivity.class);
+        intent.putExtra(DetailMemberActivity.EXTRA_MEMBER, Parcels.wrap(member));
         startActivity(intent);
     }
 

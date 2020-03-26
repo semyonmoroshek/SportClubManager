@@ -18,7 +18,7 @@
         <activity android:name=".activity.AddMemberActivity" />
 
         <activity
-            android:name=".activity.MemberInfoActivity"
+            android:name=".activity.DetailMemberActivity"
             android:parentActivityName=".activity.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

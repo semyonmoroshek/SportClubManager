@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-import static com.myprojects.androidlessons.sportclubmanager.activity.MemberInfoActivity.EXTRA_MEMBER;
+import static com.myprojects.androidlessons.sportclubmanager.activity.DetailMemberActivity.EXTRA_MEMBER;
 
 public class AddPaymentActivity extends AppCompatActivity {
 
@@ -91,7 +91,7 @@ public class AddPaymentActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent myIntent = new Intent(getApplicationContext(), MemberInfoActivity.class);
+        Intent myIntent = new Intent(getApplicationContext(), DetailMemberActivity.class);
         startActivityForResult(myIntent, 0);
         return true;
     }

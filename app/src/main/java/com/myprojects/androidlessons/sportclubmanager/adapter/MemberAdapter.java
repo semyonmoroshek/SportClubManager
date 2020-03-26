@@ -61,8 +61,9 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ItemViewHo
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.tv_name)
-        TextView mName;
+        @BindView(R.id.tv_name) TextView mName;
+        @BindView(R.id.tv_surname) TextView mSurname;
+
 
         ItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,6 +77,8 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ItemViewHo
 
         void setup(Member member) {
             mName.setText(member.getMemberName());
+            mSurname.setText(member.getMemberSurname());
+
 
 //            Glide.with(mContext).load(employee.getPhoto()).into(mPhoto);
         }
