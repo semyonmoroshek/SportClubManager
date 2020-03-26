@@ -44,7 +44,6 @@ public class ViewAllMemberActivity extends AppCompatActivity {
     @BindView(R.id.btn_sort) Button btnSort;
     @BindView(R.id.tb_viewAllAct) Toolbar mToolbar;
     @BindView(R.id.fab_save_new_member) FloatingActionButton fabSaveNewMember;
-    @BindView(R.id.btn_sort_abc) Button btnSortAbc;
 
     MemberAdapter mAdapter;
     List<Member> memberList = new ArrayList<>();

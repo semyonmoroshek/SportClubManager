@@ -19,17 +19,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right"
         android:orientation="horizontal">
-        <Button
-            android:id="@+id/btn_sort_abc"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="sort abc"/>
 
         <Button
             android:id="@+id/btn_sort"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="sort payment"/>
+            android:text="view debtors"/>
 
         <EditText
             android:id="@+id/et_find_member_for_local_base"
