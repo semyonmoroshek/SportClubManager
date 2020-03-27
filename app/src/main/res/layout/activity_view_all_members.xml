@@ -21,6 +21,12 @@
         android:orientation="horizontal">
 
         <Button
+            android:id="@+id/btn_view_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="view all"/>
+
+        <Button
             android:id="@+id/btn_sort"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

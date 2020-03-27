@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
@@ -66,7 +67,6 @@ public class DetailMemberActivity extends AppCompatActivity {
         txtPhoneNumber.setText(member.getMemberPhoneNumber());
         txtPaymentDate.setText("payment: " + member.getMemberPaymentDate());
         txtDateBirth.setText("birthday: " + member.getMemberDateBirth());
-
     }
 
     private void addPayment() {

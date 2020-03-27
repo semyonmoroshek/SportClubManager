@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -76,6 +77,7 @@ public class AddPaymentActivity extends AppCompatActivity {
         String datePayment = dayStr + "/" + monthStr + "/" + yearStr;
 
         member.setMemberPaymentDate(datePayment);
+        member.setValidPayment(2);
 
         AppDatabase
                 .getInstance(this)

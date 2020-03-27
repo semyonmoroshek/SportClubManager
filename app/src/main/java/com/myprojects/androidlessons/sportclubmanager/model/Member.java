@@ -32,6 +32,17 @@ public class Member implements Serializable {
     @ColumnInfo(name = "memberPaymentDate")
     private String memberPaymentDate;
 
+    @ColumnInfo(name = "validPayment")
+    private int validPayment;
+
+    public int getValidPayment() {
+        return validPayment;
+    }
+
+    public void setValidPayment(int validPayment) {
+        this.validPayment = validPayment;
+    }
+
     public Member(String memberName, String memberSurname, String memberPhoneNumber, String memberDateBirth, String memberPaymentDate) {
         this.memberName = memberName;
         this.memberSurname = memberSurname;

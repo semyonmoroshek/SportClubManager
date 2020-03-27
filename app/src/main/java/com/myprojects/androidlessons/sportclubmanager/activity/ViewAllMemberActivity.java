@@ -44,6 +44,7 @@ public class ViewAllMemberActivity extends AppCompatActivity {
     @BindView(R.id.btn_sort) Button btnSort;
     @BindView(R.id.tb_viewAllAct) Toolbar mToolbar;
     @BindView(R.id.fab_save_new_member) FloatingActionButton fabSaveNewMember;
+    @BindView(R.id.btn_view_all) Button btnViewAll;
 
     MemberAdapter mAdapter;
     List<Member> memberList = new ArrayList<>();
@@ -62,7 +63,7 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         viewAll();
 
         fabSaveNewMember.setOnClickListener(View -> addNewMember());
-
+        btnViewAll.setOnClickListener(View -> viewAll());
         btnFindMember.setOnClickListener(View -> findMember());
 
         btnSort.setOnClickListener(View -> {
@@ -102,8 +103,11 @@ public class ViewAllMemberActivity extends AppCompatActivity {
 
                 if (memberValidPayment.before(today)) {
                     sortedMembers.add(memberList.get(i));
+                    memberList.get(i).setValidPayment(1);
 
                 }
+            }if(memberList.get(i).getMemberPaymentDate().equals("")) {
+                sortedMembers.add(memberList.get(i));
             }
         }
         mAdapter = new MemberAdapter(this, sortedMembers);
