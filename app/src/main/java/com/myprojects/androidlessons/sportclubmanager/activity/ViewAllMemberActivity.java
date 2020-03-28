@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprojects.androidlessons.sportclubmanager.R;
-import com.myprojects.androidlessons.sportclubmanager.adapter.MemberAdapter;
+import com.myprojects.androidlessons.sportclubmanager.adapter.CustomAdapter;
 import com.myprojects.androidlessons.sportclubmanager.model.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
 
@@ -46,7 +46,7 @@ public class ViewAllMemberActivity extends AppCompatActivity {
     @BindView(R.id.fab_save_new_member) FloatingActionButton fabSaveNewMember;
     @BindView(R.id.btn_view_all) Button btnViewAll;
 
-    MemberAdapter mAdapter;
+    CustomAdapter mAdapter;
     List<Member> memberList = new ArrayList<>();
 
     @Override
@@ -58,7 +58,10 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         ActionBar ab = getSupportActionBar();
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
+//        mRecyclerView.setLayoutManager(linearLayoutManager);
+//        CustomAdapter customAdapter = new CustomAdapter(ViewAllMemberActivity.this, personNames,personImages);
+//        mRecyclerView.setAdapter(customAdapter);
+
 
         viewAll();
 
@@ -110,7 +113,7 @@ public class ViewAllMemberActivity extends AppCompatActivity {
                 sortedMembers.add(memberList.get(i));
             }
         }
-        mAdapter = new MemberAdapter(this, sortedMembers);
+        mAdapter = new CustomAdapter(this, sortedMembers);
         mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
         mRecyclerView.setAdapter(mAdapter);
     }
@@ -123,7 +126,7 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         for (Member member : memberList) {
             if (member.getMemberName().equals(name)) {
                 findMembers.add(member);
-                mAdapter = new MemberAdapter(this, findMembers);
+                mAdapter = new CustomAdapter(this, findMembers);
                 mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
                 mRecyclerView.setAdapter(mAdapter);
             } else {
@@ -145,9 +148,12 @@ public class ViewAllMemberActivity extends AppCompatActivity {
                         Collections.sort(dbMembers, (object1, object2) -> object1.getMemberName().compareTo(object2.getMemberName()));
                     }
 
-                    mAdapter = new MemberAdapter(this, dbMembers);
-                    mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
+
+                    LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ViewAllMemberActivity.this);
+                    mRecyclerView.setLayoutManager(linearLayoutManager);
+                    mAdapter = new CustomAdapter(this, dbMembers);
                     mRecyclerView.setAdapter(mAdapter);
+                    mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
                 });
     }
 
