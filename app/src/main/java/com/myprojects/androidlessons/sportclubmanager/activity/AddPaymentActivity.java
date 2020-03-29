@@ -77,7 +77,6 @@ public class AddPaymentActivity extends AppCompatActivity {
         String datePayment = dayStr + "/" + monthStr + "/" + yearStr;
 
         member.setMemberPaymentDate(datePayment);
-        member.setValidPayment(2);
 
         AppDatabase
                 .getInstance(this)

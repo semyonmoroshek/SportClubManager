@@ -106,7 +106,6 @@ public class ViewAllMemberActivity extends AppCompatActivity {
 
                 if (memberValidPayment.before(today)) {
                     sortedMembers.add(memberList.get(i));
-                    memberList.get(i).setValidPayment(1);
 
                 }
             }if(memberList.get(i).getMemberPaymentDate().equals("")) {

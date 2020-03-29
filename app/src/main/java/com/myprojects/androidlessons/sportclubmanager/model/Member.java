@@ -15,34 +15,24 @@ public class Member implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "memberId")
-    private int memberId;
+     private int memberId;
 
     @ColumnInfo(name = "memberName")
     private String memberName;
 
     @ColumnInfo(name = "memberSurname")
-    private String memberSurname;
+     private String memberSurname;
 
     @ColumnInfo(name = "memberPhoneNumber")
-    private String memberPhoneNumber;
+     private String memberPhoneNumber;
 
     @ColumnInfo(name = "memberDateBirth")
-    private String memberDateBirth;
+     private String memberDateBirth;
 
     @ColumnInfo(name = "memberPaymentDate")
-    private String memberPaymentDate;
+     private String memberPaymentDate;
 
-    @ColumnInfo(name = "validPayment")
-    private int validPayment;
-
-    public int getValidPayment() {
-        return validPayment;
-    }
-
-    public void setValidPayment(int validPayment) {
-        this.validPayment = validPayment;
-    }
-
+    @Ignore
     public Member(String memberName, String memberSurname, String memberPhoneNumber, String memberDateBirth, String memberPaymentDate) {
         this.memberName = memberName;
         this.memberSurname = memberSurname;
