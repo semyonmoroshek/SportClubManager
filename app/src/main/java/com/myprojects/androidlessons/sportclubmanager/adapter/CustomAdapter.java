@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.myprojects.androidlessons.sportclubmanager.R;
@@ -18,28 +17,35 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ItemViewHolder> {
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHolder> {
 
     private Context mContext;
     private List<Member> mMembers;
     private LayoutInflater mInflater;
     private OnItemClick mListener;
 
-    public MemberAdapter(Context context, List<Member> members) {
+
+
+    public CustomAdapter(Context context, List<Member> members) {
         mContext = context;
         mMembers = members;
         mInflater = LayoutInflater.from(context);
     }
 
-    @NonNull
-    @Override
-    public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ItemViewHolder(mInflater.inflate(R.layout.row_member, parent, false));
+    public List<Member> getMemberList() {
+        return mMembers;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
+    public ItemViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_layoutr, parent, false);
+        return new ItemViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(ItemViewHolder holder, final int position) {
         holder.setup(mMembers.get(position));
+
     }
 
     @Override
@@ -47,7 +53,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ItemViewHo
         return mMembers.size();
     }
 
-    public void setOnItemClickListener(OnItemClick listener) {
+    public void setOnItemClickListener(CustomAdapter.OnItemClick listener) {
         mListener = listener;
     }
 
@@ -55,12 +61,13 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ItemViewHo
         void onClick(Member member);
     }
 
-    class ItemViewHolder extends RecyclerView.ViewHolder {
+     class ItemViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.txt_row_name)
+        TextView name;
+        @BindView(R.id.txt_row_surname)
+        TextView surname;
 
-        @BindView(R.id.tv_name)
-        TextView mName;
-
-        ItemViewHolder(@NonNull View itemView) {
+         ItemViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -71,9 +78,9 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ItemViewHo
         }
 
         void setup(Member member) {
-            mName.setText(member.getMemberName());
-
-//            Glide.with(mContext).load(employee.getPhoto()).into(mPhoto);
+            name.setText(member.getMemberName());
+            surname.setText(member.getMemberSurname());
         }
+
     }
 }

@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activity.EditMemberActivity">
+    tools:context=".activity.AddPaymentActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/tb_edit"
+        android:id="@+id/tb_payment"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#DC143C"
@@ -17,36 +17,28 @@
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <EditText
-        android:id="@+id/et_edit_name"
-        android:layout_width="match_parent"
+        android:id="@+id/et_price"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="new name" />
-
-    <EditText
-        android:id="@+id/et_edit_surname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="new surname" />
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:hint="price" />
 
     <DatePicker
-        android:id="@+id/picker_edit_birthday"
+        android:id="@+id/picker_payment"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginTop="50dp"
         android:calendarViewShown="false"
         android:datePickerMode="spinner" />
 
-
-    <EditText
-        android:id="@+id/et_edit_phone_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="new phone number" />
-
     <Button
-        android:id="@+id/btn_save_edit_member"
+        android:id="@+id/btn_save_payment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save Edit member" />
-
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="save payment" />
 
 </LinearLayout>
+

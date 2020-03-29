@@ -1,15 +1,23 @@
 package com.myprojects.androidlessons.sportclubmanager.activity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.widget.Button;
+import android.view.MenuItem;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.model.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -20,8 +28,9 @@ public class AddMemberActivity extends AppCompatActivity {
     @BindView(R.id.et_add_member_name) EditText editName;
     @BindView(R.id.et_add_member_surname) EditText editSurname;
     @BindView(R.id.et_add_member_phone_number) EditText editPhoneNumber;
-    @BindView(R.id.btn_save_add_member) Button btnSaveMember;
     @BindView(R.id.picker_add_member_bithday) DatePicker picker;
+    @BindView(R.id.fab_save_new_member) FloatingActionButton fabSaveNewMember;
+    @BindView(R.id.tb_member_add) Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +38,13 @@ public class AddMemberActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_member);
         ButterKnife.bind(this);
 
-        btnSaveMember.setOnClickListener(v -> addMember());
+        setSupportActionBar(mToolbar);
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
+
+        fabSaveNewMember.setOnClickListener(View -> addMember());
     }
 
     public void addMember() {
@@ -49,7 +64,7 @@ public class AddMemberActivity extends AppCompatActivity {
             editPhoneNumber.setError("This field must not be empty");
             return;
         }
-        Member member = new Member(name, surname, phoneNumber, dateOfBirth);
+        Member member = new Member(name, surname, phoneNumber, dateOfBirth, "");
 
         AppDatabase
                 .getInstance(this)
@@ -63,5 +78,12 @@ public class AddMemberActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, ViewAllMemberActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        Intent myIntent = new Intent(getApplicationContext(), ViewAllMemberActivity.class);
+        startActivityForResult(myIntent, 0);
+        return true;
     }
 }

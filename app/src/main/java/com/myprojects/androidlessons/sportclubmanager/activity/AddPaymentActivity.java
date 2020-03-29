@@ -7,7 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -26,21 +26,19 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.myprojects.androidlessons.sportclubmanager.activity.DetailMemberActivity.EXTRA_MEMBER;
 
-public class EditMemberActivity extends AppCompatActivity {
+public class AddPaymentActivity extends AppCompatActivity {
 
     Member member;
 
-    @BindView(R.id.et_edit_name) EditText editName;
-    @BindView(R.id.et_edit_surname) EditText editSurname;
-    @BindView(R.id.et_edit_phone_number) EditText editNumber;
-    @BindView(R.id.picker_edit_birthday) DatePicker picker;
-    @BindView(R.id.btn_save_edit_member) Button btnSaveEditedMember;
-    @BindView(R.id.tb_edit) Toolbar mToolbar;
+    @BindView(R.id.et_price) EditText editPrice;
+    @BindView(R.id.btn_save_payment) Button btnSavePayment;
+    @BindView(R.id.picker_payment) DatePicker mPicker;
+    @BindView(R.id.tb_payment) Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_member);
+        setContentView(R.layout.activity_do_payment);
         ButterKnife.bind(this);
 
         setSupportActionBar(mToolbar);
@@ -48,28 +46,37 @@ public class EditMemberActivity extends AppCompatActivity {
         if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
 
         member = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER));
 
-        btnSaveEditedMember.setOnClickListener(View -> saveMember());
+        btnSavePayment.setOnClickListener(View -> saveNewPayment());
+
     }
 
-    private void saveMember() {
-        final String name = editName.getText().toString().trim();
-        final String surname = editSurname.getText().toString().trim();
-        final String phoneNumber = editNumber.getText().toString().trim();
-        final String dateOfBirth = picker.getDayOfMonth() + "/" + picker.getMonth() + "/" + picker.getYear();
-        if (!TextUtils.isEmpty(name)) {
-            member.setMemberName(name);
+    private void saveNewPayment() {
+        int day = mPicker.getDayOfMonth();
+        int month = mPicker.getMonth() + 1;
+        int year = mPicker.getYear();
+
+        String dayStr = String.valueOf(day);
+        String monthStr = String.valueOf(month);
+        String yearStr = String.valueOf(year);
+
+        if (day < 10) {
+            dayStr  = "0" + day;
         }
-        if (!TextUtils.isEmpty(surname)) {
-            member.setMemberName(name);
-        }
-        if (!TextUtils.isEmpty(phoneNumber)) {
-            member.setMemberPhoneNumber(phoneNumber);
+        if (month < 10) {
+            monthStr =  "0" + month;
         }
 
-        member.setMemberDateBirth(dateOfBirth);
+        String datePayment = dayStr + "/" + monthStr + "/" + yearStr;
+
+        member.setMemberPaymentDate(datePayment);
 
         AppDatabase
                 .getInstance(this)
@@ -79,8 +86,8 @@ public class EditMemberActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
 
-        Intent mIntent = new Intent(this, ViewAllMemberActivity.class);
-        startActivity(mIntent);
+        Intent intent = new Intent(this, ViewAllMemberActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -90,7 +97,3 @@ public class EditMemberActivity extends AppCompatActivity {
         return true;
     }
 }
-
-
-
-

@@ -4,14 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MemberInfoActivity">
+    tools:context=".activity.DetailMemberActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_member_info"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#DC143C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/AppTheme.PopupOverlay" />
 
     <ImageView
         android:id="@+id/iv_member_info_photo"
         android:layout_width="130dp"
         android:layout_height="200dp"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="90dp"
         android:scaleType="fitStart"
         android:src="@drawable/tyson"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,6 +94,15 @@
         android:text="delete"
         app:layout_constraintTop_toTopOf="@+id/btn_edit_member"
         app:layout_constraintStart_toEndOf="@+id/btn_edit_member"/>
+
+    <Button
+        android:id="@+id/btn_add_payment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="272dp"
+        android:text="add payment"
+        app:layout_constraintTop_toTopOf="@+id/btn_delete_member"
+        app:layout_constraintStart_toEndOf="@+id/btn_delete_member"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
