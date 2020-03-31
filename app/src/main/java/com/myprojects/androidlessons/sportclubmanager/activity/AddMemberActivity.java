@@ -78,6 +78,7 @@ public class AddMemberActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, ViewAllMemberActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override

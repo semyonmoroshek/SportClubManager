@@ -96,16 +96,14 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
             int green = Color.parseColor("#C8E6C9");
             int red = Color.parseColor("#FFCDD2");
 
-//            mCardView.setCardBackgroundColor(red);
-
             if (validPayment == 0) {
                 mCardView.setCardBackgroundColor(red);
             }
             if (validPayment == 1) {
-                mCardView.setCardBackgroundColor(yellow);
+                mCardView.setCardBackgroundColor(green);
             }
             if (validPayment == 2) {
-                mCardView.setCardBackgroundColor(green);
+                mCardView.setCardBackgroundColor(yellow);
             }
 
         }
@@ -123,23 +121,25 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
             int payment = 0;
 
             try {
-                if(!memberPayment.equals("")) {
+                if (!memberPayment.equals("")) {
                     Date memberPaymentDate = dateFormat.parse(memberPayment);
-                        calendarAfterMont.setTime(memberPaymentDate);
-                }
+                    calendarAfterMont.setTime(memberPaymentDate);
+                    calendarAfterMontMinus3days.setTime(memberPaymentDate);
 
-                calendarAfterMont.add(Calendar.MONTH, 1);
+                    calendarAfterMont.add(Calendar.MONTH, 1);
 
-                calendarAfterMontMinus3days.add(Calendar.MONTH, 1);
-                calendarAfterMontMinus3days.add(Calendar.DATE, -3);
-                Date memberValidPaymentUntilDate = calendarAfterMont.getTime();
-                Date memberValidPaymentUntilDateMinus3days = calendarAfterMontMinus3days.getTime();
+                    calendarAfterMontMinus3days.add(Calendar.MONTH, 1);
+                    calendarAfterMontMinus3days.add(Calendar.DATE, -3);
 
+                    Date memberValidPaymentUntilDate = calendarAfterMont.getTime();
+                    Date memberValidPaymentUntilDateMinus3days = calendarAfterMontMinus3days.getTime();
 
-                 if (memberValidPaymentUntilDate.before(today) && memberValidPaymentUntilDate.after(memberValidPaymentUntilDateMinus3days)) {
-                    payment = 1;
-                } else if(memberValidPaymentUntilDate.before(today)) {
-                    payment = 2;
+                    if (memberValidPaymentUntilDate.after(today)) {
+                        return payment = 1;
+                    }
+                    if (memberValidPaymentUntilDateMinus3days.after(today)) {
+                        return payment = 2;
+                    }
                 }
             } catch (ParseException e) {
                 e.printStackTrace();

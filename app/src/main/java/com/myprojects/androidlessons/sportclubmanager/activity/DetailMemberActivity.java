@@ -90,6 +90,7 @@ public class DetailMemberActivity extends AppCompatActivity {
     private void openMembersList() {
         Intent intent = new Intent(this, ViewAllMemberActivity.class);
         startActivity(intent);
+        finish();
     }
 
     void openEditMemberActivity(){

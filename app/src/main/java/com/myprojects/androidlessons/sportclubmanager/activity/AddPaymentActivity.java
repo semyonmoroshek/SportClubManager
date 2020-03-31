@@ -7,7 +7,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -88,6 +87,7 @@ public class AddPaymentActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this, ViewAllMemberActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
@@ -96,4 +96,6 @@ public class AddPaymentActivity extends AppCompatActivity {
         startActivityForResult(myIntent, 0);
         return true;
     }
+
+
 }
