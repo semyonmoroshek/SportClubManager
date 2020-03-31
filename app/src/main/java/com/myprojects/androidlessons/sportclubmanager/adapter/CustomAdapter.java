@@ -1,6 +1,7 @@
 package com.myprojects.androidlessons.sportclubmanager.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.model.Member;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,7 +33,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
     private OnItemClick mListener;
 
 
-
     public CustomAdapter(Context context, List<Member> members) {
         mContext = context;
         mMembers = members;
@@ -43,7 +44,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
     }
 
     @Override
-    public ItemViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
+    public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_layoutr, parent, false);
         return new ItemViewHolder(view);
     }
@@ -67,12 +68,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
         void onClick(Member member);
     }
 
-     class ItemViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.txt_row_name) TextView name;
-        @BindView(R.id.txt_row_surname) TextView surname;
-        @BindView(R.id.card_view) CardView mCardView;
+    class ItemViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.txt_row_name)
+        TextView name;
+        @BindView(R.id.txt_row_surname)
+        TextView surname;
+        @BindView(R.id.card_view)
+        CardView mCardView;
 
-         ItemViewHolder(View itemView) {
+        ItemViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
@@ -86,33 +90,61 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
             name.setText(member.getMemberName());
             surname.setText(member.getMemberSurname());
 
-            Log.i("name", member.getMemberName());
-            Log.i("surname", member.getMemberSurname());
-//            Log.i("date", member.getMemberPaymentDate());
+            int validPayment = sortByValidPayment(member);
+
+            int yellow = Color.parseColor("#FFF9C4");
+            int green = Color.parseColor("#C8E6C9");
+            int red = Color.parseColor("#FFCDD2");
+
+//            mCardView.setCardBackgroundColor(red);
+
+            if (validPayment == 0) {
+                mCardView.setCardBackgroundColor(red);
+            }
+            if (validPayment == 1) {
+                mCardView.setCardBackgroundColor(yellow);
+            }
+            if (validPayment == 2) {
+                mCardView.setCardBackgroundColor(green);
+            }
 
         }
 
-//        int sortByValidPayment(Member member){
+        int sortByValidPayment(Member member) {
 
-//            Locale currentLocale = mContext.getResources().getConfiguration().locale;
-//            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", currentLocale);
-//            Calendar calendar = Calendar.getInstance();
-//            Log.i("calendar", String.valueOf(calendar));
-//            Date today = new Date();
-//            Log.i("today", String.valueOf(today));
-//
-//            String memberPayment = member.getMemberPaymentDate();
-//
-//            if(memberPayment != null) {
-//                String memberValidPayment = member.getMemberPaymentDate();
-//                Log.i("payment", memberValidPayment);
-//            }else {
-//                Log.i("paymentnull", memberPayment);
-//            }
-//
-//            return 1;
-//        }
+            Locale currentLocale = mContext.getResources().getConfiguration().locale;
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", currentLocale);
+            Calendar calendarAfterMont = Calendar.getInstance();
+            Calendar calendarAfterMontMinus3days = Calendar.getInstance();
+            Date today = new Date();
+
+            String memberPayment = member.getMemberPaymentDate();
+
+            int payment = 0;
+
+            try {
+                if(!memberPayment.equals("")) {
+                    Date memberPaymentDate = dateFormat.parse(memberPayment);
+                        calendarAfterMont.setTime(memberPaymentDate);
+                }
+
+                calendarAfterMont.add(Calendar.MONTH, 1);
+
+                calendarAfterMontMinus3days.add(Calendar.MONTH, 1);
+                calendarAfterMontMinus3days.add(Calendar.DATE, -3);
+                Date memberValidPaymentUntilDate = calendarAfterMont.getTime();
+                Date memberValidPaymentUntilDateMinus3days = calendarAfterMontMinus3days.getTime();
 
 
-     }
+                 if (memberValidPaymentUntilDate.before(today) && memberValidPaymentUntilDate.after(memberValidPaymentUntilDateMinus3days)) {
+                    payment = 1;
+                } else if(memberValidPaymentUntilDate.before(today)) {
+                    payment = 2;
+                }
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            return payment;
+        }
+    }
 }

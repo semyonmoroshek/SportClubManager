@@ -30,7 +30,7 @@ public class Member implements Serializable {
      private String memberDateBirth;
 
     @ColumnInfo(name = "memberPaymentDate")
-     private String memberPaymentDate;
+     private String memberPaymentDate = "";
 
     @Ignore
     public Member(String memberName, String memberSurname, String memberPhoneNumber, String memberDateBirth, String memberPaymentDate) {
