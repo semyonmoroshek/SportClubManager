@@ -2,7 +2,6 @@ package com.myprojects.androidlessons.sportclubmanager.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,12 +68,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.txt_row_name)
-        TextView name;
-        @BindView(R.id.txt_row_surname)
-        TextView surname;
-        @BindView(R.id.card_view)
-        CardView mCardView;
+        @BindView(R.id.txt_row_name) TextView name;
+        @BindView(R.id.txt_row_surname) TextView surname;
+        @BindView(R.id.card_view) CardView mCardView;
 
         ItemViewHolder(View itemView) {
             super(itemView);
@@ -140,7 +136,6 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
                     if (memberValidPaymentUntilDate.after(today)) {
                         return 2;
                     }
-
                 }
             } catch (ParseException e) {
                 e.printStackTrace();

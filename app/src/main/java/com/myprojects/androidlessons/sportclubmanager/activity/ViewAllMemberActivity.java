@@ -58,11 +58,6 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         ActionBar ab = getSupportActionBar();
 
-//        mRecyclerView.setLayoutManager(linearLayoutManager);
-//        CustomAdapter customAdapter = new CustomAdapter(ViewAllMemberActivity.this, personNames,personImages);
-//        mRecyclerView.setAdapter(customAdapter);
-
-
         viewAll();
 
         fabSaveNewMember.setOnClickListener(View -> addNewMember());
@@ -167,24 +162,4 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_item, menu);
         return true;
     }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle item selection
-//        switch (item.getItemId()) {
-//            case R.id.menu_view_all:
-//                Toast.makeText(this, "View all pressed", Toast.LENGTH_LONG).show();
-//                Log.i("menu", ",menu");
-//                return true;
-//            case R.id.menu_budget:
-//                Toast.makeText(this, "Menu budget pressed", Toast.LENGTH_LONG).show();
-//                return true;
-//            case R.id.menu_demo:
-//                Toast.makeText(this, "Menu demo pressed", Toast.LENGTH_LONG).show();
-//                return true;
-//            default:
-//                return super.onOptionsItemSelected(item);
-//        }
-//    }
-
 }

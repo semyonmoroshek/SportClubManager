@@ -96,6 +96,4 @@ public class AddPaymentActivity extends AppCompatActivity {
         startActivityForResult(myIntent, 0);
         return true;
     }
-
-
 }

@@ -17,22 +17,14 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static AppDatabase sInstance;
 
-//    static final Migration MIGRATION_1_2 = new Migration(1, 2) {
-//        @Override
-//        public void migrate( SupportSQLiteDatabase database) {
-//        }
-//    };
-//
     public static AppDatabase getInstance(Context context) {
         if (sInstance == null) {
             sInstance = Room.databaseBuilder(context, AppDatabase.class, DB_NAME)
-//                    .addMigrations(MIGRATION_1_2)
                     .build();
         }
         return sInstance;
     }
 
     public abstract MemberDao getMemberDao();
-
 
 }
