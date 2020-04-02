@@ -99,10 +99,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
             if (validPayment == 0) {
                 mCardView.setCardBackgroundColor(red);
             }
-            if (validPayment == 1) {
+            if (validPayment == 2) {
                 mCardView.setCardBackgroundColor(green);
             }
-            if (validPayment == 2) {
+            if (validPayment == 1) {
                 mCardView.setCardBackgroundColor(yellow);
             }
 
@@ -134,12 +134,13 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
                     Date memberValidPaymentUntilDate = calendarAfterMont.getTime();
                     Date memberValidPaymentUntilDateMinus3days = calendarAfterMontMinus3days.getTime();
 
+                    if (memberValidPaymentUntilDateMinus3days.before(today)) {
+                        return 1;
+                    }
                     if (memberValidPaymentUntilDate.after(today)) {
-                        return payment = 1;
+                        return 2;
                     }
-                    if (memberValidPaymentUntilDateMinus3days.after(today)) {
-                        return payment = 2;
-                    }
+
                 }
             } catch (ParseException e) {
                 e.printStackTrace();
