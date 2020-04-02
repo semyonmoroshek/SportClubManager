@@ -134,7 +134,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
                     Date memberValidPaymentUntilDate = calendarAfterMont.getTime();
                     Date memberValidPaymentUntilDateMinus3days = calendarAfterMontMinus3days.getTime();
 
-                    if (memberValidPaymentUntilDateMinus3days.before(today)) {
+                    if (memberValidPaymentUntilDateMinus3days.before(today) && memberValidPaymentUntilDate.after(today)) {
                         return 1;
                     }
                     if (memberValidPaymentUntilDate.after(today)) {
