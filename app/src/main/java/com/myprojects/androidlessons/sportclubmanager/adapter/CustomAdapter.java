@@ -68,9 +68,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
     }
 
     class ItemViewHolder extends RecyclerView.ViewHolder {
-        @BindView(R.id.txt_row_name) TextView name;
-        @BindView(R.id.txt_row_surname) TextView surname;
-        @BindView(R.id.txt_row_payment) TextView paymentDate;
+        @BindView(R.id.txt_row_name) TextView txtName;
+        @BindView(R.id.txt_row_surname) TextView txtSurname;
+        @BindView(R.id.txt_row_payment) TextView txtPaymentDate;
         @BindView(R.id.card_view) CardView mCardView;
 
         ItemViewHolder(View itemView) {
@@ -84,24 +84,24 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
         }
 
         void setup(Member member) {
-            name.setText(member.getMemberName());
-            surname.setText(member.getMemberSurname());
-            paymentDate.setText(member.getMemberPaymentDate());
+            txtName.setText(member.getMemberName());
+            txtSurname.setText(member.getMemberSurname());
+            txtPaymentDate.setText(member.getMemberPaymentDate());
 
             int validPayment = sortByValidPayment(member);
 
-            int yellow = Color.parseColor("#FFF9C4");
-            int green = Color.parseColor("#C8E6C9");
-            int red = Color.parseColor("#FFCDD2");
+            int orange = Color.parseColor("#EF6C00");
+            int green = Color.parseColor("#2E7D32");
+            int red = Color.parseColor("#DD2C00");
 
             if (validPayment == 0) {
-                mCardView.setCardBackgroundColor(red);
+                txtPaymentDate.setTextColor(red);
             }
             if (validPayment == 2) {
-                mCardView.setCardBackgroundColor(green);
+                txtPaymentDate.setTextColor(green);
             }
             if (validPayment == 1) {
-                mCardView.setCardBackgroundColor(yellow);
+                txtPaymentDate.setTextColor(orange);
             }
 
         }
