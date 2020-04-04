@@ -70,6 +70,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
     class ItemViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.txt_row_name) TextView name;
         @BindView(R.id.txt_row_surname) TextView surname;
+        @BindView(R.id.txt_row_payment) TextView paymentDate;
         @BindView(R.id.card_view) CardView mCardView;
 
         ItemViewHolder(View itemView) {
@@ -85,6 +86,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
         void setup(Member member) {
             name.setText(member.getMemberName());
             surname.setText(member.getMemberSurname());
+            paymentDate.setText(member.getMemberPaymentDate());
 
             int validPayment = sortByValidPayment(member);
 

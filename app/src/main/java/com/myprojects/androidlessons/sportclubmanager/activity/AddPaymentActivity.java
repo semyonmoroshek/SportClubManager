@@ -8,6 +8,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -95,5 +97,14 @@ public class AddPaymentActivity extends AppCompatActivity {
         Intent myIntent = new Intent(getApplicationContext(), DetailMemberActivity.class);
         startActivityForResult(myIntent, 0);
         return true;
+    }
+    public void rootLayoutTapped(View view) {
+        try {
+
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
