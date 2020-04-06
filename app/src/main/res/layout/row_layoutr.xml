@@ -9,7 +9,7 @@
     android:paddingStart="10dp"
     android:paddingTop="10dp"
     android:paddingEnd="10dp"
-    app:cardBackgroundColor="#F5F5F5"
+    app:cardBackgroundColor="#EEEEEE"
     app:cardCornerRadius="10dp"
     app:cardUseCompatPadding="true"
     app:contentPadding="10dp">

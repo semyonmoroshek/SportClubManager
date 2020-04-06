@@ -14,9 +14,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprojects.androidlessons.sportclubmanager.R;
@@ -45,12 +43,9 @@ import io.reactivex.schedulers.Schedulers;
 public class ViewAllMemberActivity extends AppCompatActivity {
 
     @BindView(R.id.rv_all_members) RecyclerView mRecyclerView;
-    @BindView(R.id.btn_find_member_for_local_base) Button btnFindMember;
-    @BindView(R.id.et_find_member_for_local_base) EditText editFindMember;
     @BindView(R.id.btn_sort) Button btnSort;
     @BindView(R.id.tb_viewAllAct) Toolbar mToolbar;
     @BindView(R.id.fab_save_new_member) FloatingActionButton fabSaveNewMember;
-    @BindView(R.id.btn_view_all) Button btnViewAll;
 
     CustomAdapter mAdapter;
     List<Member> memberList = new ArrayList<>();
@@ -67,8 +62,6 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         viewAll();
 
         fabSaveNewMember.setOnClickListener(View -> addNewMember());
-        btnViewAll.setOnClickListener(View -> viewAll());
-        btnFindMember.setOnClickListener(View -> findMember());
 
         btnSort.setOnClickListener(View -> {
             try {
@@ -116,23 +109,6 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         mAdapter = new CustomAdapter(this, sortedMembers);
         mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
         mRecyclerView.setAdapter(mAdapter);
-    }
-
-    private void findMember() {
-        memberList = mAdapter.getMemberList();
-        List<Member> findMembers = new ArrayList<>();
-        String name = editFindMember.getText().toString().trim();
-
-        for (Member member : memberList) {
-            if (member.getMemberName().equals(name)) {
-                findMembers.add(member);
-                mAdapter = new CustomAdapter(this, findMembers);
-                mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
-                mRecyclerView.setAdapter(mAdapter);
-            } else {
-                Toast.makeText(this, "The member not exist", Toast.LENGTH_LONG).show();
-            }
-        }
     }
 
     private void viewAll() {
