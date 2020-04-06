@@ -18,5 +18,11 @@
         android:icon="@drawable/ic_more_vert_24px"
         android:title="menu demo"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_search_24px"
+        android:title="Search"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.widget.SearchView"/>
 
 </menu>
