@@ -54,8 +54,7 @@
             android:id="@+id/rv_all_members"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            tools:listitem="@layout/list_item_card" />
+            android:layout_marginTop="12dp"/>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_save_new_member"

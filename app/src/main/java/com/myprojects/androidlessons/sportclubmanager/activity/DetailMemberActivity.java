@@ -2,9 +2,11 @@ package com.myprojects.androidlessons.sportclubmanager.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -55,10 +57,13 @@ public class DetailMemberActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        AlertDialog diaBox = AskOption();
+
 
         fabEdit.setOnClickListener(View -> openEditMemberActivity());
-        fabDelete.setOnClickListener(View -> deleteMember());
+       // fabDelete.setOnClickListener(View -> deleteMember());
         fabPayment.setOnClickListener(View -> addPayment());
+        fabDelete.setOnClickListener(View -> diaBox.show());
 
         member = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER));
 
@@ -68,6 +73,38 @@ public class DetailMemberActivity extends AppCompatActivity {
         txtPaymentDate.setText("payment: " + member.getMemberPaymentDate());
         txtDateBirth.setText("birthday: " + member.getMemberDateBirth());
     }
+
+    //
+
+    private AlertDialog AskOption()
+    {
+        AlertDialog myQuittingDialogBox = new AlertDialog.Builder(this)
+                .setTitle("Delete")
+                .setMessage("Are you sure want to delete this member?")
+                .setIcon(R.drawable.ic_delete_forever)
+
+                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        deleteMember();
+                        dialog.dismiss();
+                    }
+
+                })
+                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        dialog.dismiss();
+
+                    }
+                })
+                .create();
+
+        return myQuittingDialogBox;
+    }
+
+
+    //
 
     private void addPayment() {
         Intent intent = new Intent(DetailMemberActivity.this, AddPaymentActivity.class);
