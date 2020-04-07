@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprojects.androidlessons.sportclubmanager.R;
@@ -74,37 +75,22 @@ public class DetailMemberActivity extends AppCompatActivity {
         txtDateBirth.setText("birthday: " + member.getMemberDateBirth());
     }
 
-    //
-
     private AlertDialog AskOption()
     {
-        AlertDialog myQuittingDialogBox = new AlertDialog.Builder(this)
+
+        return new AlertDialog.Builder(this)
                 .setTitle("Delete")
-                .setMessage("Are you sure want to delete this member?")
+                .setMessage("Are you sure want to delete member?")
                 .setIcon(R.drawable.ic_delete_forever)
 
-                .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        deleteMember();
-                        dialog.dismiss();
-                    }
-
+                .setPositiveButton("Delete", (dialog, whichButton) -> {
+                    deleteMember();
+                    dialog.dismiss();
+                    Toast.makeText(this, member.getMemberName() +" " + "deleted", Toast.LENGTH_LONG).show();
                 })
-                .setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        dialog.dismiss();
-
-                    }
-                })
+                .setNegativeButton("cancel", (dialog, which) -> dialog.dismiss())
                 .create();
-
-        return myQuittingDialogBox;
     }
-
-
-    //
 
     private void addPayment() {
         Intent intent = new Intent(DetailMemberActivity.this, AddPaymentActivity.class);
