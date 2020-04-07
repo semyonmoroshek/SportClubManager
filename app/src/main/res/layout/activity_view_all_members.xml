@@ -15,6 +15,10 @@
         android:background="#E65100"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
         <Button
             android:id="@+id/btn_sort"
             android:layout_width="match_parent"
@@ -26,6 +30,21 @@
             android:layout_marginEnd="24dp"
             android:elevation="50dp"
             android:text="view debtors" />
+
+        <Button
+            android:id="@+id/btn_view_all"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="#FFB300"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:elevation="50dp"
+            android:text="view all members"
+            android:visibility="invisible"/>
+
+    </FrameLayout>
 
     <FrameLayout
         android:layout_width="match_parent"

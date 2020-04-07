@@ -44,6 +44,7 @@ public class ViewAllMemberActivity extends AppCompatActivity {
 
     @BindView(R.id.rv_all_members) RecyclerView mRecyclerView;
     @BindView(R.id.btn_sort) Button btnSort;
+    @BindView(R.id.btn_view_all) Button btnViewAllMembers;
     @BindView(R.id.tb_viewAllAct) Toolbar mToolbar;
     @BindView(R.id.fab_save_new_member) FloatingActionButton fabSaveNewMember;
 
@@ -63,13 +64,22 @@ public class ViewAllMemberActivity extends AppCompatActivity {
 
         fabSaveNewMember.setOnClickListener(View -> addNewMember());
 
-        btnSort.setOnClickListener(View -> {
+        btnSort.setOnClickListener(v -> {
             try {
+                btnSort.setVisibility(View.INVISIBLE);
+                btnViewAllMembers.setVisibility(View.VISIBLE);
                 sortByValidPayment();
             } catch (ParseException e) {
                 e.printStackTrace();
             }
         });
+
+        btnViewAllMembers.setOnClickListener(v -> {
+            btnViewAllMembers.setVisibility(View.INVISIBLE);
+            btnSort.setVisibility(View.VISIBLE);
+            viewAll();
+        });
+
     }
 
 
