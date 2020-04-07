@@ -8,9 +8,9 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.model.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
@@ -32,10 +32,11 @@ public class DetailMemberActivity extends AppCompatActivity {
     @BindView(R.id.txt_member_info_phone_number) TextView txtPhoneNumber;
     @BindView(R.id.txt_member_info_date_birth) TextView txtDateBirth;
     @BindView(R.id.txt_member_info_payment_date) TextView txtPaymentDate;
-    @BindView(R.id.btn_edit_member) Button btnEditMember;
-    @BindView(R.id.btn_delete_member) Button btnDeleteMember;
-    @BindView(R.id.btn_add_payment) Button btnAddPayment;
     @BindView(R.id.tb_member_info) Toolbar mToolbar;
+
+    @BindView(R.id.fab_detail_delete) FloatingActionButton fabDelete;
+    @BindView(R.id.fab_detail_edit) FloatingActionButton fabEdit;
+    @BindView(R.id.fab_detail_payment) FloatingActionButton fabPayment;
 
     Member member;
 
@@ -55,9 +56,9 @@ public class DetailMemberActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        btnEditMember.setOnClickListener(View -> openEditMemberActivity());
-        btnDeleteMember.setOnClickListener(View -> deleteMember());
-        btnAddPayment.setOnClickListener(View -> addPayment());
+        fabEdit.setOnClickListener(View -> openEditMemberActivity());
+        fabDelete.setOnClickListener(View -> deleteMember());
+        fabPayment.setOnClickListener(View -> addPayment());
 
         member = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER));
 

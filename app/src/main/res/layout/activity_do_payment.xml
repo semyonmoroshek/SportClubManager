@@ -33,13 +33,20 @@
         android:calendarViewShown="false"
         android:datePickerMode="spinner" />
 
-    <Button
-        android:id="@+id/btn_save_payment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="50dp"
-        android:text="save payment" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_save_payment"
+            android:layout_width="142dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00C853"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:src="@drawable/ic_save_24px" />
+    </FrameLayout>
 
 </LinearLayout>
 

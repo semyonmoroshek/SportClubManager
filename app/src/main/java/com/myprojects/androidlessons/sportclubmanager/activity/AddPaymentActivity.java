@@ -10,10 +10,10 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.model.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
@@ -32,9 +32,9 @@ public class AddPaymentActivity extends AppCompatActivity {
     Member member;
 
     @BindView(R.id.et_price) EditText editPrice;
-    @BindView(R.id.btn_save_payment) Button btnSavePayment;
     @BindView(R.id.picker_payment) DatePicker mPicker;
     @BindView(R.id.tb_payment) Toolbar mToolbar;
+    @BindView(R.id.fab_save_payment) FloatingActionButton fabAddPayment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +55,7 @@ public class AddPaymentActivity extends AppCompatActivity {
 
         member = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER));
 
-        btnSavePayment.setOnClickListener(View -> saveNewPayment());
+        fabAddPayment.setOnClickListener(View -> saveNewPayment());
 
     }
 

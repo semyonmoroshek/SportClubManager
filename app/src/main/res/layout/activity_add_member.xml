@@ -28,7 +28,7 @@
 
     <EditText
         android:id="@+id/et_add_member_name"
-        style="@style/EditTextEddMember"
+        style="@style/EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="name"
@@ -44,7 +44,7 @@
 
     <EditText
         android:id="@+id/et_add_member_surname"
-        style="@style/EditTextEddMember"
+        style="@style/EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="surname"
@@ -75,7 +75,7 @@
 
     <EditText
         android:id="@+id/et_add_member_phone_number"
-        style="@style/EditTextEddMember"
+        style="@style/EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="phone nomber" />

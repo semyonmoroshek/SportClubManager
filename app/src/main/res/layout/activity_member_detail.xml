@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity.DetailMemberActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -15,94 +16,74 @@
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <ImageView
-        android:id="@+id/iv_member_info_photo"
-        android:layout_width="130dp"
-        android:layout_height="200dp"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="90dp"
-        android:scaleType="fitStart"
-        android:src="@drawable/tyson"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txt_member_info_name"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:text="Member name"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/iv_member_info_photo"
-        app:layout_constraintTop_toTopOf="@+id/iv_member_info_photo" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/txt_member_info_surname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Member surname"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/txt_member_info_name"
-        app:layout_constraintTop_toBottomOf="@+id/txt_member_info_name" />
+        <TextView
+            android:layout_marginTop="24dp"
+            android:id="@+id/txt_member_info_name"
+            style="@style/DetailTextView"
+            android:text="Member name" />
 
-    <TextView
-        android:id="@+id/txt_member_info_phone_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Phone number"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/txt_member_info_surname"
-        app:layout_constraintTop_toBottomOf="@+id/txt_member_info_surname" />
+        <TextView
+            android:id="@+id/txt_member_info_surname"
+            style="@style/DetailTextView"
+            android:text="Member surname" />
 
-    <TextView
-        android:id="@+id/txt_member_info_payment_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Payment date"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/txt_member_info_phone_number"
-        app:layout_constraintTop_toBottomOf="@+id/txt_member_info_phone_number" />
+        <TextView
+            android:id="@+id/txt_member_info_phone_number"
+            style="@style/DetailTextView"
+            android:text="Phone number" />
 
-    <TextView
-        android:id="@+id/txt_member_info_date_birth"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="ate birth"
-        android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/txt_member_info_payment_date"
-        app:layout_constraintTop_toBottomOf="@+id/txt_member_info_payment_date" />
+        <TextView
+            android:id="@+id/txt_member_info_payment_date"
+            style="@style/DetailTextView"
+            android:text="Payment date" />
 
-    <Button
-        android:id="@+id/btn_edit_member"
-        android:text="Edit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:layout_marginEnd="272dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_member_info_date_birth" />
+        <TextView
+            android:id="@+id/txt_member_info_date_birth"
+            style="@style/DetailTextView"
+            android:text="Date birth" />
 
-    <Button
-        android:id="@+id/btn_delete_member"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="272dp"
-        android:text="delete"
-        app:layout_constraintTop_toTopOf="@+id/btn_edit_member"
-        app:layout_constraintStart_toEndOf="@+id/btn_edit_member"/>
+    </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_add_payment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="272dp"
-        android:text="add payment"
-        app:layout_constraintTop_toTopOf="@+id/btn_delete_member"
-        app:layout_constraintStart_toEndOf="@+id/btn_delete_member"/>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="24dp">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_detail_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/ic_delete_forever"
+            app:layout_constraintEnd_toStartOf="@+id/fab_detail_edit"
+            app:layout_constraintTop_toTopOf="@+id/fab_detail_edit" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_detail_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="#ff8d00"
+            android:src="@drawable/ic_edit"
+            app:layout_constraintEnd_toStartOf="@+id/fab_detail_payment"
+            app:layout_constraintTop_toTopOf="@+id/fab_detail_payment" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_detail_payment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="#00C853"
+            android:src="@drawable/ic_payment"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -8,7 +8,6 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -24,7 +23,6 @@ import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

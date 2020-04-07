@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:onClick="rootLayoutTapped"
+    android:orientation="vertical"
     tools:context=".activity.EditMemberActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -19,12 +19,14 @@
 
     <EditText
         android:id="@+id/et_edit_name"
+        style="@style/EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="new name" />
 
     <EditText
         android:id="@+id/et_edit_surname"
+        style="@style/EditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="new surname" />
@@ -38,16 +40,26 @@
 
 
     <EditText
+        style="@style/EditText"
         android:id="@+id/et_edit_phone_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="new phone number" />
 
-    <Button
-        android:id="@+id/btn_save_edit_member"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Save Edit member" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_edit_member"
+            android:layout_width="142dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="#00C853"
+            android:src="@drawable/ic_save_24px" />
+    </FrameLayout>
 
 
 </LinearLayout>

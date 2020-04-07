@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.model.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
@@ -36,8 +37,8 @@ public class EditMemberActivity extends AppCompatActivity {
     @BindView(R.id.et_edit_surname) EditText editSurname;
     @BindView(R.id.et_edit_phone_number) EditText editNumber;
     @BindView(R.id.picker_edit_birthday) DatePicker picker;
-    @BindView(R.id.btn_save_edit_member) Button btnSaveEditedMember;
     @BindView(R.id.tb_edit) Toolbar mToolbar;
+    @BindView(R.id.fab_edit_member) FloatingActionButton fabEditMember;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class EditMemberActivity extends AppCompatActivity {
 
         member = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER));
 
-        btnSaveEditedMember.setOnClickListener(View -> saveMember());
+        fabEditMember.setOnClickListener(View -> saveMember());
     }
 
     private void saveMember() {
