@@ -62,7 +62,6 @@ public class DetailMemberActivity extends AppCompatActivity {
 
 
         fabEdit.setOnClickListener(View -> openEditMemberActivity());
-       // fabDelete.setOnClickListener(View -> deleteMember());
         fabPayment.setOnClickListener(View -> addPayment());
         fabDelete.setOnClickListener(View -> diaBox.show());
 

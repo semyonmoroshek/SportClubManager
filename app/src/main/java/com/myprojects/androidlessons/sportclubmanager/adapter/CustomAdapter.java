@@ -71,6 +71,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
     public Filter getFilter() {
         return memberFilter;
     }
+
     private Filter memberFilter = new Filter() {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
@@ -81,7 +82,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
                 String filterPattern = constraint.toString().toLowerCase().trim();
 
                 for(Member member: mMembersFull){
-                    if(member.getMemberName().toLowerCase().contains(filterPattern)){
+                    if(member.getMemberName().toLowerCase().contains(filterPattern) ||
+                            member.getMemberSurname().toLowerCase().contains(filterPattern)){
                         filteredList.add(member);
                     }
                 }
