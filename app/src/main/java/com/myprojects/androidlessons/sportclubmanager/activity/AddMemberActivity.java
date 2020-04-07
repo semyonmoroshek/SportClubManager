@@ -8,9 +8,11 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,6 +21,10 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.model.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +39,7 @@ public class AddMemberActivity extends AppCompatActivity {
     @BindView(R.id.picker_add_member_bithday) DatePicker picker;
     @BindView(R.id.fab_save_new_member) FloatingActionButton fabSaveNewMember;
     @BindView(R.id.tb_member_add) Toolbar mToolbar;
+    @BindView(R.id.cb_add_member_payment) CheckBox mCheckBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +56,18 @@ public class AddMemberActivity extends AppCompatActivity {
         fabSaveNewMember.setOnClickListener(View -> addMember());
     }
 
+
+
     public void addMember() {
+        Date today = new Date();
+        String dateString = new SimpleDateFormat("dd/MM/yyyy").format(today);
+
         final String name = editName.getText().toString().trim();
         final String surname = editSurname.getText().toString().trim();
         final String phoneNumber = editPhoneNumber.getText().toString().trim();
         final String dateOfBirth = picker.getDayOfMonth() + "/" + picker.getMonth() + "/" + picker.getYear();
+        String paymentDate = "";
+
         if (TextUtils.isEmpty(name)) {
             editName.setError("This field must not be empty");
             return;
@@ -66,7 +80,12 @@ public class AddMemberActivity extends AppCompatActivity {
             editPhoneNumber.setError("This field must not be empty");
             return;
         }
-        Member member = new Member(name, surname, phoneNumber, dateOfBirth, "");
+
+        if(mCheckBox.isChecked()){
+            paymentDate = dateString;
+        }
+
+        Member member = new Member(name, surname, phoneNumber, dateOfBirth, paymentDate);
 
         AppDatabase
                 .getInstance(this)
