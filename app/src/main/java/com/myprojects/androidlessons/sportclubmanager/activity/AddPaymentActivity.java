@@ -5,6 +5,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -87,17 +88,21 @@ public class AddPaymentActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
 
-        Intent intent = new Intent(this, ViewAllMemberActivity.class);
-        startActivity(intent);
-        finish();
+        Intent mIntent = new Intent(this, DetailMemberActivity.class);
+        mIntent.putExtra(DetailMemberActivity.EXTRA_MEMBER, Parcels.wrap(member));
+        startActivity(mIntent);
+
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent myIntent = new Intent(getApplicationContext(), DetailMemberActivity.class);
-        startActivityForResult(myIntent, 0);
+        Intent mIntent = new Intent(getApplicationContext(), DetailMemberActivity.class);
+        mIntent.putExtra(DetailMemberActivity.EXTRA_MEMBER, Parcels.wrap(member));
+        startActivityForResult(mIntent, 0);
+
         return true;
     }
+
     public void rootLayoutTapped(View view) {
         try {
 
