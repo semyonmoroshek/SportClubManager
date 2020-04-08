@@ -6,7 +6,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -67,11 +66,13 @@ public class DetailMemberActivity extends AppCompatActivity {
 
         member = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER));
 
-        txtName.setText(member.getMemberName());
-        txtSurname.setText(member.getMemberSurname());
-        txtPhoneNumber.setText(member.getMemberPhoneNumber());
-        txtPaymentDate.setText("payment: " + member.getMemberPaymentDate());
-        txtDateBirth.setText("birthday: " + member.getMemberDateBirth());
+        if (member != null) {
+            txtName.setText(member.getMemberName());
+            txtSurname.setText(member.getMemberSurname());
+            txtPhoneNumber.setText(member.getMemberPhoneNumber());
+            txtPaymentDate.setText("payment: " + member.getMemberPaymentDate());
+            txtDateBirth.setText("birthday: " + member.getMemberDateBirth());
+        }
     }
 
     private AlertDialog AskOption()

@@ -8,10 +8,10 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
@@ -62,15 +62,21 @@ public class EditMemberActivity extends AppCompatActivity {
         final String surname = editSurname.getText().toString().trim();
         final String phoneNumber = editNumber.getText().toString().trim();
         final String dateOfBirth = picker.getDayOfMonth() + "/" + picker.getMonth() + "/" + picker.getYear();
+
         if (!TextUtils.isEmpty(name)) {
             member.setMemberName(name);
         }
+        Log.i("name", member.getMemberName());
+
         if (!TextUtils.isEmpty(surname)) {
-            member.setMemberName(name);
+            member.setMemberSurname(surname);
         }
+        Log.i("name", member.getMemberSurname());
+
         if (!TextUtils.isEmpty(phoneNumber)) {
             member.setMemberPhoneNumber(phoneNumber);
         }
+        Log.i("name", member.getMemberPhoneNumber());
 
         member.setMemberDateBirth(dateOfBirth);
 
@@ -82,14 +88,16 @@ public class EditMemberActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
 
-        Intent mIntent = new Intent(this, ViewAllMemberActivity.class);
+        Intent mIntent = new Intent(this, DetailMemberActivity.class);
+        mIntent.putExtra(DetailMemberActivity.EXTRA_MEMBER, Parcels.wrap(member));
         startActivity(mIntent);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent myIntent = new Intent(getApplicationContext(), DetailMemberActivity.class);
-        startActivityForResult(myIntent, 0);
+        Intent mIntent = new Intent(getApplicationContext(), DetailMemberActivity.class);
+        mIntent.putExtra(DetailMemberActivity.EXTRA_MEMBER, Parcels.wrap(member));
+        startActivityForResult(mIntent, 0);
         return true;
     }
 
