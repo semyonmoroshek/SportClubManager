@@ -14,7 +14,8 @@
         android:background="#DC143C"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:title="member detail"/>
 
     <LinearLayout
         android:layout_width="match_parent"

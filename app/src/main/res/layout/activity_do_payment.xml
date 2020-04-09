@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:onClick="rootLayoutTapped"
+    android:orientation="vertical"
     tools:context=".activity.AddPaymentActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -15,7 +15,8 @@
         android:background="#DC143C"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:title="add payment" />
 
     <EditText
         android:id="@+id/et_price"
@@ -41,10 +42,10 @@
             android:id="@+id/fab_save_payment"
             android:layout_width="142dp"
             android:layout_height="wrap_content"
-            android:backgroundTint="#00C853"
             android:layout_gravity="bottom|end"
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
+            android:backgroundTint="#00C853"
             android:src="@drawable/ic_save_24px" />
     </FrameLayout>
 

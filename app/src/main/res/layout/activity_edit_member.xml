@@ -15,7 +15,8 @@
         android:background="#DC143C"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:title="edit member"/>
 
     <EditText
         android:id="@+id/et_edit_name"
