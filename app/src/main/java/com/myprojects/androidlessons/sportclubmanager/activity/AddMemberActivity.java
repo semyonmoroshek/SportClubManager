@@ -8,6 +8,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -63,8 +64,37 @@ public class AddMemberActivity extends AppCompatActivity {
         final String name = editName.getText().toString().trim();
         final String surname = editSurname.getText().toString().trim();
         final String phoneNumber = editPhoneNumber.getText().toString().trim();
-        final String dateOfBirth = picker.getDayOfMonth() + "/" + picker.getMonth() + "/" + picker.getYear();
+
+        int day = picker.getDayOfMonth();
+        Log.i("intday", String.valueOf(day));
+
+        int month = picker.getMonth() + 1;
+        Log.i("intmonth", String.valueOf(month));
+
+        int year = picker.getYear();
+        Log.i("intyear", String.valueOf(year));
+
+
+        String dayStr = String.valueOf(day);
+        Log.i("daystr", dayStr);
+
+        String montStr = String.valueOf(day);
+        Log.i("montstr", montStr);
+
+        String yearStr = String.valueOf(year);
+        Log.i("yearstr", yearStr);
+
+
+        if(day < 10){
+            dayStr = "0" + day;
+        }
+        if(month < 10){
+            montStr = "0" + month;
+        }
+
+        final String dateOfBirth = dayStr + "/" + montStr + "/" + yearStr;
         String paymentDate = "";
+        Log.i("dayOf", dateOfBirth);
 
         if (TextUtils.isEmpty(name)) {
             editName.setError("This field must not be empty");

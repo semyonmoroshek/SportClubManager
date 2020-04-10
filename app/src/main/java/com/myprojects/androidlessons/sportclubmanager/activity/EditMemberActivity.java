@@ -54,7 +54,31 @@ public class EditMemberActivity extends AppCompatActivity {
 
         member = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER));
 
+        setEditViewFields();
+
         fabEditMember.setOnClickListener(View -> saveMember());
+    }
+
+    private void setEditViewFields() {
+        String name = member.getMemberName();
+        String surname = member.getMemberSurname();
+        String phoneNumber = member.getMemberPhoneNumber();
+        String dateBirth = member.getMemberDateBirth();
+
+        String day = dateBirth.substring(0, 2);
+        Log.i("day", day);
+
+
+        editName.setText(name);
+        editSurname.setText(surname);
+        editNumber.setText(phoneNumber);
+
+        picker.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
+            @Override
+            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+
+            }
+        });
     }
 
     private void saveMember() {
