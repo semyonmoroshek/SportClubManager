@@ -5,10 +5,17 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +34,7 @@ import io.reactivex.schedulers.Schedulers;
 public class DetailMemberActivity extends AppCompatActivity {
 
     public static final String EXTRA_MEMBER = "EXTRA_EMPLOYEE";
+    public static final int REQUEST_CALL = 1;
 
 
     @BindView(R.id.txt_member_info_name) TextView txtName;
@@ -35,6 +43,7 @@ public class DetailMemberActivity extends AppCompatActivity {
     @BindView(R.id.txt_member_info_date_birth) TextView txtDateBirth;
     @BindView(R.id.txt_member_info_payment_date) TextView txtPaymentDate;
     @BindView(R.id.tb_member_info) Toolbar mToolbar;
+    @BindView(R.id.iv_phone) ImageView ivPhone;
 
     @BindView(R.id.fab_detail_delete) FloatingActionButton fabDelete;
     @BindView(R.id.fab_detail_edit) FloatingActionButton fabEdit;
@@ -42,7 +51,8 @@ public class DetailMemberActivity extends AppCompatActivity {
 
     Member member;
 
-    @Override protected void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_member_detail);
         ButterKnife.bind(this);
@@ -73,6 +83,47 @@ public class DetailMemberActivity extends AppCompatActivity {
             txtPaymentDate.setText(member.getMemberPaymentDate());
             txtDateBirth.setText(member.getMemberDateBirth());
         }
+
+        ivPhone.setOnClickListener(View -> call());
+        txtPhoneNumber.setOnClickListener(View -> call());
+    }
+
+    private void call() {
+        String number = member.getMemberPhoneNumber();
+        if(number.length() > 0){
+            if(ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CALL_PHONE}, REQUEST_CALL);
+
+            }else{
+                String dial = "tel:" + number;
+                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+            }
+
+        }else{
+            Toast.makeText(this, "Phone number is empty", Toast.LENGTH_LONG).show();
+        }
+
+//        Intent intent = new Intent(Intent.ACTION_CALL);
+//        intent.setData(Uri.parse("tel:" + member.getMemberPhoneNumber()));
+//        if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+//            return;
+//        }
+//        startActivity(intent);
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode == REQUEST_CALL){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                call();
+            }else{
+                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_LONG).show();
+            }
+        }
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
     }
 
     private AlertDialog AskOption()
