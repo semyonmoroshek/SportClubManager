@@ -14,7 +14,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#DC143C"
         app:title="My members"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        app:titleTextColor="#FFF"
+        app:popupTheme="@style/AppTheme.PopupOverlay"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -44,7 +45,6 @@
             android:elevation="50dp"
             android:text="view all members"
             android:visibility="invisible"/>
-
     </FrameLayout>
 
     <FrameLayout

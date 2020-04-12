@@ -70,8 +70,8 @@ public class DetailMemberActivity extends AppCompatActivity {
             txtName.setText(member.getMemberName());
             txtSurname.setText(member.getMemberSurname());
             txtPhoneNumber.setText(member.getMemberPhoneNumber());
-            txtPaymentDate.setText("payment: " + member.getMemberPaymentDate());
-            txtDateBirth.setText("birthday: " + member.getMemberDateBirth());
+            txtPaymentDate.setText(member.getMemberPaymentDate());
+            txtDateBirth.setText(member.getMemberDateBirth());
         }
     }
 
