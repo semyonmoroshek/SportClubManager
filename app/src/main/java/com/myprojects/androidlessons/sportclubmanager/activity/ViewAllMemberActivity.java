@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -155,7 +156,10 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_item, menu);
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
+
         SearchView searchView = (SearchView) searchItem.getActionView();
+
+
 
         searchView.setImeOptions(EditorInfo.IME_ACTION_DONE);
 

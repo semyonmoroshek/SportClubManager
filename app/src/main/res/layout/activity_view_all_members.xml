@@ -10,12 +10,11 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tb_viewAllAct"
+        android:theme="@style/AppTheme.AppBarOverlay"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#DC143C"
-        app:title="My members"
-        app:titleTextColor="#FFF"
-        app:popupTheme="@style/AppTheme.PopupOverlay"/>
+        app:title="My members"/>
 
     <FrameLayout
         android:layout_width="match_parent"

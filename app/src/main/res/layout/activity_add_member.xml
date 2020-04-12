@@ -14,9 +14,10 @@
         android:layout_height="?attr/actionBarSize"
         android:background="#DC143C"
         app:title="Add new member"
+        app:titleTextColor="#FFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/AppTheme.PopupOverlay" />
+        app:theme="@style/AppTheme.AppBarOverlay" />
 
     <TextView
         android:id="@+id/txt_add_member_name"
