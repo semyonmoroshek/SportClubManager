@@ -12,23 +12,25 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#DC143C"
-        app:titleTextColor="#FFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:popupTheme="@style/AppTheme.PopupOverlay"
-        app:title="member detail" />
+        app:title="member detail"
+        app:titleTextColor="#FFF" />
 
     <ImageView
         android:id="@+id/person"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/ic_person"
+        android:tint="#777"
         app:layout_constraintBottom_toBottomOf="@+id/txt_member_info_name"
         app:layout_constraintEnd_toStartOf="@+id/txt_member_info_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/txt_member_info_name" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="name"
@@ -55,6 +57,7 @@
         app:layout_constraintTop_toTopOf="@+id/txt_member_info_name" />
 
     <ImageView
+        android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:layout_marginTop="5dp"
@@ -65,16 +68,17 @@
 
     <ImageView
         android:id="@+id/iv_phone"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:src="@drawable/ic_phone"
-        android:tint="#388E3C"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/ic_phone_forwarded"
+        android:tint="#4CAF50"
         app:layout_constraintBottom_toTopOf="@+id/txt_member_info_payment_date"
         app:layout_constraintEnd_toStartOf="@+id/txt_member_info_phone_number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_member_info_name" />
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="phone number"
@@ -102,10 +106,10 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_member_info_phone_number" />
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/ic_euro_symbol"
-        android:tint="#000"
+        android:tint="#777"
         app:layout_constraintBottom_toBottomOf="@+id/txt_member_info_payment_date"
         app:layout_constraintEnd_toStartOf="@+id/txt_member_info_payment_date"
         app:layout_constraintStart_toStartOf="parent"
@@ -129,6 +133,7 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_member_info_phone_number" />
 
     <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:layout_marginTop="5dp"
@@ -138,9 +143,10 @@
         app:layout_constraintTop_toBottomOf="@+id/txt_member_info_payment_date" />
 
     <ImageView
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:src="@drawable/ic_date_range"
+        android:tint="#777"
         app:layout_constraintBottom_toBottomOf="@+id/txt_member_info_date_birth"
         app:layout_constraintEnd_toStartOf="@+id/txt_member_info_date_birth"
         app:layout_constraintStart_toStartOf="parent"

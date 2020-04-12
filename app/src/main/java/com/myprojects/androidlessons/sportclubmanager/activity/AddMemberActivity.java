@@ -93,7 +93,7 @@ public class AddMemberActivity extends AppCompatActivity {
         }
 
         final String dateOfBirth = dayStr + "/" + montStr + "/" + yearStr;
-        String paymentDate = "";
+        String paymentDate = "No payments";
         Log.i("dayOf", dateOfBirth);
 
         if (TextUtils.isEmpty(name)) {
