@@ -82,7 +82,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
             android:backgroundTint="#00C853"
-            android:src="@drawable/ic_payment"
+            android:src="@drawable/ic_euro_symbol"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
