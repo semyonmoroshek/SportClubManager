@@ -26,7 +26,6 @@ import java.util.Locale;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnItemClick;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHolder> implements Filterable {
 

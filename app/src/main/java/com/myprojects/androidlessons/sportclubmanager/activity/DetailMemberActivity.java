@@ -14,7 +14,6 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -69,7 +68,6 @@ public class DetailMemberActivity extends AppCompatActivity {
         super.onStart();
         AlertDialog diaBox = AskOption();
 
-
         fabEdit.setOnClickListener(View -> openEditMemberActivity());
         fabPayment.setOnClickListener(View -> addPayment());
         fabDelete.setOnClickListener(View -> diaBox.show());
@@ -103,14 +101,6 @@ public class DetailMemberActivity extends AppCompatActivity {
         }else{
             Toast.makeText(this, "Phone number is empty", Toast.LENGTH_LONG).show();
         }
-
-//        Intent intent = new Intent(Intent.ACTION_CALL);
-//        intent.setData(Uri.parse("tel:" + member.getMemberPhoneNumber()));
-//        if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-//            return;
-//        }
-//        startActivity(intent);
-
     }
 
     @Override
@@ -122,8 +112,6 @@ public class DetailMemberActivity extends AppCompatActivity {
                 Toast.makeText(this, "Permission DENIED", Toast.LENGTH_LONG).show();
             }
         }
-//        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
     }
 
     private AlertDialog AskOption()

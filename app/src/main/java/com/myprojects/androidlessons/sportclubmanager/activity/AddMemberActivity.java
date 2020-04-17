@@ -51,11 +51,8 @@ public class AddMemberActivity extends AppCompatActivity {
         if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
         }
-
         fabSaveNewMember.setOnClickListener(View -> addMember());
     }
-
-
 
     public void addMember() {
         Date today = new Date();
@@ -83,7 +80,6 @@ public class AddMemberActivity extends AppCompatActivity {
 
         String yearStr = String.valueOf(year);
         Log.i("yearstr", yearStr);
-
 
         if(day < 10){
             dayStr = "0" + day;

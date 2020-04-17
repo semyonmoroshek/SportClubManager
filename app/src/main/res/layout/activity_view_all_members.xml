@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:onClick="rootLayoutTapped"
     android:orientation="vertical"
+    android:background="#FFF"
     tools:context=".activity.ViewAllMemberActivity">
 
     <androidx.appcompat.widget.Toolbar

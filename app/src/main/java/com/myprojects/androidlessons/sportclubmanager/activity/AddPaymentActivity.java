@@ -11,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
-import android.widget.EditText;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprojects.androidlessons.sportclubmanager.R;
@@ -31,7 +30,6 @@ public class AddPaymentActivity extends AppCompatActivity {
 
     Member member;
 
-    @BindView(R.id.et_price) EditText editPrice;
     @BindView(R.id.picker_payment) DatePicker mPicker;
     @BindView(R.id.tb_payment) Toolbar mToolbar;
     @BindView(R.id.fab_save_payment) FloatingActionButton fabAddPayment;

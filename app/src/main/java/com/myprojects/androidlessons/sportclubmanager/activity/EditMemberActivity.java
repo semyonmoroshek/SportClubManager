@@ -73,11 +73,8 @@ public class EditMemberActivity extends AppCompatActivity {
         editSurname.setText(surname);
         editNumber.setText(phoneNumber);
 
-        picker.setOnDateChangedListener(new DatePicker.OnDateChangedListener() {
-            @Override
-            public void onDateChanged(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+        picker.setOnDateChangedListener((view, year, monthOfYear, dayOfMonth) -> {
 
-            }
         });
     }
 
