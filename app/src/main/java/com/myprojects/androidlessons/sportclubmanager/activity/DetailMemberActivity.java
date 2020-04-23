@@ -9,13 +9,16 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.text.InputType;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +55,7 @@ public class DetailMemberActivity extends AppCompatActivity {
     @BindView(R.id.fab_detail_payment) FloatingActionButton fabPayment;
 
     Member member;
+    private String templateMessage = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +75,18 @@ public class DetailMemberActivity extends AppCompatActivity {
     }
 
     private void createNotificationTemplate() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Title");
+
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        builder.setView(input);
+
+        builder.setPositiveButton("Save", (dialog, which) -> templateMessage = input.getText().toString());
+        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+
+        builder.show();
 
     }
 
