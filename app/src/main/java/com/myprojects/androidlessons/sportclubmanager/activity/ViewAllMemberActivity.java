@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -89,19 +91,31 @@ public class ViewAllMemberActivity extends AppCompatActivity {
     }
 
     void sortByValidPayment() throws ParseException {
-        Locale currentLocale = getResources().getConfiguration().locale;
+
+        Locale currentLocale;
+        if (Build.VERSION.SDK_INT >= 26) {
+            currentLocale = this.getResources().getConfiguration().getLocales().get(0);
+        } else {
+            currentLocale = this.getResources().getConfiguration().locale;
+        }
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", currentLocale);
         Calendar calendar = Calendar.getInstance();
         Date today = new Date();
 
         memberList = mAdapter.getMemberList();
+
+        Log.i("memberlist", memberList.toString());
+
         List<Member> sortedMembers = new ArrayList<>();
 
         for (int i = 0; i < memberList.size(); i++) {
 
-            if (!memberList.get(i).getMemberPaymentDate().equals("")) {
+            if (!memberList.get(i).getMemberPaymentDate().equals("") &&
+                    !memberList.get(i).getMemberPaymentDate().equals("No payments")) {
 
                 String memberPaymentDateString = memberList.get(i).getMemberPaymentDate();
+                Log.i("memberPaymentDateString", memberList.get(i).getMemberName() + ": " + memberPaymentDateString);
+
                 Date memberPaymentDate = dateFormat.parse(memberPaymentDateString);
                 calendar.setTime(memberPaymentDate);
                 calendar.add(Calendar.MONTH, 1);
@@ -116,6 +130,8 @@ public class ViewAllMemberActivity extends AppCompatActivity {
                 sortedMembers.add(memberList.get(i));
             }
         }
+        Log.i("membersorted", sortedMembers.toString());
+
         mAdapter = new CustomAdapter(this, sortedMembers);
         mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
         mRecyclerView.setAdapter(mAdapter);

@@ -13,7 +13,9 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -43,7 +45,7 @@ public class DetailMemberActivity extends AppCompatActivity {
     @BindView(R.id.txt_member_info_payment_date) TextView txtPaymentDate;
     @BindView(R.id.tb_member_info) Toolbar mToolbar;
     @BindView(R.id.iv_phone) ImageView ivPhone;
-
+    @BindView(R.id.btn_send_notification) Button btnSendNotification;
     @BindView(R.id.fab_detail_delete) FloatingActionButton fabDelete;
     @BindView(R.id.fab_detail_edit) FloatingActionButton fabEdit;
     @BindView(R.id.fab_detail_payment) FloatingActionButton fabPayment;
@@ -61,6 +63,19 @@ public class DetailMemberActivity extends AppCompatActivity {
         if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
         }
+
+        btnSendNotification.setOnClickListener(View -> sendNotificationSms());
+    }
+
+    private void sendNotificationSms() {
+
+        String messageToSend = "this is a message";
+        String phoneNumber = member.getMemberPhoneNumber();
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + phoneNumber));
+        intent.putExtra("sms_body", "I'm sending this through an Intent");
+        startActivity(intent);
+
     }
 
     @Override

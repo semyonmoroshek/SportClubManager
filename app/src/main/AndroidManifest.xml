@@ -3,6 +3,7 @@
     package="com.myprojects.androidlessons.sportclubmanager">
 
     <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
 
     <application
         android:allowBackup="true"
