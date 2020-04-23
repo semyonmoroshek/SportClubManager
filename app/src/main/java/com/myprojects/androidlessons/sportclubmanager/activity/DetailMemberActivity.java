@@ -46,6 +46,7 @@ public class DetailMemberActivity extends AppCompatActivity {
     @BindView(R.id.tb_member_info) Toolbar mToolbar;
     @BindView(R.id.iv_phone) ImageView ivPhone;
     @BindView(R.id.btn_send_notification) Button btnSendNotification;
+    @BindView(R.id.btn_sms_template) Button btnCreateNotificationTemplate;
     @BindView(R.id.fab_detail_delete) FloatingActionButton fabDelete;
     @BindView(R.id.fab_detail_edit) FloatingActionButton fabEdit;
     @BindView(R.id.fab_detail_payment) FloatingActionButton fabPayment;
@@ -65,6 +66,12 @@ public class DetailMemberActivity extends AppCompatActivity {
         }
 
         btnSendNotification.setOnClickListener(View -> sendNotificationSms());
+
+        btnCreateNotificationTemplate.setOnClickListener(View -> createNotificationTemplate());
+    }
+
+    private void createNotificationTemplate() {
+
     }
 
     private void sendNotificationSms() {
