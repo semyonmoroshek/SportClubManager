@@ -9,12 +9,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.telephony.SmsManager;
 import android.text.InputType;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -69,36 +67,43 @@ public class DetailMemberActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
-        btnSendNotification.setOnClickListener(View -> sendNotificationSms());
-
-        btnCreateNotificationTemplate.setOnClickListener(View -> createNotificationTemplate());
+        btnSendNotification.setOnClickListener(View ->
+                sendNotificationSms());
+        btnCreateNotificationTemplate.setOnClickListener(View ->
+                createNotificationTemplate());
     }
 
     private void createNotificationTemplate() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Title");
+        builder.setTitle("Sms template");
 
         final EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE | InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+
+        input.setInputType(InputType.TYPE_CLASS_TEXT |
+                InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE |
+                InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         builder.setView(input);
 
-        builder.setPositiveButton("Save", (dialog, which) -> templateMessage = input.getText().toString());
-        builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
+        builder.setPositiveButton("Save", (dialog, which) ->
+                templateMessage = input.getText().toString());
+
+        builder.setNegativeButton("Cancel", (dialog, which) ->
+                dialog.cancel());
 
         builder.show();
-
     }
 
     private void sendNotificationSms() {
 
-        String messageToSend = "this is a message";
         String phoneNumber = member.getMemberPhoneNumber();
 
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + phoneNumber));
-        intent.putExtra("sms_body", "I'm sending this through an Intent");
+        Intent intent = new Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("sms:" + phoneNumber)
+        );
+        intent.putExtra("sms_body", templateMessage);
         startActivity(intent);
-
     }
 
     @Override
@@ -110,9 +115,11 @@ public class DetailMemberActivity extends AppCompatActivity {
         fabPayment.setOnClickListener(View -> addPayment());
         fabDelete.setOnClickListener(View -> diaBox.show());
 
-        member = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER));
+        member = Parcels.unwrap(getIntent()
+                .getParcelableExtra(EXTRA_MEMBER));
 
         if (member != null) {
+
             txtName.setText(member.getMemberName());
             txtSurname.setText(member.getMemberSurname());
             txtPhoneNumber.setText(member.getMemberPhoneNumber());
@@ -121,39 +128,67 @@ public class DetailMemberActivity extends AppCompatActivity {
         }
 
         ivPhone.setOnClickListener(View -> call());
+
         txtPhoneNumber.setOnClickListener(View -> call());
     }
 
     private void call() {
-        String number = member.getMemberPhoneNumber();
-        if(number.length() > 0){
-            if(ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED){
-                ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.CALL_PHONE}, REQUEST_CALL);
 
-            }else{
+        String number = member.getMemberPhoneNumber();
+
+        if (number.length() > 0) {
+
+            if (ContextCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.CALL_PHONE) !=
+                    PackageManager.PERMISSION_GRANTED) {
+
+                ActivityCompat.requestPermissions(
+                        this,
+                        new String[]{Manifest.permission.CALL_PHONE},
+                        REQUEST_CALL
+                );
+
+            } else {
+
                 String dial = "tel:" + number;
-                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+                startActivity(new Intent(
+                        Intent.ACTION_CALL,
+                        Uri.parse(dial))
+                );
             }
 
-        }else{
-            Toast.makeText(this, "Phone number is empty", Toast.LENGTH_LONG).show();
+        } else {
+
+            Toast.makeText(this,
+                    "Phone number is empty",
+                    Toast.LENGTH_LONG).show();
         }
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if(requestCode == REQUEST_CALL){
-            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+    public void onRequestPermissionsResult(
+            int requestCode,
+            @NonNull String[] permissions,
+            @NonNull int[] grantResults) {
+
+        if (requestCode == REQUEST_CALL) {
+
+            if (grantResults.length > 0 &&
+                    grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
                 call();
-            }else{
-                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_LONG).show();
+
+            } else {
+
+                Toast.makeText(this,
+                        "Permission DENIED",
+                        Toast.LENGTH_LONG).show();
             }
         }
     }
 
-    private AlertDialog AskOption()
-    {
+    private AlertDialog AskOption() {
 
         return new AlertDialog.Builder(this)
                 .setTitle("Delete")
@@ -163,19 +198,29 @@ public class DetailMemberActivity extends AppCompatActivity {
                 .setPositiveButton("Delete", (dialog, whichButton) -> {
                     deleteMember();
                     dialog.dismiss();
-                    Toast.makeText(this, member.getMemberName() +" " + "deleted", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,
+                            member.getMemberName() + " " + "deleted",
+                            Toast.LENGTH_LONG).show();
                 })
-                .setNegativeButton("cancel", (dialog, which) -> dialog.dismiss())
+                .setNegativeButton("cancel", (dialog, which) ->
+                        dialog.dismiss())
                 .create();
     }
 
     private void addPayment() {
-        Intent intent = new Intent(DetailMemberActivity.this, AddPaymentActivity.class);
-        intent.putExtra(DetailMemberActivity.EXTRA_MEMBER, Parcels.wrap(member));
+
+        Intent intent = new Intent(
+                DetailMemberActivity.this,
+                AddPaymentActivity.class
+        );
+
+        intent.putExtra(DetailMemberActivity.EXTRA_MEMBER,
+                Parcels.wrap(member));
         startActivity(intent);
     }
 
     private void deleteMember() {
+
         AppDatabase
                 .getInstance(this)
                 .getMemberDao()
@@ -188,20 +233,26 @@ public class DetailMemberActivity extends AppCompatActivity {
     }
 
     private void openMembersList() {
+
         Intent intent = new Intent(this, ViewAllMemberActivity.class);
         startActivity(intent);
         finish();
     }
 
-    void openEditMemberActivity(){
-        Intent intent = new Intent(DetailMemberActivity.this, EditMemberActivity.class);
+    void openEditMemberActivity() {
+
+        Intent intent = new Intent(
+                DetailMemberActivity.this,
+                EditMemberActivity.class);
         intent.putExtra(DetailMemberActivity.EXTRA_MEMBER, Parcels.wrap(member));
         startActivity(intent);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        Intent myIntent = new Intent(getApplicationContext(), ViewAllMemberActivity.class);
+
+        Intent myIntent = new Intent(getApplicationContext(),
+                ViewAllMemberActivity.class);
         startActivityForResult(myIntent, 0);
         return true;
     }
