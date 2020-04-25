@@ -11,9 +11,11 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +26,9 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.model.Member;
+import com.myprojects.androidlessons.sportclubmanager.model.TextTemplate;
 import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
+import com.myprojects.androidlessons.sportclubmanager.repository.DatabaseTextTemplate;
 
 import org.parceler.Parcels;
 
@@ -54,6 +58,8 @@ public class DetailMemberActivity extends AppCompatActivity {
 
     Member member;
     private String templateMessage = "";
+    TextTemplate mTemplate;
+    DatabaseTextTemplate mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,47 +69,10 @@ public class DetailMemberActivity extends AppCompatActivity {
 
         setSupportActionBar(mToolbar);
         ActionBar ab = getSupportActionBar();
+
         if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
         }
-
-        btnSendNotification.setOnClickListener(View ->
-                sendNotificationSms());
-        btnCreateNotificationTemplate.setOnClickListener(View ->
-                createNotificationTemplate());
-    }
-
-    private void createNotificationTemplate() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Sms template");
-
-        final EditText input = new EditText(this);
-
-        input.setInputType(InputType.TYPE_CLASS_TEXT |
-                InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE |
-                InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-        builder.setView(input);
-
-        builder.setPositiveButton("Save", (dialog, which) ->
-                templateMessage = input.getText().toString());
-
-        builder.setNegativeButton("Cancel", (dialog, which) ->
-                dialog.cancel());
-
-        builder.show();
-    }
-
-    private void sendNotificationSms() {
-
-        String phoneNumber = member.getMemberPhoneNumber();
-
-        Intent intent = new Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("sms:" + phoneNumber)
-        );
-        intent.putExtra("sms_body", templateMessage);
-        startActivity(intent);
     }
 
     @Override
@@ -127,9 +96,59 @@ public class DetailMemberActivity extends AppCompatActivity {
             txtDateBirth.setText(member.getMemberDateBirth());
         }
 
+        templateMessage = "Hello! Looks like you have an unpaid bill for a trainings." + "\n" +
+                "Please pay it." + "\n" + "Thank you. Have a nice day!";
+
+        mDatabase = new DatabaseTextTemplate(this);
+
+        mTemplate = new TextTemplate(1, templateMessage);
+
+        if(mDatabase.checkDatabaseIsEmpty()){
+            mDatabase.addTemplate(mTemplate);
+            Log.i("empty", "empty");
+        }
+
+        btnSendNotification.setOnClickListener(View ->
+                sendNotificationSms());
+        btnCreateNotificationTemplate.setOnClickListener(View ->
+                createNotificationTemplate());
+
         ivPhone.setOnClickListener(View -> call());
 
         txtPhoneNumber.setOnClickListener(View -> call());
+    }
+
+    private void sendNotificationSms() {
+
+        String phoneNumber = member.getMemberPhoneNumber();
+
+        Intent intent = new Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("sms:" + phoneNumber)
+        );
+        intent.putExtra("sms_body", templateMessage);
+        startActivity(intent);
+    }
+
+    private void createNotificationTemplate() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Sms template");
+
+        final EditText input = new EditText(this);
+
+        input.setInputType(InputType.TYPE_CLASS_TEXT |
+                InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE |
+                InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+        builder.setView(input);
+
+        builder.setPositiveButton("Save", (dialog, which) ->
+                templateMessage = input.getText().toString());
+
+        builder.setNegativeButton("Cancel", (dialog, which) ->
+                dialog.cancel());
+
+        builder.show();
     }
 
     private void call() {

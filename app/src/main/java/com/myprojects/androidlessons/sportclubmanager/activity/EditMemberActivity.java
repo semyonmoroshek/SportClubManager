@@ -57,6 +57,8 @@ public class EditMemberActivity extends AppCompatActivity {
         setEditViewFields();
 
         fabEditMember.setOnClickListener(View -> saveMember());
+
+
     }
 
     private void setEditViewFields() {
