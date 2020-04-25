@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 
 import com.myprojects.androidlessons.sportclubmanager.model.TextTemplate;
 
+import java.util.ArrayList;
+
 public class DatabaseTextTemplate extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "text_template_database";
@@ -86,5 +88,22 @@ public class DatabaseTextTemplate extends SQLiteOpenHelper {
         long count = DatabaseUtils.queryNumEntries(db, TEMPLATE_TABLE);
         db.close();
         return count;
+    }
+
+    public ArrayList<TextTemplate> getAllTemplates(){
+        SQLiteDatabase database = getWritableDatabase();
+        String sqlQueryCommand = "select * from " + TEMPLATE_TABLE;
+        Cursor cursor = database.rawQuery(sqlQueryCommand, null);
+
+        ArrayList<TextTemplate> martialArts = new ArrayList<>();
+
+        while (cursor.moveToNext()){
+            TextTemplate currentMartialArtObject = new TextTemplate(
+                    Integer.parseInt(cursor.getString(0)),
+                    cursor.getString(1));
+            martialArts.add(currentMartialArtObject);
+        }
+        database.close();
+        return martialArts;
     }
 }

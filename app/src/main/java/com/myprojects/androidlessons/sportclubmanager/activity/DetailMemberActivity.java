@@ -9,11 +9,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.InputType;
 import android.util.Log;
 import android.view.MenuItem;
@@ -31,6 +33,8 @@ import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
 import com.myprojects.androidlessons.sportclubmanager.repository.DatabaseTextTemplate;
 
 import org.parceler.Parcels;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -68,51 +72,46 @@ public class DetailMemberActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(mToolbar);
-        ActionBar ab = getSupportActionBar();
 
-        if (ab != null) {
-            ab.setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-    }
+        mDatabase = new DatabaseTextTemplate(this);
 
-    @Override
-    protected void onStart() {
-        super.onStart();
         AlertDialog diaBox = AskOption();
+
+        member = Parcels.unwrap(getIntent()
+                .getParcelableExtra(EXTRA_MEMBER));
+        setMemberDetailFields();
 
         fabEdit.setOnClickListener(View -> openEditMemberActivity());
         fabPayment.setOnClickListener(View -> addPayment());
         fabDelete.setOnClickListener(View -> diaBox.show());
 
-        member = Parcels.unwrap(getIntent()
-                .getParcelableExtra(EXTRA_MEMBER));
+        addDefaultMessageNotificationTemplate();
+
+//        templateMessage = "Hello! Looks like you have an unpaid bill for a trainings." + "\n" +
+//                "Please pay it." + "\n" + "Thank you. Have a nice day!";
+
+
+//        Log.i("count", String.valueOf(mDatabase.getProfilesCount()));
+
+
+//        mTemplate = new TextTemplate(1, templateMessage);
+
+//        if(mDatabase.getProfilesCount() == 0){
+//            Log.i("db1", "more, than 1");
+//            mDatabase.updateTemplateObject("Privet", 1);
+//        }else{
+//            mDatabase.updateTemplateObject("Ludzu apmaksat rekins", 1);
+//            Log.i("db11", "equals 0");
+//        }
 
 
 
-        if (member != null) {
-
-            txtName.setText(member.getMemberName());
-            txtSurname.setText(member.getMemberSurname());
-            txtPhoneNumber.setText(member.getMemberPhoneNumber());
-            txtPaymentDate.setText(member.getMemberPaymentDate());
-            txtDateBirth.setText(member.getMemberDateBirth());
-        }
-
-        templateMessage = "Hello! Looks like you have an unpaid bill for a trainings." + "\n" +
-                "Please pay it." + "\n" + "Thank you. Have a nice day!";
-
-        mDatabase = new DatabaseTextTemplate(this);
-        Log.i("count", String.valueOf(mDatabase.getProfilesCount()));
-
-
-
-        mTemplate = new TextTemplate(1, templateMessage);
-
-        if(mDatabase.checkDatabaseIsEmpty()){
-            mDatabase.addTemplate(mTemplate);
-            Log.i("empty", "empty");
-        }
+//        Log.i("newObject", mDatabase.getAllTemplates().toString());
 
         btnSendNotification.setOnClickListener(View ->
                 sendNotificationSms());
@@ -126,15 +125,42 @@ public class DetailMemberActivity extends AppCompatActivity {
 
     }
 
+    private void addDefaultMessageNotificationTemplate() {
+        if(mDatabase.getProfilesCount() == 0){
+            templateMessage = "Hello! Looks like you have an unpaid bill for a trainings." + "\n" +
+                    "Please pay it." + "\n" + "Thank you. Have a nice day!";
+            mTemplate = new TextTemplate(1, templateMessage);
+            mDatabase.addTemplate(mTemplate);
+
+            Log.i("message1", templateMessage);
+        }else{
+            templateMessage = mDatabase.getAllTemplates().get(0).getTemplateMessage();
+            Log.i("message2", templateMessage);
+        }
+    }
+
+    private void setMemberDetailFields() {
+        if (member != null) {
+
+            txtName.setText(member.getMemberName());
+            txtSurname.setText(member.getMemberSurname());
+            txtPhoneNumber.setText(member.getMemberPhoneNumber());
+            txtPaymentDate.setText(member.getMemberPaymentDate());
+            txtDateBirth.setText(member.getMemberDateBirth());
+        }
+    }
+
     private void sendNotificationSms() {
 
         String phoneNumber = member.getMemberPhoneNumber();
+        String message = mDatabase.getAllTemplates().get(0).getTemplateMessage();
 
         Intent intent = new Intent(
                 Intent.ACTION_VIEW,
                 Uri.parse("sms:" + phoneNumber)
         );
-        intent.putExtra("sms_body", templateMessage);
+
+        intent.putExtra("sms_body", message);
         startActivity(intent);
     }
 
@@ -150,13 +176,26 @@ public class DetailMemberActivity extends AppCompatActivity {
                 InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         builder.setView(input);
 
-        builder.setPositiveButton("Save", (dialog, which) ->
-                templateMessage = input.getText().toString());
+        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
 
-        builder.setNegativeButton("Cancel", (dialog, which) ->
-                dialog.cancel());
+                templateMessage = input.getText().toString();
+                Log.i("message3", templateMessage);
+                mDatabase.updateTemplateObject(templateMessage, 1);
+                Log.i("template", mDatabase.getAllTemplates().get(0).toString());
+
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.cancel();
+                Log.i("message4", templateMessage);
+            }
+        });
 
         builder.show();
+
     }
 
     private void call() {
