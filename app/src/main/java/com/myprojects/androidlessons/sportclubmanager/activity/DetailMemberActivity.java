@@ -73,6 +73,7 @@ public class DetailMemberActivity extends AppCompatActivity {
         if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
         }
+
     }
 
     @Override
@@ -87,6 +88,8 @@ public class DetailMemberActivity extends AppCompatActivity {
         member = Parcels.unwrap(getIntent()
                 .getParcelableExtra(EXTRA_MEMBER));
 
+
+
         if (member != null) {
 
             txtName.setText(member.getMemberName());
@@ -100,6 +103,9 @@ public class DetailMemberActivity extends AppCompatActivity {
                 "Please pay it." + "\n" + "Thank you. Have a nice day!";
 
         mDatabase = new DatabaseTextTemplate(this);
+        Log.i("count", String.valueOf(mDatabase.getProfilesCount()));
+
+
 
         mTemplate = new TextTemplate(1, templateMessage);
 
@@ -116,6 +122,8 @@ public class DetailMemberActivity extends AppCompatActivity {
         ivPhone.setOnClickListener(View -> call());
 
         txtPhoneNumber.setOnClickListener(View -> call());
+
+
     }
 
     private void sendNotificationSms() {
