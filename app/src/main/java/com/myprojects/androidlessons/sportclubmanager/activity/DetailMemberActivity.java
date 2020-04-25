@@ -9,13 +9,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.DatabaseUtils;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputType;
 import android.util.Log;
 import android.view.MenuItem;
@@ -34,8 +31,6 @@ import com.myprojects.androidlessons.sportclubmanager.repository.DatabaseTextTem
 
 import org.parceler.Parcels;
 
-import java.util.ArrayList;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -45,7 +40,6 @@ public class DetailMemberActivity extends AppCompatActivity {
 
     public static final String EXTRA_MEMBER = "EXTRA_EMPLOYEE";
     public static final int REQUEST_CALL = 1;
-
 
     @BindView(R.id.txt_member_info_name) TextView txtName;
     @BindView(R.id.txt_member_info_surname) TextView txtSurname;
@@ -92,27 +86,6 @@ public class DetailMemberActivity extends AppCompatActivity {
 
         addDefaultMessageNotificationTemplate();
 
-//        templateMessage = "Hello! Looks like you have an unpaid bill for a trainings." + "\n" +
-//                "Please pay it." + "\n" + "Thank you. Have a nice day!";
-
-
-//        Log.i("count", String.valueOf(mDatabase.getProfilesCount()));
-
-
-//        mTemplate = new TextTemplate(1, templateMessage);
-
-//        if(mDatabase.getProfilesCount() == 0){
-//            Log.i("db1", "more, than 1");
-//            mDatabase.updateTemplateObject("Privet", 1);
-//        }else{
-//            mDatabase.updateTemplateObject("Ludzu apmaksat rekins", 1);
-//            Log.i("db11", "equals 0");
-//        }
-
-
-
-//        Log.i("newObject", mDatabase.getAllTemplates().toString());
-
         btnSendNotification.setOnClickListener(View ->
                 sendNotificationSms());
         btnCreateNotificationTemplate.setOnClickListener(View ->
@@ -121,8 +94,6 @@ public class DetailMemberActivity extends AppCompatActivity {
         ivPhone.setOnClickListener(View -> call());
 
         txtPhoneNumber.setOnClickListener(View -> call());
-
-
     }
 
     private void addDefaultMessageNotificationTemplate() {
@@ -131,17 +102,13 @@ public class DetailMemberActivity extends AppCompatActivity {
                     "Please pay it." + "\n" + "Thank you. Have a nice day!";
             mTemplate = new TextTemplate(1, templateMessage);
             mDatabase.addTemplate(mTemplate);
-
-            Log.i("message1", templateMessage);
         }else{
             templateMessage = mDatabase.getAllTemplates().get(0).getTemplateMessage();
-            Log.i("message2", templateMessage);
         }
     }
 
     private void setMemberDetailFields() {
         if (member != null) {
-
             txtName.setText(member.getMemberName());
             txtSurname.setText(member.getMemberSurname());
             txtPhoneNumber.setText(member.getMemberPhoneNumber());
@@ -151,7 +118,6 @@ public class DetailMemberActivity extends AppCompatActivity {
     }
 
     private void sendNotificationSms() {
-
         String phoneNumber = member.getMemberPhoneNumber();
         String message = mDatabase.getAllTemplates().get(0).getTemplateMessage();
 
@@ -159,7 +125,6 @@ public class DetailMemberActivity extends AppCompatActivity {
                 Intent.ACTION_VIEW,
                 Uri.parse("sms:" + phoneNumber)
         );
-
         intent.putExtra("sms_body", message);
         startActivity(intent);
     }
@@ -176,26 +141,19 @@ public class DetailMemberActivity extends AppCompatActivity {
                 InputType.TYPE_TEXT_FLAG_MULTI_LINE);
         builder.setView(input);
 
-        builder.setPositiveButton("Save", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
+        builder.setPositiveButton("Save", (dialog, whichButton) -> {
 
-                templateMessage = input.getText().toString();
-                Log.i("message3", templateMessage);
-                mDatabase.updateTemplateObject(templateMessage, 1);
-                Log.i("template", mDatabase.getAllTemplates().get(0).toString());
-
-            }
+            templateMessage = input.getText().toString();
+            Log.i("message3", templateMessage);
+            mDatabase.updateTemplateObject(templateMessage, 1);
+            Log.i("template", mDatabase.getAllTemplates().get(0).toString());
         });
 
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.cancel();
-                Log.i("message4", templateMessage);
-            }
+        builder.setNegativeButton("Cancel", (dialog, whichButton) -> {
+            dialog.cancel();
+            Log.i("message4", templateMessage);
         });
-
         builder.show();
-
     }
 
     private void call() {
@@ -203,29 +161,21 @@ public class DetailMemberActivity extends AppCompatActivity {
         String number = member.getMemberPhoneNumber();
 
         if (number.length() > 0) {
-
             if (ContextCompat.checkSelfPermission(
                     this,
                     Manifest.permission.CALL_PHONE) !=
                     PackageManager.PERMISSION_GRANTED) {
-
                 ActivityCompat.requestPermissions(
                         this,
                         new String[]{Manifest.permission.CALL_PHONE},
-                        REQUEST_CALL
-                );
-
+                        REQUEST_CALL);
             } else {
-
                 String dial = "tel:" + number;
                 startActivity(new Intent(
                         Intent.ACTION_CALL,
-                        Uri.parse(dial))
-                );
+                        Uri.parse(dial)));
             }
-
         } else {
-
             Toast.makeText(this,
                     "Phone number is empty",
                     Toast.LENGTH_LONG).show();
@@ -237,16 +187,11 @@ public class DetailMemberActivity extends AppCompatActivity {
             int requestCode,
             @NonNull String[] permissions,
             @NonNull int[] grantResults) {
-
         if (requestCode == REQUEST_CALL) {
-
             if (grantResults.length > 0 &&
                     grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
                 call();
-
             } else {
-
                 Toast.makeText(this,
                         "Permission DENIED",
                         Toast.LENGTH_LONG).show();
@@ -260,7 +205,6 @@ public class DetailMemberActivity extends AppCompatActivity {
                 .setTitle("Delete")
                 .setMessage("Are you sure want to delete member?")
                 .setIcon(R.drawable.ic_delete_forever)
-
                 .setPositiveButton("Delete", (dialog, whichButton) -> {
                     deleteMember();
                     dialog.dismiss();
@@ -274,19 +218,16 @@ public class DetailMemberActivity extends AppCompatActivity {
     }
 
     private void addPayment() {
-
         Intent intent = new Intent(
                 DetailMemberActivity.this,
                 AddPaymentActivity.class
         );
-
         intent.putExtra(DetailMemberActivity.EXTRA_MEMBER,
                 Parcels.wrap(member));
         startActivity(intent);
     }
 
     private void deleteMember() {
-
         AppDatabase
                 .getInstance(this)
                 .getMemberDao()
@@ -294,19 +235,16 @@ public class DetailMemberActivity extends AppCompatActivity {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
-
         openMembersList();
     }
 
     private void openMembersList() {
-
         Intent intent = new Intent(this, ViewAllMemberActivity.class);
         startActivity(intent);
         finish();
     }
 
     void openEditMemberActivity() {
-
         Intent intent = new Intent(
                 DetailMemberActivity.this,
                 EditMemberActivity.class);
@@ -316,7 +254,6 @@ public class DetailMemberActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         Intent myIntent = new Intent(getApplicationContext(),
                 ViewAllMemberActivity.class);
         startActivityForResult(myIntent, 0);
