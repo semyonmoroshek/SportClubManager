@@ -5,9 +5,9 @@
     </item>
     <item>
         <bitmap
-            android:src="@drawable/logo_clean"
+            android:src="@drawable/team"
             android:tileMode="disabled"
-            android:gravity="center" />
+            android:gravity="center"/>
     </item>
 
 </layer-list>
