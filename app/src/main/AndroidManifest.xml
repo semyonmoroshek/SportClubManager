@@ -19,7 +19,7 @@
         <activity android:name=".activity.AddPaymentActivity" />
 
         <activity android:name=".activity.ViewAllMemberActivity"
-                  android:label="Membership Fees"
+                  android:label="Fees"
             android:theme="@style/SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
