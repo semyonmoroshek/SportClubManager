@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#DC143C"
-        app:title="My members"/>
+        app:title="All members"/>
 
     <FrameLayout
         android:layout_width="match_parent"
