@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#DC143C"
+        android:background="#009f00"
         app:title="All members"/>
 
     <FrameLayout
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="#ff7543"
+            android:background="#62bf58"
             android:layout_marginTop="12dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
@@ -38,7 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="#ff7543"
+            android:background="#62bf58"
             android:layout_marginTop="12dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
@@ -65,7 +65,7 @@
             android:layout_marginEnd="24dp"
             android:layout_marginBottom="24dp"
             android:src="@drawable/ic_add_24px"
-            android:backgroundTint="#d84315"/>
+            android:backgroundTint="#448AFF"/>
     </FrameLayout>
 
 </LinearLayout>
