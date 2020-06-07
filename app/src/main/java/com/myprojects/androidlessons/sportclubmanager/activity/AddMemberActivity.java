@@ -79,26 +79,6 @@ public class AddMemberActivity extends AppCompatActivity {
             mCheckBox.setChecked(false);
             dialog.cancel();
         });
-
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle("enter payment price");
-//
-//        final EditText input = new EditText(this);
-//
-//        input.setInputType(InputType.TYPE_CLASS_NUMBER |
-//                InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE |
-//                InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-//        builder.setView(input, 200, 0, 200, 0);
-//
-//        builder.setPositiveButton("Save", (dialog, whichButton) -> {
-//
-//            int paymentPrice = Integer.parseInt(input.getText().toString());
-//        });
-//
-//        builder.setNegativeButton("Cancel", (dialog, whichButton) -> {
-//            dialog.cancel();
-//        });
-//        builder.show();
     }
 
     public void addMember() {
@@ -117,7 +97,6 @@ public class AddMemberActivity extends AppCompatActivity {
 
         int year = picker.getYear();
         Log.i("intyear", String.valueOf(year));
-
 
         String dayStr = String.valueOf(day);
         Log.i("daystr", dayStr);
