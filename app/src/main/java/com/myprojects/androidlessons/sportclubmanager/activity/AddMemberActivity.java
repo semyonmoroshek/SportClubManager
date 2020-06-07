@@ -2,16 +2,20 @@ package com.myprojects.androidlessons.sportclubmanager.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -52,6 +56,49 @@ public class AddMemberActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
         fabSaveNewMember.setOnClickListener(View -> addMember());
+        mCheckBox.setOnClickListener(view -> openPriceDialog());
+    }
+
+    private void openPriceDialog() {
+
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.paymet_price_dialog);
+        dialog.show();
+
+        Button btnSave = dialog.findViewById(R.id.btn_save_price_payment);
+        Button btnCancel = dialog.findViewById(R.id.btn_cancel_price_payment);
+        EditText editPrice = dialog.findViewById(R.id.et_price_payment);
+
+        btnSave.setOnClickListener(v -> {
+                Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
+                dialog.cancel();
+        });
+
+        btnCancel.setOnClickListener(v -> {
+            Toast.makeText(this, "canceled", Toast.LENGTH_SHORT).show();
+            mCheckBox.setChecked(false);
+            dialog.cancel();
+        });
+
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("enter payment price");
+//
+//        final EditText input = new EditText(this);
+//
+//        input.setInputType(InputType.TYPE_CLASS_NUMBER |
+//                InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE |
+//                InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+//        builder.setView(input, 200, 0, 200, 0);
+//
+//        builder.setPositiveButton("Save", (dialog, whichButton) -> {
+//
+//            int paymentPrice = Integer.parseInt(input.getText().toString());
+//        });
+//
+//        builder.setNegativeButton("Cancel", (dialog, whichButton) -> {
+//            dialog.cancel();
+//        });
+//        builder.show();
     }
 
     public void addMember() {
@@ -134,10 +181,7 @@ public class AddMemberActivity extends AppCompatActivity {
     }
 
     public void rootLayoutTapped(View view) {
-
-
         try {
-
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }catch (Exception e){
