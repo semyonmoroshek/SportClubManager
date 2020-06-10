@@ -42,29 +42,13 @@ public class StatisticActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mMemberList = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER_LIST));
-        Log.i("memberlist10", mMemberList.toString());
 
-        allMembers();
-
+        setFields();
     }
 
-    private void allMembers() {
+    private void setFields() {
+        String memberCount = String.valueOf(mMemberList.size());
+        txtMemberCount.setText(memberCount);
 
-        AppDatabase
-                .getInstance(this)
-                .getMemberDao()
-                .getAllMembers()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(dbMembers -> {
-
-                    mAdapter = new CustomAdapter(this, dbMembers);
-                    mMemberList = mAdapter.getMemberList();
-                    Log.i("memberlist", mMemberList.toString());
-                    itemCount = mAdapter.getItemCount();
-                    Log.i("itemcount", String.valueOf(itemCount));
-
-
-                });
     }
 }
