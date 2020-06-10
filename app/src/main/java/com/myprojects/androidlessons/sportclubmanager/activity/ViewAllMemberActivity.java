@@ -18,7 +18,6 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprojects.androidlessons.sportclubmanager.R;
@@ -116,7 +115,6 @@ public class ViewAllMemberActivity extends AppCompatActivity {
                     !memberList.get(i).getMemberPaymentDate().equals("No payments")) {
 
                 String memberPaymentDateString = memberList.get(i).getMemberPaymentDate();
-                Log.i("memberPaymentDateString", memberList.get(i).getMemberName() + ": " + memberPaymentDateString);
 
                 Date memberPaymentDate = dateFormat.parse(memberPaymentDateString);
                 calendar.setTime(memberPaymentDate);
@@ -132,7 +130,6 @@ public class ViewAllMemberActivity extends AppCompatActivity {
                 sortedMembers.add(memberList.get(i));
             }
         }
-        Log.i("membersorted", sortedMembers.toString());
 
         mAdapter = new CustomAdapter(this, sortedMembers);
         mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
@@ -152,10 +149,10 @@ public class ViewAllMemberActivity extends AppCompatActivity {
                         Collections.sort(dbMembers, (object1, object2) -> object1.getMemberName().compareTo(object2.getMemberName()));
                     }
 
-
                     LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ViewAllMemberActivity.this);
                     mRecyclerView.setLayoutManager(linearLayoutManager);
                     mAdapter = new CustomAdapter(this, dbMembers);
+
                     mRecyclerView.setAdapter(mAdapter);
                     mAdapter.setOnItemClickListener(this::openMemberInfoActivity);
                 });
@@ -196,10 +193,17 @@ public class ViewAllMemberActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_statistic) {
-            Intent intent = new Intent(this, StatisticActivity.class);
-            startActivity(intent);
+            List<Member> memberListToStatistic;
+            memberListToStatistic = mAdapter.getMemberList();
+            openStatisticActivity(memberListToStatistic);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    void openStatisticActivity(List<Member> memberList) {
+        Intent intent = new Intent(this, StatisticActivity.class);
+        intent.putExtra(StatisticActivity.EXTRA_MEMBER_LIST, Parcels.wrap(memberList));
+        startActivity(intent);
     }
 
     public void rootLayoutTapped(View view) {

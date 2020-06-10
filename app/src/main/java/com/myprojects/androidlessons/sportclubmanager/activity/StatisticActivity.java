@@ -12,6 +12,8 @@ import com.myprojects.androidlessons.sportclubmanager.adapter.CustomAdapter;
 import com.myprojects.androidlessons.sportclubmanager.model.Member;
 import com.myprojects.androidlessons.sportclubmanager.repository.AppDatabase;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -25,6 +27,8 @@ import static com.myprojects.androidlessons.sportclubmanager.repository.AppDatab
 
 public class StatisticActivity extends AppCompatActivity {
 
+    public static final String EXTRA_MEMBER_LIST = "EXTRA_EMPLOYEE";
+
     @BindView (R.id.txt_count) TextView txtMemberCount;
 
     CustomAdapter mAdapter;
@@ -37,12 +41,14 @@ public class StatisticActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statistic);
         ButterKnife.bind(this);
 
+        mMemberList = Parcels.unwrap(getIntent().getParcelableExtra(EXTRA_MEMBER_LIST));
+        Log.i("memberlist10", mMemberList.toString());
+
         allMembers();
+
     }
 
     private void allMembers() {
-
-        List<Member> list = new ArrayList<>();
 
         AppDatabase
                 .getInstance(this)
@@ -54,7 +60,10 @@ public class StatisticActivity extends AppCompatActivity {
 
                     mAdapter = new CustomAdapter(this, dbMembers);
                     mMemberList = mAdapter.getMemberList();
+                    Log.i("memberlist", mMemberList.toString());
                     itemCount = mAdapter.getItemCount();
+                    Log.i("itemcount", String.valueOf(itemCount));
+
 
                 });
     }
