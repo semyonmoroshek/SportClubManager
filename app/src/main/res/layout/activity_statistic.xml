@@ -7,6 +7,17 @@
     android:orientation="vertical"
     tools:context=".activity.StatisticActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_statistic"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#DC143C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:title="statistic"
+        app:titleTextColor="#FFF" />
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -49,5 +60,10 @@
             android:layout_marginTop="16dp"
             android:text="0"/>
     </LinearLayout>
+
+    <com.jjoe64.graphview.GraphView
+        android:layout_width="match_parent"
+        android:layout_height="200dip"
+        android:id="@+id/graph_member_count" />
 
 </LinearLayout>
