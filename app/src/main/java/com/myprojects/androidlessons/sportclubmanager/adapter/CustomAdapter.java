@@ -132,7 +132,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
 
             int validPayment = sortByValidPayment(member);
 
-            int orange = Color.parseColor("#EF6C00");
+            int yellow = Color.parseColor("#FFEB3B");
             int green = Color.parseColor("#2E7D32");
             int red = Color.parseColor("#DD2C00");
 
@@ -143,7 +143,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
                 txtPaymentDate.setTextColor(green);
             }
             if (validPayment == 1) {
-                txtPaymentDate.setTextColor(orange);
+                txtPaymentDate.setTextColor(yellow);
             }
 
         }
