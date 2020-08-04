@@ -2,6 +2,7 @@ package com.myprojects.androidlessons.sportclubmanager.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprojects.androidlessons.sportclubmanager.R;
@@ -38,7 +40,7 @@ public class AddPaymentActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_do_payment);
+        setContentView(R.layout.activity_add_payment);
         ButterKnife.bind(this);
 
         setSupportActionBar(mToolbar);
@@ -86,12 +88,33 @@ public class AddPaymentActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe();
 
-        sendNotificationSms();
+        AlertDialog diaBox = AskOption();
+        diaBox.show();
+    }
 
-//        Intent mIntent = new Intent(this, DetailMemberActivity.class);
-//        mIntent.putExtra(DetailMemberActivity.EXTRA_MEMBER, Parcels.wrap(member));
-//        startActivity(mIntent);
+    private void askForSendNotification() {
 
+    }
+
+    private AlertDialog AskOption() {
+
+        return new AlertDialog.Builder(this)
+                .setTitle("Payment has saved!")
+                .setMessage("Do you want to write notification sms?")
+                .setIcon(R.drawable.ic_delete_forever)
+                .setPositiveButton("Yes", (dialog, whichButton) -> {
+                    sendNotificationSms();
+                    dialog.dismiss();
+                    Toast.makeText(this,
+                            member.getMemberName() + " " + "write text",
+                            Toast.LENGTH_LONG).show();
+                })
+                .setNegativeButton("cancel", (dialog, which) -> {
+                        dialog.dismiss();
+                        finish();
+
+                })
+                .create();
     }
 
     private void sendNotificationSms() {

@@ -2,14 +2,12 @@ package com.myprojects.androidlessons.sportclubmanager.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -67,7 +65,6 @@ public class AddMemberActivity extends AppCompatActivity {
 
         Button btnSave = dialog.findViewById(R.id.btn_save_price_payment);
         Button btnCancel = dialog.findViewById(R.id.btn_cancel_price_payment);
-        EditText editPrice = dialog.findViewById(R.id.et_price_payment);
 
         btnSave.setOnClickListener(v -> {
                 Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
