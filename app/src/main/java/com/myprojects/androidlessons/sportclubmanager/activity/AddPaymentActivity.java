@@ -108,6 +108,7 @@ public class AddPaymentActivity extends AppCompatActivity {
                     Toast.makeText(this,
                             member.getMemberName() + " " + "write text",
                             Toast.LENGTH_LONG).show();
+                    finish();
                 })
                 .setNegativeButton("cancel", (dialog, which) -> {
                         dialog.dismiss();

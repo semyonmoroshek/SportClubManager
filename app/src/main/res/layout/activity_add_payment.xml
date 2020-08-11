@@ -19,18 +19,19 @@
         app:popupTheme="@style/AppTheme.PopupOverlay"
         app:title="add payment" />
 
-<!--    <EditText-->
-<!--        android:id="@+id/et_price"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_gravity="center_horizontal"-->
-<!--        android:layout_marginTop="100dp"-->
-<!--        android:hint="price" />-->
+    <TextView
+        android:id="@+id/et_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="100dp"
+        android:text="Enter payment date"
+        android:textSize="30sp"/>
 
     <DatePicker
         android:id="@+id/picker_payment"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="124dp"
         android:layout_marginTop="50dp"
         android:calendarViewShown="false"
         android:datePickerMode="spinner" />
