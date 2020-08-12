@@ -18,6 +18,40 @@
         app:title="All members"/>
 
     <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="8dp"
+        android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_sort"
+        />
+
+    <TextView
+        android:id="@+id/txt_sort_debtors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:textSize="20sp"
+        android:text="debtors"
+        android:textColor="#000"/>
+
+        <ImageView
+            android:id="@+id/iv_undo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:visibility="invisible"
+            android:src="@drawable/ic_undo"/>
+
+    </FrameLayout>
+
+
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

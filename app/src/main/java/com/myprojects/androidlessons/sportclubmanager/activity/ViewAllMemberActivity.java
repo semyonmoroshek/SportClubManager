@@ -17,7 +17,9 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprojects.androidlessons.sportclubmanager.R;
@@ -50,6 +52,8 @@ public class ViewAllMemberActivity extends AppCompatActivity {
     @BindView(R.id.btn_view_all) Button btnViewAllMembers;
     @BindView(R.id.tb_viewAllAct) Toolbar mToolbar;
     @BindView(R.id.fab_save_new_member) FloatingActionButton fabSaveNewMember;
+    @BindView(R.id.txt_sort_debtors) TextView txtSortDebtors;
+    @BindView(R.id.iv_undo) ImageView imgUndo;
 
     CustomAdapter mAdapter;
     List<Member> memberList = new ArrayList<>();
@@ -76,6 +80,24 @@ public class ViewAllMemberActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         });
+
+        txtSortDebtors.setOnClickListener(View -> {
+            try{
+                txtSortDebtors.setVisibility(View.INVISIBLE);
+                imgUndo.setVisibility(View.VISIBLE);
+                sortByValidPayment();
+            }catch (ParseException e){
+                e.printStackTrace();
+            }
+        });
+
+        imgUndo.setOnClickListener(View -> {
+                imgUndo.setVisibility(View.INVISIBLE);
+                txtSortDebtors.setVisibility(View.VISIBLE);
+                viewAll();
+        });
+
+
 
         btnViewAllMembers.setOnClickListener(v -> {
             btnViewAllMembers.setVisibility(View.INVISIBLE);
