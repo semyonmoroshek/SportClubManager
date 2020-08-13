@@ -3,10 +3,12 @@ package com.myprojects.androidlessons.sportclubmanager.activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,8 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 
@@ -48,12 +48,10 @@ import io.reactivex.schedulers.Schedulers;
 public class ViewAllMemberActivity extends AppCompatActivity {
 
     @BindView(R.id.rv_all_members) RecyclerView mRecyclerView;
-    @BindView(R.id.btn_sort) Button btnSort;
-    @BindView(R.id.btn_view_all) Button btnViewAllMembers;
     @BindView(R.id.tb_viewAllAct) Toolbar mToolbar;
     @BindView(R.id.fab_save_new_member) FloatingActionButton fabSaveNewMember;
     @BindView(R.id.txt_sort_debtors) TextView txtSortDebtors;
-    @BindView(R.id.iv_undo) ImageView imgUndo;
+    @BindView(R.id.txt_sort_all_payments) TextView txtSortAllPayments;
 
     CustomAdapter mAdapter;
     List<Member> memberList = new ArrayList<>();
@@ -67,42 +65,29 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         ActionBar ab = getSupportActionBar();
 
+        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.ic_group);
+        mToolbar.setNavigationIcon(drawable);
+        setSupportActionBar(mToolbar);
+
         viewAll();
 
         fabSaveNewMember.setOnClickListener(View -> addNewMember());
 
-        btnSort.setOnClickListener(v -> {
-            try {
-                btnSort.setVisibility(View.INVISIBLE);
-                btnViewAllMembers.setVisibility(View.VISIBLE);
-                sortByValidPayment();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        });
 
         txtSortDebtors.setOnClickListener(View -> {
             try{
                 txtSortDebtors.setVisibility(View.INVISIBLE);
-                imgUndo.setVisibility(View.VISIBLE);
+                txtSortAllPayments.setVisibility(View.VISIBLE);
                 sortByValidPayment();
             }catch (ParseException e){
                 e.printStackTrace();
             }
         });
 
-        imgUndo.setOnClickListener(View -> {
-                imgUndo.setVisibility(View.INVISIBLE);
+        txtSortAllPayments.setOnClickListener(View -> {
+                txtSortAllPayments.setVisibility(View.INVISIBLE);
                 txtSortDebtors.setVisibility(View.VISIBLE);
                 viewAll();
-        });
-
-
-
-        btnViewAllMembers.setOnClickListener(v -> {
-            btnViewAllMembers.setVisibility(View.INVISIBLE);
-            btnSort.setVisibility(View.VISIBLE);
-            viewAll();
         });
 
     }

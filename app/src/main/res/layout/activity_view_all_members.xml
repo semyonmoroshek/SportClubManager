@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,8 +15,9 @@
         android:theme="@style/AppTheme.AppBarOverlay"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#DC143C"
-        app:title="All members"/>
+        android:background="#F5F5F5"
+        app:title="member count"
+        app:titleTextColor="#000"/>
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -36,49 +38,17 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:textSize="20sp"
-        android:text="debtors"
+        android:text="expired payment"
         android:textColor="#000"/>
 
-        <ImageView
-            android:id="@+id/iv_undo"
+        <TextView
+            android:id="@+id/txt_sort_all_payments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:text="all payments"
+            android:textSize="20sp"
             android:visibility="invisible"
-            android:src="@drawable/ic_undo"/>
-
-    </FrameLayout>
-
-
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/btn_sort"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="#ff7543"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:elevation="50dp"
-            android:text="view debtors" />
-
-        <Button
-            android:id="@+id/btn_view_all"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:background="#ff7543"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:elevation="50dp"
-            android:text="view all members"
-            android:visibility="invisible"/>
+            android:textColor="#000"/>
     </FrameLayout>
 
     <FrameLayout

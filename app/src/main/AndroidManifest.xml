@@ -13,7 +13,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.StatisticActivity"></activity>
+        <activity android:name=".activity.StatisticActivity"/>
         <activity android:name=".activity.EditMemberActivity" />
         <activity android:name=".activity.AddMemberActivity" />
         <activity android:name=".activity.DetailMemberActivity" />

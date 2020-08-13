@@ -5,7 +5,7 @@
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">#9f0000</item>
+        <item name="colorPrimaryDark">#9E9E9E</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
@@ -43,7 +43,11 @@
 
     <style name="SplashScreen" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/launch_screen</item>
-        <item name="colorPrimaryDark">#9f0000</item>
+        <item name="colorPrimaryDark">#EEEEEE</item>
+        <item name="android:statusBarColor">#EEEEEE</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+
 
     </style>
 
