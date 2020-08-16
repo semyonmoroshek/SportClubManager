@@ -48,8 +48,6 @@ public class DetailMemberActivity extends AppCompatActivity {
     @BindView(R.id.txt_member_info_payment_date) TextView txtPaymentDate;
     @BindView(R.id.tb_member_info) Toolbar mToolbar;
     @BindView(R.id.iv_phone) ImageView ivPhone;
-    @BindView(R.id.btn_send_notification) Button btnSendNotification;
-    @BindView(R.id.btn_sms_template) Button btnCreateNotificationTemplate;
     @BindView(R.id.fab_detail_delete) FloatingActionButton fabDelete;
     @BindView(R.id.fab_detail_edit) FloatingActionButton fabEdit;
     @BindView(R.id.fab_detail_payment) FloatingActionButton fabPayment;
@@ -87,11 +85,6 @@ public class DetailMemberActivity extends AppCompatActivity {
         fabDelete.setOnClickListener(View -> diaBox.show());
 
         addDefaultMessageNotificationTemplate();
-
-        btnSendNotification.setOnClickListener(View ->
-                sendNotificationSms());
-        btnCreateNotificationTemplate.setOnClickListener(View ->
-                createNotificationTemplate());
 
         ivPhone.setOnClickListener(View -> call());
 
@@ -135,32 +128,6 @@ public class DetailMemberActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void createNotificationTemplate() {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Sms template");
-
-        final EditText input = new EditText(this);
-
-        input.setInputType(InputType.TYPE_CLASS_TEXT |
-                InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE |
-                InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-        builder.setView(input);
-
-        builder.setPositiveButton("Save", (dialog, whichButton) -> {
-
-            templateMessage = input.getText().toString();
-            Log.i("message3", templateMessage);
-            mDatabase.updateTemplateObject(templateMessage, 1);
-            Log.i("template", mDatabase.getAllTemplates().get(0).toString());
-        });
-
-        builder.setNegativeButton("Cancel", (dialog, whichButton) -> {
-            dialog.cancel();
-            Log.i("message4", templateMessage);
-        });
-        builder.show();
-    }
 
     private void call() {
 
