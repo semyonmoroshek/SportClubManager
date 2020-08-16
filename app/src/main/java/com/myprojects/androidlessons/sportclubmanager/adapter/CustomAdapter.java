@@ -132,7 +132,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ItemViewHo
 
             int validPayment = sortByValidPayment(member);
 
-            int yellow = Color.parseColor("#FFEB3B");
+            int yellow = Color.parseColor("#FDD835");
             int green = Color.parseColor("#2E7D32");
             int red = Color.parseColor("#DD2C00");
 

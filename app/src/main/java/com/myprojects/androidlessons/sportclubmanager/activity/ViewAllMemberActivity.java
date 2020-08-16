@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -18,8 +19,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.myprojects.androidlessons.sportclubmanager.R;
@@ -52,6 +56,8 @@ public class ViewAllMemberActivity extends AppCompatActivity {
     @BindView(R.id.fab_save_new_member) FloatingActionButton fabSaveNewMember;
     @BindView(R.id.txt_sort_debtors) TextView txtSortDebtors;
     @BindView(R.id.txt_sort_all_payments) TextView txtSortAllPayments;
+    @BindView(R.id.iv_sort) ImageView imgSort;
+    @BindView(R.id.txt_member_count) TextView txtMemberCount;
 
     CustomAdapter mAdapter;
     List<Member> memberList = new ArrayList<>();
@@ -65,14 +71,13 @@ public class ViewAllMemberActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
         ActionBar ab = getSupportActionBar();
 
-        Drawable drawable = ContextCompat.getDrawable(this, R.drawable.ic_group);
-        mToolbar.setNavigationIcon(drawable);
-        setSupportActionBar(mToolbar);
-
         viewAll();
 
         fabSaveNewMember.setOnClickListener(View -> addNewMember());
 
+        txtMemberCount.setOnClickListener(View ->{
+            openStatisticActivityMemberCount();
+        });
 
         txtSortDebtors.setOnClickListener(View -> {
             try{
@@ -90,6 +95,14 @@ public class ViewAllMemberActivity extends AppCompatActivity {
                 viewAll();
         });
 
+    }
+
+    private void openStatisticActivityMemberCount() {
+        List<Member> memberListMemberCount;
+        memberListMemberCount = mAdapter.getMemberList();
+        Intent intent = new Intent(this, StatisticActivity.class);
+        intent.putExtra(StatisticActivity.EXTRA_MEMBER_LIST, Parcels.wrap(memberListMemberCount));
+        startActivity(intent);
     }
 
 
@@ -200,17 +213,10 @@ public class ViewAllMemberActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (item.getItemId() == R.id.action_statistic) {
-            List<Member> memberListToStatistic;
-            memberListToStatistic = mAdapter.getMemberList();
-            openStatisticActivity(memberListToStatistic);
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    void openStatisticActivity(List<Member> memberList) {
-        Intent intent = new Intent(this, StatisticActivity.class);
-        intent.putExtra(StatisticActivity.EXTRA_MEMBER_LIST, Parcels.wrap(memberList));
-        startActivity(intent);
     }
 
     public void rootLayoutTapped(View view) {

@@ -12,7 +12,7 @@
         android:id="@+id/tb_edit"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#DC143C"
+        android:background="#607D8B"
         app:titleTextColor="#FFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

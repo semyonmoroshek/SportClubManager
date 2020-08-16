@@ -4,9 +4,10 @@
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimary">#607D8B</item>
         <item name="colorPrimaryDark">#9E9E9E</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
 
     <style name="DefaultButton" parent="Widget.AppCompat.Button">
@@ -46,7 +47,6 @@
         <item name="colorPrimaryDark">#EEEEEE</item>
         <item name="android:statusBarColor">#EEEEEE</item>
         <item name="android:windowLightStatusBar">true</item>
-
 
 
     </style>

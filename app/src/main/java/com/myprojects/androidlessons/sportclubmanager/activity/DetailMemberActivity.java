@@ -53,6 +53,8 @@ public class DetailMemberActivity extends AppCompatActivity {
     @BindView(R.id.fab_detail_delete) FloatingActionButton fabDelete;
     @BindView(R.id.fab_detail_edit) FloatingActionButton fabEdit;
     @BindView(R.id.fab_detail_payment) FloatingActionButton fabPayment;
+    @BindView(R.id.iv_message) ImageView imgMessage;
+    @BindView(R.id.iv_call) ImageView imgCall;
 
     Member member;
     private String templateMessage = "";
@@ -94,6 +96,10 @@ public class DetailMemberActivity extends AppCompatActivity {
         ivPhone.setOnClickListener(View -> call());
 
         txtPhoneNumber.setOnClickListener(View -> call());
+
+        imgCall.setOnClickListener(View -> call());
+
+        imgMessage.setOnClickListener(View -> sendNotificationSms());
     }
 
     private void addDefaultMessageNotificationTemplate() {
