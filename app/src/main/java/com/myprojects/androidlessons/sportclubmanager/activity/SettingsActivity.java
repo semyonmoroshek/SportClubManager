@@ -18,12 +18,13 @@ import butterknife.ButterKnife;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    @BindView(R.id.btn_sms_template) Button btnCreateNotificationTemplate;
+    @BindView(R.id.btn_saveTemplate_1) Button btnCreateNotificationTemplate1;
+    @BindView(R.id.btn_saveTemplate_2) Button btnCreateNotificationTemplat2;
+    @BindView(R.id.btn_saveTemplate_3) Button btnCreateNotificationTemplat3;
+
     TextTemplate mTemplate;
     private String templateMessage = "";
     DatabaseTextTemplate mDatabase;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         addDefaultMessageNotificationTemplate();
 
-        btnCreateNotificationTemplate.setOnClickListener(View ->
+        btnCreateNotificationTemplate1.setOnClickListener(View ->
                 createNotificationTemplate());
 
     }

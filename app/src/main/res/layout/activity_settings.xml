@@ -7,15 +7,33 @@
     tools:context=".activity.SettingsActivity">
 
     <Button
-        android:id="@+id/btn_sms_template"
+        android:id="@+id/btn_saveTemplate_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
         android:background="#feb371"
-        android:text="create sms template"
+        android:text="create sms template 1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <Button
+        android:id="@+id/btn_saveTemplate_2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#feb371"
+        android:text="create sms template 2"
+        app:layout_constraintTop_toBottomOf="@+id/btn_saveTemplate_1"
+        tools:layout_editor_absoluteX="15dp" />
+
+    <Button
+        android:id="@+id/btn_saveTemplate_3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#feb371"
+        android:text="create sms template 3"
+        app:layout_constraintTop_toBottomOf="@+id/btn_saveTemplate_2"
+        tools:layout_editor_absoluteX="15dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
