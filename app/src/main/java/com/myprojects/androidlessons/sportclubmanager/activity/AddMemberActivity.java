@@ -67,7 +67,7 @@ public class AddMemberActivity extends AppCompatActivity {
         Button btnCancel = dialog.findViewById(R.id.btn_cancel_price_payment);
 
         btnSave.setOnClickListener(v -> {
-                Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "payment added", Toast.LENGTH_SHORT).show();
                 dialog.cancel();
         });
 

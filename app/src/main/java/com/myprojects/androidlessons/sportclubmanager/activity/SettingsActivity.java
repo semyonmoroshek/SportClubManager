@@ -3,11 +3,14 @@ package com.myprojects.androidlessons.sportclubmanager.activity;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.myprojects.androidlessons.sportclubmanager.R;
 import com.myprojects.androidlessons.sportclubmanager.model.TextTemplate;
@@ -19,8 +22,10 @@ import butterknife.ButterKnife;
 public class SettingsActivity extends AppCompatActivity {
 
     @BindView(R.id.btn_saveTemplate_1) Button btnCreateNotificationTemplate1;
-    @BindView(R.id.btn_saveTemplate_2) Button btnCreateNotificationTemplat2;
-    @BindView(R.id.btn_saveTemplate_3) Button btnCreateNotificationTemplat3;
+    @BindView(R.id.btn_saveTemplate_2) Button btnCreateNotificationTemplate2;
+    @BindView(R.id.btn_saveTemplate_3) Button btnCreateNotificationTemplate3;
+
+    private static final String MESSAGE_TEMPLATE_1 = "messageTemplate1.txt";
 
     TextTemplate mTemplate;
     private String templateMessage = "";
@@ -54,29 +59,59 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void createNotificationTemplate() {
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Sms template");
 
-        final EditText input = new EditText(this);
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.create_message_template_dilog);
 
-        input.setInputType(InputType.TYPE_CLASS_TEXT |
-                InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE |
-                InputType.TYPE_TEXT_FLAG_MULTI_LINE);
-        builder.setView(input);
 
-        builder.setPositiveButton("Save", (dialog, whichButton) -> {
+        dialog.show();
 
-            templateMessage = input.getText().toString();
-            Log.i("message3", templateMessage);
-            mDatabase.updateTemplateObject(templateMessage, 1);
-            Log.i("template", mDatabase.getAllTemplates().get(0).toString());
-        });
+        Button btnSave = dialog.findViewById(R.id.btn_saveCreateTemplate);
+        Button btnCancel = dialog.findViewById(R.id.btn_cancelCreateTemplate);
 
-        builder.setNegativeButton("Cancel", (dialog, whichButton) -> {
+        btnSave.setOnClickListener(v -> {
+            Toast.makeText(this, "save btn", Toast.LENGTH_SHORT).show();
             dialog.cancel();
-            Log.i("message4", templateMessage);
         });
-        builder.show();
+
+        btnCancel.setOnClickListener(v -> {
+            Toast.makeText(this, "cancel btn", Toast.LENGTH_SHORT).show();
+            dialog.cancel();
+        });
+
+
+
+
+
+
+
+
+
+
+
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle("Sms template");
+//
+//        final EditText input = new EditText(this);
+//
+//        input.setInputType(InputType.TYPE_CLASS_TEXT |
+//                InputType.TYPE_TEXT_VARIATION_SHORT_MESSAGE |
+//                InputType.TYPE_TEXT_FLAG_MULTI_LINE);
+//        builder.setView(input);
+//
+//        builder.setPositiveButton("Save", (dialog, whichButton) -> {
+//
+//            templateMessage = input.getText().toString();
+//            Log.i("message3", templateMessage);
+//            mDatabase.updateTemplateObject(templateMessage, 1);
+//            Log.i("template", mDatabase.getAllTemplates().get(0).toString());
+//        });
+//
+//        builder.setNegativeButton("Cancel", (dialog, whichButton) -> {
+//            dialog.cancel();
+//            Log.i("message4", templateMessage);
+//        });
+//        builder.show();
     }
 
 }
